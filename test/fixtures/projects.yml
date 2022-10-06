@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  description: MyString
+  start_date: 2022-10-06 12:33:01
+  end_date: 2022-10-06 12:33:01
+  chapter: one
+
+two:
+  name: MyString
+  description: MyString
+  start_date: 2022-10-06 12:33:01
+  end_date: 2022-10-06 12:33:01
+  chapter: two
