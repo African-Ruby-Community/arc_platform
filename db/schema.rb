@@ -31,7 +31,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_06_093301) do
 
   create_table "projects", force: :cascade do |t|
     t.string "name"
-    t.string "description"
+    t.text "description"
     t.datetime "start_date"
     t.datetime "end_date"
     t.bigint "chapter_id", null: false
