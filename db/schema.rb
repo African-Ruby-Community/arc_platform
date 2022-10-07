@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_06_093301) do
+ActiveRecord::Schema[7.0].define(version: 2022_10_07_102044) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -29,6 +29,23 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_06_093301) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "events", force: :cascade do |t|
+    t.string "title"
+    t.text "description"
+    t.string "status"
+    t.string "event_type"
+    t.string "location"
+    t.integer "cost"
+    t.datetime "start_date"
+    t.datetime "end_date"
+    t.datetime "start_time"
+    t.datetime "end_time"
+    t.bigint "chapter_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["chapter_id"], name: "index_events_on_chapter_id"
+  end
+
   create_table "projects", force: :cascade do |t|
     t.string "name"
     t.text "description"
@@ -41,5 +58,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_06_093301) do
   end
 
   add_foreign_key "chapters", "countries"
+  add_foreign_key "events", "chapters"
   add_foreign_key "projects", "chapters"
 end

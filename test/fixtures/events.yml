@@ -1,0 +1,25 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  description: MyText
+  status: MyString
+  event_type: MyString
+  location: MyString
+  cost: 1
+  start_date: 2022-10-07 13:20:44
+  end_date: 2022-10-07 13:20:44
+  start_time: 2022-10-07 13:20:44
+  end_time: 2022-10-07 13:20:44
+
+two:
+  title: MyString
+  description: MyText
+  status: MyString
+  event_type: MyString
+  location: MyString
+  cost: 1
+  start_date: 2022-10-07 13:20:44
+  end_date: 2022-10-07 13:20:44
+  start_time: 2022-10-07 13:20:44
+  end_time: 2022-10-07 13:20:44
