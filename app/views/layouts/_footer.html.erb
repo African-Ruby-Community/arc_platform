@@ -1,0 +1,81 @@
+<footer aria-labelledby="footer-heading">
+  <div class="flex flex-row pt-32">
+    <div class="basis-2/6">
+      <%= link_to root_path, class: "flex justify-end pr-20" do %>
+        <%= image_tag image_path('arc_dark_gray_logo.png'), class: 'w-40' %>
+      <% end %>
+    </div>
+
+    <div class="basis-1/6">
+      <ul>
+        <li><%= link_to 'Home', root_path %></li>
+        <li><%= link_to 'Events', '#' %></li>
+        <li><%= link_to 'Conferences', '#' %></li>
+        <li><%= link_to 'Chapters', '#' %></li>
+        <li><%= link_to 'Projects', '#' %></li>
+      </ul>
+    </div>
+    <div class="basis-1/6">
+      <ul>
+        <li>
+          <%= link_to 'Learning materials', '#' %></li>
+        <li><%= link_to 'Members', '#' %></li>
+        <li><%= link_to 'About', landing_about_path %></li>
+        <li><%= link_to 'Contact Us', '#' %></li>
+        <li><%= link_to 'Code of conduct', '#' %></li>
+      </ul>
+    </div>
+    <div class="basis-1/6">
+      <ul>
+        <li><%= link_to 'Sponsor', '#' %></li>
+      </ul>
+    </div>
+    <div class="basis-1/6">
+      <ul>
+        <li>
+          <%= link_to '#' do %>
+            <div class="inline-flex text-sm">
+              <div class="pr-4 self-center">
+                <%= image_tag image_path('brands_twitter.png'), class: "w-5" %>
+              </div>
+              Twitter
+            </div>
+          <% end %>
+        </li>
+        <li>
+          <%= link_to '#' do %>
+            <div class="inline-flex text-sm">
+              <div class="pr-4 self-center">
+                <%= image_tag image_path('brands_telegram.png'), class: "w-5" %>
+              </div>
+              Telegram
+            </div>
+          <% end %>
+        </li>
+        <li>
+        <li>
+          <%= link_to '#' do %>
+            <div class="inline-flex text-sm">
+              <div class="pr-4 self-center">
+                <%= image_tag image_path('brands_facebook.png'), class: "w-5" %>
+              </div>
+              Facebook
+            </div>
+          <% end %>
+        </li>
+        <li>
+          <%= link_to '#' do %>
+            <div class="inline-flex text-sm">
+              <div class="pr-4 self-center">
+                <%= image_tag image_path('brands_instagram.png'), class: "w-5" %>
+              </div>
+              Instagram
+            </div>
+          <% end %>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <p class="text-center pt-10 pb-10">All Rights Reserved. Copyright <%= Date.today.year %></p>
+</footer>

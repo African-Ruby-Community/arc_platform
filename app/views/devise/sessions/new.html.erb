@@ -1,0 +1,25 @@
+<div class="flex justify-center pt-16 ">
+  <div class="card w-1/2 bg-base-100 shadow-xl">
+    <figure>
+      <%= image_tag 'sign_up_karate.png' %>
+    </figure>
+    <div class="card-body">
+      <h2 class="card-title">Sign In</h2>
+      <%= simple_form_for(resource, as: resource_name,
+                          url: session_path(resource_name)) do |f| %>
+        <%= f.input :email, placeholder: 'Enter email address', label: 'Email',
+                    input_html: { class: 'input-bordered w-full', autofocus: true, autocomplete: 'email' } %>
+
+        <%= f.input :password, placeholder: 'Enter password', label: 'Password',
+                    input_html: { class: 'input-bordered w-full' } %>
+
+        <div class="card-actions justify-end pt-8">
+          <%= f.button :button, 'Sign In', class: 'btn btn-primary' %>
+        </div>
+      <% end %>
+
+      <div class="divider"></div>
+      <%= render "devise/shared/links" %>
+    </div>
+  </div>
+</div>

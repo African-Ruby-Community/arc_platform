@@ -90,4 +90,13 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  # Sendgrid mailer settings
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.default_url_options = { host: 'https://rubycommunity.africa' }
+  config.action_mailer.delivery_method = :sendgrid_actionmailer
+  config.action_mailer.sendgrid_actionmailer_settings = {
+    api_key: ERails.application.credentials.sendgrid_api_key,
+    raise_delivery_errors: true
+  }
 end
