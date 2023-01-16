@@ -1,16 +1,25 @@
-<h2>Resend confirmation instructions</h2>
+<div class="flex justify-center pt-16 ">
+  <div class="card w-1/2 bg-base-100 shadow-xl">
+    <figure>
+      <%= image_tag 'sign_up_karate.png' %>
+    </figure>
+    <div class="card-body">
+      <h2 class="card-title">Resend confirmation instructions</h2>
 
-<%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+      <%= simple_form_for(resource, as: resource_name,
+                          url: confirmation_path(resource_name)) do |f| %>
+        <%= f.input :email, placeholder: 'Enter email address', label: 'Email',
+                    input_html: { class: 'input-bordered w-full', autocomplete: 'email',
+                                  autofocus: true,
+                                  value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email) } %>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email", value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email) %>
+        <div class="card-actions justify-end pt-8">
+          <%= f.button :button, 'Resend instructions', class: 'btn btn-primary' %>
+        </div>
+      <% end %>
+
+      <div class="divider"></div>
+      <%= render "devise/shared/links" %>
+    </div>
   </div>
-
-  <div class="actions">
-    <%= f.submit "Resend confirmation instructions" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+</div>

@@ -1,13 +1,40 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <style>
+<head>
+  <meta name="viewport" content="width=device-width"/>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <%= stylesheet_link_tag 'mailgun_mails', media: 'all', 'data-turbolinks-track' => false %>
+  <style>
       /* Email styles need to be inline */
-    </style>
-  </head>
+  </style>
+</head>
 
-  <body>
-    <%= yield %>
-  </body>
+<body>
+<table class="body-wrap">
+  <tr>
+    <td></td>
+    <td class="container" width="600">
+      <div class="content">
+        <table class="main" width="100%" cellpadding="0" cellspacing="0" itemprop="action"
+               itemscope itemtype="http://schema.org/ConfirmAction">
+          <%= yield %>
+        </table>
+        <div class="footer">
+          <table width="100%">
+            <tr>
+              <td class="aligncenter content-block">
+                <a href="https://rubycommunity.africa" target="_blank">
+                  <img src="https://elasticbeanstalk-ap-south-1-576290261696.s3.ap-south-1.amazonaws.com/email_arc_logo.png"
+                       width="200" height="49" alt="ARC logo"/>
+                </a>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </td>
+    <td></td>
+  </tr>
+</table>
+</body>
 </html>

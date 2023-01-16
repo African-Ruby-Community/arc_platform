@@ -1,0 +1,46 @@
+<%= turbo_stream_from "countries" %>
+
+<div class="container pt-10">
+  <h1 class="text-4xl pt-6 pb-16 font-bold">
+    Countries
+  </h1>
+
+  <div class="overflow-x-auto">
+    <div class="flex justify-end pb-6">
+      <%= link_to 'New country', new_country_path, class: "btn btn-primary btn-sm",
+                  data: { turbo_frame: dom_id(Country.new) } %>
+    </div>
+
+    <%= turbo_frame_tag Country.new %>
+    <div class="container">
+      <div class="resp-table">
+        <div class="resp-table-body">
+          <div class="resp-table-row">
+            <div class="table-body-cell">
+              <b>Name</b>
+            </div>
+            <div class="table-body-cell">
+              <b>Actions</b>
+            </div>
+          </div>
+        </div>
+
+        <%= turbo_frame_tag :countries, class: "resp-table-body" do %>
+          <% @countries.each do |country| %>
+            <%= turbo_frame_tag country, class: "resp-table-row" do %>
+              <div class="table-body-cell">
+                <%= country.name %>
+              </div>
+              <div class="table-body-cell flex inline space-x-1 justify-start">
+                <%= link_to 'Edit', edit_country_path(country), class: 'btn btn-xs btn-info' %>
+                <%= button_to 'Delete', country, class: 'btn btn-xs btn-error',
+                              method: :delete, data: { turbo_frame: "_top" } %>
+              </div>
+            <% end %>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+</div>

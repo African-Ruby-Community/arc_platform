@@ -27,6 +27,25 @@
     }
 
     .text-error {
+        font-size: .875rem;
         color: hsl(var(--er)/var(--tw-border-opacity));
+    }
+
+    .resp-table {
+        width: 100%;
+        display: table;
+    }
+    .resp-table-body{
+        display: table-row-group;
+    }
+    .resp-table-row{
+        display: table-row;
+    }
+    .table-body-cell{
+        display: table-cell;
+        border: 1px solid #dddddd;
+        padding: 8px;
+        line-height: 1.42857143;
+        vertical-align: top;
     }
 }

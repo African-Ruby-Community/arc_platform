@@ -1,0 +1,15 @@
+<%= turbo_frame_tag @country do %>
+  <%= simple_form_for(@country) do |f| %>
+      <div class="resp-table flex justify-end">
+        <div class="resp-table-body">
+          <div class="table-body-cell border-none">
+            <%= f.input :name,label: 'Name', input_html: { class: 'input-bordered' },
+                        label_html: {class: 'max-w-fit'}%>
+
+            <%= link_to 'Cancel', countries_path, class: 'btn btn-xs' %>
+            <%= f.button :submit, class: 'btn btn-xs btn-success' %>
+          </div>
+        </div>
+      </div>
+  <% end %>
+<% end %>

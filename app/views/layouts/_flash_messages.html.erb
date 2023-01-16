@@ -2,7 +2,8 @@
   <% if notice || alert %>
     <%= content_tag :div,
                     class: "alert #{ alert ? 'alert-error' : 'alert-success'} alert_custom_class",
-                    data: { controller: 'removals', action: 'animationend->removals#remove' } do %>
+                    data: { controller: 'removals',
+                            action: 'animationend->removals#remove click->removals#remove_on_click' } do %>
 
       <!--  Display flash icon on the left-->
       <% if notice %>
