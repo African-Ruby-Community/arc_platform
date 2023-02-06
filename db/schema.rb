@@ -10,9 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_12_27_125811) do
+ActiveRecord::Schema[7.0].define(version: 2023_02_06_201439) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "chapters", force: :cascade do |t|
+    t.bigint "country_id", null: false
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["country_id"], name: "index_chapters_on_country_id"
+  end
 
   create_table "countries", force: :cascade do |t|
     t.string "name"
@@ -46,4 +54,5 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_27_125811) do
     t.index ["unlock_token"], name: "index_users_on_unlock_token", unique: true
   end
 
+  add_foreign_key "chapters", "countries"
 end

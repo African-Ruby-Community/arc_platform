@@ -11,4 +11,7 @@ class Country < ApplicationRecord
 
   # Validations
   validates :name, presence: true
+
+  # Associations
+  has_one :chapter
 end
