@@ -2,6 +2,7 @@ class Chapter < ApplicationRecord
   # Associations
   belongs_to :country
   has_many :projects, dependent: :destroy
+  has_many :memberships, dependent: :destroy
 
   # Callbacks
   after_create_commit -> {

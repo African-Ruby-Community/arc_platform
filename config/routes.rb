@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :memberships
   resources :projects
   resources :chapters
   resources :countries
