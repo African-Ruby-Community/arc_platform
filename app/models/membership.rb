@@ -6,4 +6,8 @@ class Membership < ApplicationRecord
   after_create_commit -> {
     broadcast_prepend_to 'memberships', partial: 'memberships/membership',
      locals: {membership: self}, target: 'memberships' }
+  
+  after_update_commit -> { 
+    broadcast_update_to 'memberships', partial: 'memberships/updated_membership', 
+    locals: { membership: self }, target: self }
 end

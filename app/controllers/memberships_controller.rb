@@ -40,6 +40,7 @@ class MembershipsController < ApplicationController
   def update
     respond_to do |format|
       if @membership.update(membership_params)
+        format.turbo_stream
         format.html { redirect_to membership_url(@membership), notice: "Membership was successfully updated." }
         format.json { render :show, status: :ok, location: @membership }
       else
