@@ -10,4 +10,6 @@ class Membership < ApplicationRecord
   after_update_commit -> { 
     broadcast_update_to 'memberships', partial: 'memberships/updated_membership', 
     locals: { membership: self }, target: self }
+
+  after_destroy_commit -> { broadcast_remove_to 'memberships' }
 end

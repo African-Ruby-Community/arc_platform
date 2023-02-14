@@ -55,6 +55,8 @@ class MembershipsController < ApplicationController
     @membership.destroy
 
     respond_to do |format|
+      # turbo_stream 
+      format.turbo_stream
       format.html { redirect_to memberships_url, notice: "Membership was successfully destroyed." }
       format.json { head :no_content }
     end
