@@ -1,0 +1,2 @@
+<%= turbo_stream.prepend 'memberships', partial: 'memberships/membership', locals: {membership: @membership} %>
+<%= turbo_stream.update Membership.new, "" %>

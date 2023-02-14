@@ -3,6 +3,9 @@
 <h1>Memberships</h1>
 
 <div id="memberships">
+
+  <%= turbo_stream_from 'memberships' %>
+  
   <% @memberships.each do |membership| %>
     <%= render membership %>
     <p>
@@ -11,4 +14,7 @@
   <% end %>
 </div>
 
-<%= link_to "New membership", new_membership_path %>
+<%# target frame for the new_form %>
+<%= turbo_frame_tag Membership.new %>
+
+<%= link_to "New membership", new_membership_path, data: {turbo_frame: dom_id(Membership.new)} %>

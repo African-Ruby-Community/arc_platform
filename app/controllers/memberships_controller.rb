@@ -25,6 +25,8 @@ class MembershipsController < ApplicationController
 
     respond_to do |format|
       if @membership.save
+        # turbo_stream 
+        format.turbo_stream 
         format.html { redirect_to membership_url(@membership), notice: "Membership was successfully created." }
         format.json { render :show, status: :created, location: @membership }
       else

@@ -1,7 +1,10 @@
-<h1>New membership</h1>
+<%= turbo_frame_tag @membership do %>
 
-<%= render "form", membership: @membership %>
+  <h1>New membership</h1>
 
+  <%= render "form", membership: @membership %>
+
+<% end %>
 <br>
 
 <div>
