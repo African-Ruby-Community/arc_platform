@@ -2,6 +2,8 @@ class Membership < ApplicationRecord
   belongs_to :user
   belongs_to :chapter
 
+  scope :ordered, -> { order(created_at: :desc)} 
+
   # action_cable & turbo_stream for live updates
   after_create_commit -> {
     broadcast_prepend_to 'memberships', partial: 'memberships/membership',
