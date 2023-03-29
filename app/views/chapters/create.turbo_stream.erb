@@ -1,0 +1,7 @@
+<%= turbo_stream.prepend :chapters do %>
+  <%= turbo_frame_tag chapter, class: "resp-table-row" do %>
+    <%= render partial: "chapters/chapter", locals: { chapter: @chapter } %>
+  <% end %>
+<% end %>
+
+<%= turbo_stream.update Chapter.new, "" %>

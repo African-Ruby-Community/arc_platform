@@ -52,7 +52,9 @@ gem "bootsnap", require: false
 # gem "sassc-rails"
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
-# gem "image_processing", "~> 1.2"
+gem 'image_processing', '~> 1.2'
+# Official AWS Ruby gem for Amazon S3
+gem 'aws-sdk-s3', '~> 1.119', require: false
 
 # Gem to pimp up forms
 gem "simple_form", "~> 5.1"
@@ -62,6 +64,16 @@ gem 'sendgrid-actionmailer', '~> 3.2'
 
 # This gem is a drop in solution for styling HTML emails with CSS
 gem 'premailer-rails', '~> 1.12'
+
+# Authorization library which restricts what resources a given user is allowed to access
+gem 'cancancan', '~> 3.4'
+
+# Motor Admin allows you to deploy a no-code admin panel for your application in less than a minute
+gem 'motor-admin', '~> 0.4.7'
+
+# Active Storage gems for validating attachments https://github.com/igorkasyanchuk/active_storage_validations
+gem 'active_storage_validations', '~> 1.0'
+gem 'mini_magick', '~> 4.12'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
@@ -87,3 +99,7 @@ group :test do
   gem "webdrivers"
   gem 'faker', '~> 3.1'
 end
+
+
+# Code coverage analysis tool for ruby
+gem 'simplecov', require: false, group: :test

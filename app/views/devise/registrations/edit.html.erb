@@ -1,43 +1,54 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<div class="flex justify-center pt-16 ">
+  <div class="card w-1/2 bg-base-100 shadow-xl">
+    <div class="card-body">
+      <h2 class="card-title">Edit account</h2>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+      <%= simple_form_for(resource, as: resource_name,
+                          url: registration_path(resource_name), html_input: { method: :put }) do |f| %>
+        <%= f.input :email, placeholder: 'Enter email address', label: 'Email',
+                    input_html: { class: 'input-bordered w-full', autocomplete: 'email' } %>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+        <%= f.input :name, placeholder: 'Enter full name', label: 'Full name',
+                    input_html: { class: 'input-bordered w-full', autocomplete: 'name' } %>
+
+        <%= f.input :phone_number, placeholder: 'Enter phone number', label: 'Phone number',
+                    hint: 'Start with a country e.g 254xxxxxxxxx. Use a WhatsApp number if possible',
+                    input_html: { class: 'input-bordered w-full', autocomplete: 'phone_number' } %>
+
+        <div class="form-control email optional user_chapter">
+          <label class="label"><span class="label-text">Chapter</span></label>
+          <%= select_tag :chapter_id, options_from_collection_for_select(Chapter.all, 'id', 'name'),
+                         include_blank: false,
+                         class: "input input-bordered string email required input-bordered w-full" %>
+        </div>
+
+        <%= f.input :github_username, placeholder: 'Enter Github username', label: 'Github username',
+                    input_html: { class: 'input-bordered w-full', autocomplete: 'github_username' } %>
+
+        <%= f.input :password, placeholder: 'Enter password', label: 'Password',
+                    hint: "Leave blank if you don't want to change it",
+                    input_html: { class: 'input-bordered w-full' } %>
+
+        <%= f.input :password_confirmation, placeholder: 'Confirm Password',
+                    label: 'Confirm Password', input_html: { class: 'input-bordered w-full' } %>
+
+        <%= f.input :current_password, placeholder: 'Current Password',
+                    hint: 'We need your current password to confirm your changes',
+                    label: 'Current Password', input_html: { class: 'input-bordered w-full' } %>
+
+        <div class="card-actions justify-end pt-8">
+          <%= f.button :button, 'Update Account', class: 'btn btn-primary' %>
+        </div>
+      <% end %>
+
+      <div class="divider"></div>
+
+      <div class="flex justify-center">
+        <span class="label-text">
+            <%= button_to "Unhappy? Cancel my account", registration_path(resource_name),
+                          data: { confirm: "Are you sure?" }, method: :delete %>
+        </span>
+      </div>
+    </div>
   </div>
-
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-    <% if @minimum_password_length %>
-      <br />
-      <em><%= @minimum_password_length %> characters minimum</em>
-    <% end %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-    <%= f.password_field :current_password, autocomplete: "current-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Update" %>
-  </div>
-<% end %>
-
-<h3>Cancel my account</h3>
-
-<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
-
-<%= link_to "Back", :back %>
+</div>

@@ -1,0 +1,7 @@
+<%= turbo_stream.prepend :projects do %>
+  <%= turbo_frame_tag project, class: "resp-table-row" do %>
+    <%= render partial: "projects/project", locals: { project: @project } %>
+  <% end %>
+<% end %>
+
+<%= turbo_stream.update Project.new, "" %>

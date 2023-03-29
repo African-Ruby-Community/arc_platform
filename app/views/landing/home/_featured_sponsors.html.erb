@@ -4,36 +4,20 @@
 
 <div class="container mx-auto px-20">
   <div class="carousel justify-center p-6 space-x-16 rounded-box">
-    <div class="carousel-item">
-      <div class="grid flex-grow w-36 h-40 card place-items-center">
-        <img
-          class="w-36"
-          src="https://anima-uploads.s3.amazonaws.com/projects/5ee3a2693990c6253bbcee4d/releases/5ee3a46b270f553c45e803b8/img/1920px-google-2015-logo-svg@1x.png">
+    <%= link_to 'https://www.nairobits.com/', target: '_blank' do %>
+      <div class="carousel-item">
+        <div class="grid flex-grow w-36 h-40 card place-items-center">
+          <%= image_tag 'sponsors/current/nairobits.png', alt: "Nairobits" %>
+        </div>
       </div>
-    </div>
+    <% end %>
 
-    <div class="carousel-item">
-      <div class="grid flex-grow w-36 h-40 card place-items-center">
-        <img src="https://anima-uploads.s3.amazonaws.com/projects/5ee3a2693990c6253bbcee4d/releases/5ee3a46b270f553c45e803b8/img/andela-logo-landscape-blue-3@1x.png">
+    <%= link_to 'https://finplusgroup.com/', target: '_blank' do %>
+      <div class="carousel-item">
+        <div class="grid flex-grow w-36 h-40 card place-items-center">
+          <%= image_tag 'sponsors/current/finplus.png', alt: 'Finplus Group' %>
+        </div>
       </div>
-    </div>
-
-    <div class="carousel-item">
-      <div class="grid flex-grow w-36 h-40 card place-items-center">
-        <img src="https://anima-uploads.s3.amazonaws.com/projects/5ee3a2693990c6253bbcee4d/releases/5ee3a46b270f553c45e803b8/img/hover-logo-3@1x.png">
-      </div>
-    </div>
-
-    <div class="carousel-item">
-      <div class="grid flex-grow w-36 h-40 card place-items-center">
-        <img src="https://anima-uploads.s3.amazonaws.com/projects/5ee3a2693990c6253bbcee4d/releases/5ee3a46b270f553c45e803b8/img/58482354cef1014c0b5e49c0@1x.png">
-      </div>
-    </div>
-
-    <div class="carousel-item">
-      <div class="grid flex-grow w-36 h-40 card place-items-center">
-        <img src="https://anima-uploads.s3.amazonaws.com/projects/5ee3a2693990c6253bbcee4d/releases/5ee3a46b270f553c45e803b8/img/jetbrains-3@1x.png">
-      </div>
-    </div>
+    <% end %>
   </div>
 </div>

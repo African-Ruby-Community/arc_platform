@@ -11,6 +11,23 @@
         <%= f.input :email, placeholder: 'Enter email address', label: 'Email',
                     input_html: { class: 'input-bordered w-full', autocomplete: 'email' } %>
 
+        <%= f.input :name, placeholder: 'Enter full name', label: 'Full name',
+                    input_html: { class: 'input-bordered w-full', autocomplete: 'name' } %>
+
+        <%= f.input :phone_number, placeholder: 'Enter phone number', label: 'Phone number',
+                    hint: 'Start with a country e.g 254xxxxxxxxx. Use a WhatsApp number if possible',
+                    input_html: { class: 'input-bordered w-full', autocomplete: 'phone_number' } %>
+
+        <div class="form-control email optional user_chapter">
+          <label class="label"><span class="label-text">Chapter</span></label>
+          <%= select_tag :chapter_id, options_from_collection_for_select(Chapter.all, 'id', 'name'),
+                         include_blank: false,
+                         class: "input input-bordered string email required input-bordered w-full" %>
+        </div>
+
+        <%= f.input :github_username, placeholder: 'Enter Github username', label: 'Github username',
+                    input_html: { class: 'input-bordered w-full', autocomplete: 'github_username' } %>
+
         <%= f.input :password, placeholder: 'Enter password', label: 'Password',
                     input_html: { class: 'input-bordered w-full' } %>
 

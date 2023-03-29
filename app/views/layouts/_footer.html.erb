@@ -9,25 +9,47 @@
     <div class="basis-1/6">
       <ul>
         <li><%= link_to 'Home', root_path %></li>
-        <li><%= link_to 'Events', '#' %></li>
-        <li><%= link_to 'Conferences', '#' %></li>
+
+        <% if FeatureFlag.find_by(name: 'events').try(:enabled) %>
+          <li><%= link_to 'Events', '#' %></li>
+        <% end %>
+
+        <% if FeatureFlag.find_by(name: 'conferences').try(:enabled) %>
+          <li><%= link_to 'Conferences', '#' %></li>
+        <% end %>
+
         <li><%= link_to 'Chapters', '#' %></li>
-        <li><%= link_to 'Projects', '#' %></li>
+
+        <% if FeatureFlag.find_by(name: 'projects').try(:enabled) %>
+          <li><%= link_to 'Projects', '#' %></li>
+        <% end %>
       </ul>
     </div>
     <div class="basis-1/6">
       <ul>
-        <li>
-          <%= link_to 'Learning materials', '#' %></li>
-        <li><%= link_to 'Members', '#' %></li>
+
+        <% if FeatureFlag.find_by(name: 'learning_materials').try(:enabled) %>
+          <li><%= link_to 'Learning materials', '#' %></li>
+        <% end %>
+
+        <% if FeatureFlag.find_by(name: 'members').try(:enabled) %>
+          <li><%= link_to 'Members', '#' %></li>
+        <% end %>
+
         <li><%= link_to 'About', landing_about_path %></li>
-        <li><%= link_to 'Contact Us', '#' %></li>
-        <li><%= link_to 'Code of conduct', '#' %></li>
+
+        <% if FeatureFlag.find_by(name: 'contact_us').try(:enabled) %>
+          <li><%= link_to 'Contact Us', '#' %></li>
+        <% end %>
+
+        <% if FeatureFlag.find_by(name: 'contact_us').try(:enabled) %>
+          <li><%= link_to 'Code of conduct', '#' %></li>
+        <% end %>
       </ul>
     </div>
     <div class="basis-1/6">
       <ul>
-        <li><%= link_to 'Sponsor', '#' %></li>
+        <li><%= link_to 'Sponsor', 'mailto:organisers@rubycommunity.africa' %></li>
       </ul>
     </div>
     <div class="basis-1/6">
@@ -42,16 +64,20 @@
             </div>
           <% end %>
         </li>
-        <li>
-          <%= link_to '#' do %>
-            <div class="inline-flex text-sm">
-              <div class="pr-4 self-center">
-                <%= image_tag image_path('brands_telegram.png'), class: "w-5" %>
+
+        <% if FeatureFlag.find_by(name: 'telegram').try(:enabled) %>
+          <li>
+            <%= link_to '#' do %>
+              <div class="inline-flex text-sm">
+                <div class="pr-4 self-center">
+                  <%= image_tag image_path('brands_telegram.png'), class: "w-5" %>
+                </div>
+                Telegram
               </div>
-              Telegram
-            </div>
-          <% end %>
-        </li>
+            <% end %>
+          </li>
+        <% end %>
+
         <li>
         <li>
           <%= link_to '#' do %>

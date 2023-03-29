@@ -1,0 +1,28 @@
+<div class="container pt-20 px-4 xl:px-56 mx-auto">
+  <h1 class="pt-16 pb-16 text-4xl text-red-600 font-bold text-5xl">
+    Chapters
+  </h1>
+
+  <div class="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2
+    xl:grid-cols-3 grid-cols-4 gap-1 gap-y-20 mx-auto place-items-center">
+    <% @chapters.each do |chapter| %>
+      <div class="chapter-grid grid flex-grow w-80 h-48 card rounded-box
+        place-items-center">
+        <%= image_tag image_path('chapter.jpg'), alt: 'Local meetups photo',
+                      class: "rounded-lg rounded-tl-2xl"
+        %>
+
+        <div class="container mt-4">
+          <span class="text-lg"><%= chapter.name %></span>
+
+          <% if can? :manage, chapter %>
+            <%= link_to 'Edit', edit_chapter_path(chapter), class: 'btn btn-xs btn-info',
+                        data: { turbo_frame: "edit_chapter_#{chapter.id}" } %>
+            <%= link_to 'Delete', chapter, class: 'btn btn-xs btn-error',
+                        method: :delete %>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

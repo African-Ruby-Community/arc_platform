@@ -1,0 +1,14 @@
+<div class="table-body-cell">
+  <%= chapter.name %>
+</div>
+<div class="table-body-cell">
+  <%= chapter.country.try(:name) %>
+</div>
+<div class="table-body-cell">
+  <%= chapter.location %>
+</div>
+<div class="table-body-cell flex inline space-x-1 justify-start">
+  <%= link_to 'Edit', edit_chapter_path(chapter), class: 'btn btn-xs btn-info' %>
+  <%= button_to 'Delete', chapter, class: 'btn btn-xs btn-error',
+                method: :delete, data: { turbo_frame: "_top" } %>
+</div>

@@ -11,7 +11,9 @@
           <%= image_tag image_path 'country_kenya.png' %>
           <div>
             <p class="text-2xl text-red-600">Kenya</p>
-            <p>Join community</p>
+            <%= link_to new_user_registration_path do %>
+              <p>Join community</p>
+            <% end %>
           </div>
         </div>
       </div>
@@ -22,7 +24,9 @@
           <%= image_tag image_path 'country_rwanda.png' %>
           <div>
             <p class="text-2xl text-red-600">Rwanda</p>
-            <p>Join community</p>
+            <%= link_to new_user_registration_path do %>
+              <p>Join community</p>
+            <% end %>
           </div>
         </div>
       </div>
@@ -33,7 +37,10 @@
           <%= image_tag image_path 'country_tanzania.png' %>
           <div>
             <p class="text-2xl text-red-600">Tanzania</p>
-            <p>Join community</p>
+
+            <%= link_to new_user_registration_path do %>
+              <p>Join community</p>
+            <% end %>
           </div>
         </div>
       </div>
@@ -44,19 +51,24 @@
           <%= image_tag image_path 'country_uganda.png' %>
           <div>
             <p class="text-2xl text-red-600">Uganda</p>
-            <p>Join community</p>
+
+            <%= link_to new_user_registration_path do %>
+              <p>Join community</p>
+            <% end %>
           </div>
         </div>
       </div>
 
       <div class="carousel-item">
-        <div class="grid flex-grow w-44 h-40 card place-items-center border border-slate-900
+        <a href="mailto:organisers@rubycommunity.africa">
+          <div class="grid flex-grow w-44 h-40 card place-items-center border border-slate-900
        border-dashed rounded-b-md rounded-tr-md">
-          <%= image_tag image_path 'add.png' %>
-          <div class="px-5">
-            <p class="text-2xl">Request new chapter</p>
+            <%= image_tag image_path 'add.png' %>
+            <div class="px-5">
+              <p class="text-2xl">Request new chapter</p>
+            </div>
           </div>
-        </div>
+        </a>
       </div>
     </div>
   </div>

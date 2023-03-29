@@ -1,6 +1,7 @@
 <div class="table-body-cell">
   <%= country.name %>
 </div>
+
 <div class="table-body-cell flex inline space-x-1 justify-start">
   <%= link_to 'Edit', edit_country_path(country), class: 'btn btn-xs btn-info' %>
   <%= button_to 'Delete', country, class: 'btn btn-xs btn-error',

@@ -1,0 +1,5 @@
+<%= turbo_stream.update @chapter do %>
+  <%= render partial: "chapters/chapter", locals: { chapter: @chapter } %>
+<% end %>
+
+<%= turbo_stream.update "edit_chapter_#{@chapter.id}", "" %>

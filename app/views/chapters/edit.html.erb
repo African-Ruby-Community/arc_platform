@@ -1,0 +1,29 @@
+<%= turbo_frame_tag "edit_chapter_#{@chapter.id}" do %>
+  <div class="modal" id="edit-chapter-modal-<%= @chapter.id %>" data-controller="turbo_frames">
+    <div class="modal-box">
+
+      <%= link_to 'x', '#', class: "btn btn-sm btn-circle absolute right-2 top-2",
+                  data: { turbo: false } %>
+      <h3 class="font-bold text-lg">Add a chapter</h3>
+      <%= simple_form_for(@chapter, data: { turbo_frame: dom_id(@chapter) }) do |f| %>
+        <%= f.input :name, placeholder: 'Name', label: 'Name',
+                    input_html: { class: 'input-bordered w-full' } %>
+
+        <%= f.input :location, placeholder: 'Location', label: 'Location',
+                    input_html: { class: 'input-bordered w-full' } %>
+
+        <%= f.input :country_id, as: :custom_select, collection: Country.pluck(:name, :id),
+                    placeholder: 'Country', label: 'Country',
+                    input_html: { class: 'input-bordered w-full' } %>
+
+        <%= f.input :description, placeholder: 'Description', label: 'Description',
+                    input_html: { class: 'input-bordered w-full' } %>
+
+        <div class="modal-action justify-end pt-8">
+          <%= link_to 'Cancel', '#', class: 'btn', data: { turbo: false } %>
+          <%= f.button :button, 'Submit', class: 'btn btn-primary' %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+<% end %>

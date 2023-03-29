@@ -441,3 +441,5 @@ SimpleForm.setup do |config|
   #   time:          :custom_multi_select
   # }
 end
+
+class CustomSelectInput < SimpleForm::Inputs::CollectionSelectInput;end
