@@ -1,5 +1,9 @@
 class ChaptersController < ApplicationController
+  include ActiveStorage::SetCurrent
+
+  load_and_authorize_resource except: %i[ index show] # Load cancancan authorize for all actions
   before_action :set_chapter, only: %i[ show edit update destroy ]
+  skip_before_action :authenticate_user!, only: %i[ index show]
 
   # GET /chapters or /chapters.json
   def index

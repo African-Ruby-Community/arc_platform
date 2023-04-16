@@ -1,0 +1,40 @@
+---
+engine_version: 0.4.7
+file_version: 2023-03-09 16:16:17.698355000 Z
+resources:
+- name: chapter
+  preferences:
+    columns:
+    - column_type: richtext
+      name: description
+  updated_at: 2023-03-05 09:31:13.962854000 +00:00
+- name: feature_flag
+  preferences:
+    columns:
+    - column_type: richtext
+      name: description
+  updated_at: 2023-03-09 16:16:17.698355000 +00:00
+configs:
+- key: header.links
+  value:
+  - name: Reports
+    link_type: reports
+  - name: Forms
+    link_type: forms
+  - conditions: []
+    type: header
+    name: Exit admin portal
+    path: "/"
+    link_type: header
+  updated_at: 2023-03-05 09:37:51.799389000 +00:00
+queries: []
+dashboards: []
+forms: []
+alerts: []
+api_configs:
+- id: 1
+  name: origin
+  url: "/"
+  preferences: {}
+  description: 
+  updated_at: 2023-03-05 08:41:14.200426000 +00:00

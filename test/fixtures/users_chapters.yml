@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  chapter: one
+  user: member
+  main_chapter: false
+
+two:
+  chapter: two
+  user: member
+  main_chapter: false

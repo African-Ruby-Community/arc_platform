@@ -27,11 +27,24 @@
             bg-base-100 rounded-box w-52 md:hidden">
               <li><%= link_to 'Home', root_path %></li>
               <li><%= link_to 'About', landing_about_path %></li>
-              <li><a href="#">Events</a></li>
-              <li><a href="#">Conferences</a></li>
-              <li><a href="#">Chapters</a></li>
-              <li><a href="#">Projects</a></li>
-              <li><a href="#">Learning Materials</a></li>
+
+              <% if FeatureFlag.find_by(name: 'events').try(:enabled) %>
+                <li><a href="#">Events</a></li>
+              <% end %>
+
+              <% if FeatureFlag.find_by(name: 'conferences').try(:enabled) %>
+                <li><a href="#">Conferences</a></li>
+              <% end %>
+
+              <li><%= link_to 'Chapters', chapters_path %></li>
+
+              <% if FeatureFlag.find_by(name: 'projects').try(:enabled) %>
+                <li><a href="#">Projects</a></li>
+              <% end %>
+
+              <% if FeatureFlag.find_by(name: 'learning_materials').try(:enabled) %>
+                <li><a href="#">Learning Materials</a></li>
+              <% end %>
 
               <% if user_signed_in? %>
                 <li><%= button_to "Sign out", destroy_user_session_path, method: :delete %></li>
@@ -52,21 +65,90 @@
                         class: "text-sm font-small text-gray-500 hover:text-red-600" %>
             <%= link_to 'About', landing_about_path,
                         class: "text-sm font-small text-gray-500 hover:text-red-600" %>
-            <a href="#" class="text-sm font-small text-gray-500 hover:text-red-600">Events</a>
-            <a href="#" class="text-sm font-small text-gray-500 hover:text-red-600">
-              Conferences
-            </a>
-            <a href="#" class="text-sm font-small text-gray-500 hover:text-red-600">Chapters</a>
-            <a href="#" class="text-sm font-small text-gray-500 hover:text-red-600">
-              Projects
-            </a>
-            <a href="#" class="text-sm font-small text-gray-500 hover:text-red-600">
-              Learning Materials
-            </a>
+
+            <% if FeatureFlag.find_by(name: 'events').try(:enabled) %>
+              <a href="#" class="text-sm font-small text-gray-500 hover:text-red-600">Events</a>
+            <% end %>
+
+            <% if FeatureFlag.find_by(name: 'conferences').try(:enabled) %>
+              <a href="#" class="text-sm font-small text-gray-500 hover:text-red-600">
+                Conferences
+              </a>
+            <% end %>
+
+            <%= link_to 'Chapters', chapters_path,
+                        class: "text-sm font-small text-gray-500 hover:text-red-600" %>
+
+            <% if FeatureFlag.find_by(name: 'projects').try(:enabled) %>
+              <a href="#" class="text-sm font-small text-gray-500 hover:text-red-600">
+                Projects
+              </a>
+            <% end %>
+
+            <% if FeatureFlag.find_by(name: 'learning_materials').try(:enabled) %>
+              <a href="#" class="text-sm font-small text-gray-500 hover:text-red-600">
+                Learning Materials
+              </a>
+            <% end %>
           </nav>
           <% if user_signed_in? %>
 
             <div class="hidden items-center justify-end md:flex md:flex-1 lg:w-0">
+              <% if current_user.organization_admin? %>
+                <div class="dropdown dropdown-end">
+                  <button class="text-sm font-small text-gray-500 hover:text-red-600">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                         viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                         stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                         class="feather feather-settings">
+                      <circle cx="12" cy="12" r="3">
+                      </circle>
+                      <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0
+                    1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0
+                    1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0
+                    0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0
+                    .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0
+                    0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83
+                    0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2
+                    0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0
+                    1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0
+                    1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+                    </svg>
+                  </button>
+                  <ul tabindex="0" class="menu dropdown-content p-2 shadow bg-base-100 rounded-box
+                  w-52 mt-4">
+                    <li>
+                      <div class="grid grid-cols-1 divide-y">
+                        <b>Settings</b>
+                        <div/>
+                      </div>
+                    </li>
+                    <li>
+                      <%= link_to 'Countries', countries_path %>
+                    </li>
+                    <li>
+                      <%= link_to 'Chapters', chapters_path %>
+                    </li>
+                  </ul>
+                </div>
+              <% end %>
+
+              <div class="dropdown dropdown-end ml-8">
+                <button class="text-sm font-small text-gray-500 hover:text-red-600">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                       viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                       stroke-linecap="round" stroke-linejoin="round" class="feather feather-user">
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="12" cy="7" r="4"></circle>
+                  </svg>
+                </button>
+                <ul tabindex="0" class="menu dropdown-content p-2 shadow bg-base-100 rounded-box w-52 mt-4">
+                  <li>
+                    <%= link_to 'Update profile', edit_user_registration_path %>
+                  </li>
+                </ul>
+              </div>
+
               <%= button_to "Sign out", destroy_user_session_path, method: :delete, class: "whitespace-nowrap text-sm font-small text-gray-500
             hover:text-red-700 ml-8" %>
             </div>
