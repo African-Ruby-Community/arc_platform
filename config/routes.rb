@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   authenticate :user do
     mount Motor::Admin => '/admin'
   end
+  resources :memberships
   resources :projects
   resources :chapters
   resources :countries

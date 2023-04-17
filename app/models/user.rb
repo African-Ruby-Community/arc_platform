@@ -4,12 +4,13 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
          :confirmable, :lockable, :timeoutable
+
   
-  has_many :memberships, dependent: :destroy
 
   # Associations
   has_many :users_chapters
   has_many :chapters, through: :users_chapters
+  has_many :memberships, dependent: :destroy
 
   # Callbacks
   before_create :set_defaults # Set model defaults before create

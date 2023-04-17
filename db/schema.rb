@@ -57,13 +57,24 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_13_002939) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
-
+  
   create_table "feature_flags", force: :cascade do |t|
     t.string "name"
     t.text "description"
     t.boolean "enabled"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+  
+  create_table "memberships", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "chapter_id", null: false
+    t.datetime "start_date"
+    t.datetime "end_date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["chapter_id"], name: "index_memberships_on_chapter_id"
+    t.index ["user_id"], name: "index_memberships_on_user_id"
   end
 
   create_table "motor_alert_locks", force: :cascade do |t|
@@ -310,6 +321,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_13_002939) do
     t.index ["unlock_token"], name: "index_users_on_unlock_token", unique: true
   end
 
+
   create_table "users_chapters", force: :cascade do |t|
     t.bigint "chapter_id", null: false
     t.bigint "user_id", null: false
@@ -322,6 +334,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_13_002939) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "memberships", "chapters"
+  add_foreign_key "memberships", "users"
   add_foreign_key "motor_alert_locks", "motor_alerts", column: "alert_id"
   add_foreign_key "motor_alerts", "motor_queries", column: "query_id"
   add_foreign_key "motor_note_tag_tags", "motor_note_tags", column: "tag_id"
