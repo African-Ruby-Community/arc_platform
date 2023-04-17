@@ -4,6 +4,9 @@ class ChaptersControllerTest < ActionDispatch::IntegrationTest
   setup do
     @chapter = chapters(:one)
     @country = countries(:one)
+    @user = users(:organization_admin) # Create and organization_admin user
+    @user.confirm
+    sign_in(@user) # Sign in user
   end
 
   test "should get index" do
@@ -46,6 +49,7 @@ class ChaptersControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should destroy chapter" do
+    @chapter.users_chapters.destroy_all
     assert_difference("Chapter.count", -1) do
       delete chapter_url(@chapter)
     end

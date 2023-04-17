@@ -2,42 +2,35 @@
   Activities
 </h1>
 
-<div class="container mx-auto px-20">
-  <div class="carousel carousel-center p-4 space-x-4 rounded-box">
-    <div class="carousel-item">
-      <div class="grid flex-grow w-48 h-48 card rounded-box
+<div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4
+xl:grid-cols-5 gap-2 px-20 place-content-center">
+  <div class="items-center justify-center w-48 h-48 card rounded-box
         place-items-center">
-        <%= image_tag image_path('activities_local_meetups.png'), alt: 'Local meetups photo' %>
-        <p>Local Meetups</p>
-      </div>
-    </div>
-    <div class="carousel-item">
-      <div class="grid flex-grow w-48 h-48 card rounded-box
+    <%= image_tag image_path('activities_local_meetups.png'), alt: 'Local meetups photo' %>
+    <p>Local Meetups</p>
+  </div>
+
+  <div class="items-center justify-center w-48 h-48 card rounded-box
         place-items-center">
-        <%= image_tag image_path('activities_local_conferences.png'), alt: 'Conferences photo' %>
-        Conferences
-      </div>
-    </div>
-    <div class="carousel-item">
-      <div class="grid flex-grow w-48 h-48 card rounded-box
+    <%= image_tag image_path('activities_local_conferences.png'), alt: 'Conferences photo' %>
+    Conferences
+  </div>
+
+  <div class="items-center justify-center w-48 h-48 card rounded-box
         place-items-center">
-        <%= image_tag image_path('activities_local_programming.png'), alt: 'Programming photo' %>
-        Programming
-      </div>
-    </div>
-    <div class="carousel-item">
-      <div class="grid flex-grow w-48 h-48 card rounded-box
+    <%= image_tag image_path('activities_local_programming.png'), alt: 'Programming photo' %>
+    Programming
+  </div>
+
+  <div class="items-center justify-center w-48 h-48 card rounded-box
         place-items-center">
-        <%= image_tag image_path('activities_local_workshops.png'), alt: 'Workshops photo' %>
-        Workshops
-      </div>
-    </div>
-    <div class="carousel-item">
-      <div class="grid flex-grow w-48 h-48 card rounded-box
+    <%= image_tag image_path('activities_local_workshops.png'), alt: 'Workshops photo' %>
+    Workshops
+  </div>
+
+  <div class="items-center justify-center w-48 h-48 card rounded-box
         place-items-center">
-        <%= image_tag image_path('activities_local_hackathons.png'), alt: 'Hackathons photo' %>
-        Hackathons
-      </div>
-    </div>
+    <%= image_tag image_path('activities_local_hackathons.png'), alt: 'Hackathons photo' %>
+    Hackathons
   </div>
 </div>

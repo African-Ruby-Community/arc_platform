@@ -24,6 +24,7 @@
 
     .alert_custom_class {
         animation: appear-then-fade 6s both;
+        margin-top: 50px;
     }
 
     .text-error {
@@ -47,5 +48,12 @@
         padding: 8px;
         line-height: 1.42857143;
         vertical-align: top;
+    }
+
+    .chapter-grid {
+        img {
+            width: 330px;
+            height: 167px;
+        }
     }
 }

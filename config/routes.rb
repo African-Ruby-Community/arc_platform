@@ -1,9 +1,14 @@
 Rails.application.routes.draw do
-  resources :memberships
+  authenticate :user do
+    mount Motor::Admin => '/admin'
+  end
   resources :projects
   resources :chapters
   resources :countries
-  devise_for :users
+  resources :memberships
+  devise_for :users, controllers: {
+    registrations: 'users/registrations', # Override devise registration controller
+  }
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")

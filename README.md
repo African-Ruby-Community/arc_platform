@@ -1,17 +1,19 @@
 # Africa Ruby Community(ARC) Platform
 
 ## Introduction
-On project is aimed a building a platform that  African ruby language enthusiasts can use to connect, share their knowledge and experience, collaborate on projects, and stay up-to-date with the latest developments in the Ruby community. Whether you're a seasoned developer or a beginner just starting out. The platform features a variety of resources including different chapters for different countries and cities, merchandise, meetup information etc. It will also help users get information on online workshops, webinars, and meetups organized by the community, to learn from experts and network with other enthusiasts.
+The project aims to build a platform for African Ruby language enthusiasts to connect, share their knowledge and experience, collaborate on projects, and stay up-to-date with the latest developments in the Ruby community, whether they are seasoned developers or beginners just starting out. The platform features a variety of resources, including different chapters for different countries and cities, merchandise, and meetup information. It will also help users get information on online workshops, webinars, and meetups organized by the community, enabling them to learn from experts and network with other enthusiasts.
 
 **Project Design:** https://still-snowflake-8822.animaapp.io/
 
-Nb: Please note that this project is open source, you are therefore encourage to contribute
+**Database Design:** https://dbdiagram.io/d/62afab7c9921fe2a96397c1e
+
+**N.B.** Please note that this project is open source, you are therefore encourage to contribute
 
 ## Application Setup
 
 ### Step 1: Install prerequisites
 ## Installing Ruby Version Manager(RVM) package
-* RVM is a command-line tool which allows you to easily install, manage, and work with multiple ruby environments from interpreters to sets of gems. It supports both UNIX like systems and Windows (with [Cygwin](https://cygwin.com) or [Bash on Ubuntu on Windows](https://msdn.microsoft.com/en-us/commandline/wsl/about).
+* RVM is a command-line tool that allows you to easily install, manage, and work with multiple Ruby environments, including interpreters and sets of gems. It supports both UNIX-like systems and Windows (with [Cygwin](https://cygwin.com) or [Bash on Ubuntu on Windows](https://msdn.microsoft.com/en-us/commandline/wsl/about)).
   
 Run the following in the terminal or CMD (on Windows)
 
@@ -172,15 +174,41 @@ or
 
 ``` $ rails s ```
 
-### step 5: Creating a pull request
+### step 6: Creating a pull request
 
 * make changes locally on your branch 
 * push your changes to your branch on github
 * create a pull request to main branch of the main repository
 
-### step 5: Merging
+### step 7: Merging
 
 Once your changes are reviewed they will be merged to the main branch
+
+## Contributing
+
+Thank you for your interest in contributing to the Africa Ruby Community (ARC) Platform! We welcome contributions from developers of all experience levels. 
+
+  ### Finding Issues to Work On
+
+We label our issues to help contributors find ones that match their skills and experience level. Here are some labels you might find helpful:
+
+| Difficulty Level | Description                              | Label    |
+|------------------|------------------------------------------|----------|
+| Easy/ Beginner/ Novice             | Issues that are ideal for first-time contributors | <span style="background-color: #CCF09E; color: #000; padding: 5px 10px; border-radius: 20px;">DifficultyLevelEasy</span>         |
+| Very Easy        | Simple issues that can be fixed quickly  | <span style="background-color: #619B16; color: #000; padding: 5px 10px; border-radius: 20px;">DifficultyLevelVeryEasy</span>    |
+| Average/ Normal/ Medium/ Standard/ Intermediate          | Issues that require some understanding of the codebase  | <span style="background-color: #DAD22C; color: #000; padding: 5px 10px; border-radius: 20px;">DifficultyLevelAverage</span>      |
+| Hard/ Expert/ Difficult             | Issues that require a significant amount of time and effort | <span style="background-color: #E1803C; color: #000; padding: 5px 10px; border-radius: 20px;">DifficultyLevelHard</span>        |
+| Harder           | Very challenging issues that require advanced knowledge | <span style="background-color: #C70039; color: #fff; padding: 5px 10px; border-radius: 20px;">DifficultyLevelHarder</span>      |
+
+
+To guide people in searching for issues using these labels, you can provide the following steps:
+
+1. Go to the project's repository on GitHub.
+2. Click on the `Issues` tab.
+3. Use the search bar at the top to search for issues using one or more of the labels listed above.
+4. You can refine your search by adding additional keywords or filters, such as language, platform, or component.
+5. Once you find an issue you are interested in working on, read through the description and comments to get a better understanding of the problem and any suggested solutions.
+6. If you have any questions or need help, leave a comment on the issue and wait for feedback from other contributors or maintainers.
 
 NB: The section below outlines how the README should be written
 

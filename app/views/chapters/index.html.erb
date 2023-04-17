@@ -1,61 +1,29 @@
-<%= turbo_stream_from "chapters" %>
-
-<div class="container pt-10">
-  <h1 class="text-4xl pt-6 pb-16 font-bold">
+<div class="container pt-20 px-4 xl:px-56 mx-auto">
+  <h1 class="pt-16 pb-16 text-4xl text-red-600 font-bold text-5xl">
     Chapters
   </h1>
 
-  <div class="overflow-x-auto">
-    <div class="flex justify-end pb-6">
-      <%= link_to 'New chapter', new_chapter_path, class: "btn btn-primary btn-sm",
-                  data: { turbo_frame: dom_id(Chapter.new) } %>
-    </div>
+  <div class="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2
+    xl:grid-cols-3 grid-cols-4 gap-1 gap-y-20 mx-auto place-items-center">
+    <% @chapters.each do |chapter| %>
+      <div class="chapter-grid grid flex-grow w-45 h-48 card rounded-box
+        place-items-center">
+        <%= image_tag chapter.image.attached? ? chapter.image.url : image_path('chapter.jpg'),
+                      alt: 'Local meetups photo',
+                      class: "rounded-lg rounded-tl-2xl"
+        %>
 
-    <%= turbo_frame_tag Chapter.new %>
+        <div class="container mt-4">
+          <span class="text-lg"><%= chapter.name %></span>
 
-    <div class="container">
-      <div class="resp-table">
-        <div class="resp-table-body">
-          <div class="resp-table-row">
-            <div class="table-body-cell">
-              <b>Name</b>
-            </div>
-            <div class="table-body-cell">
-              <b>Country</b>
-            </div>
-            <div class="table-body-cell">
-              <b>Location</b>
-            </div>
-            <div class="table-body-cell">
-              <b>Actions</b>
-            </div>
-          </div>
-        </div>
-
-        <%= turbo_frame_tag :chapters, class: "resp-table-body" do %>
-          <% @chapters.each do |chapter| %>
-            <%= turbo_frame_tag "edit_chapter_#{chapter.id}" %>
-            <%= turbo_frame_tag chapter, class: "resp-table-row" do %>
-              <div class="table-body-cell">
-                <%= chapter.name %>
-              </div>
-              <div class="table-body-cell">
-                <%= chapter.country.try(:name) %>
-              </div>
-              <div class="table-body-cell">
-                <%= chapter.location %>
-              </div>
-              <div class="table-body-cell flex inline space-x-1 justify-start">
-                <%= link_to 'Edit', edit_chapter_path(chapter), class: 'btn btn-xs btn-info',
-                    data: { turbo_frame: "edit_chapter_#{chapter.id}" }%>
-                <%= button_to 'Delete', chapter, class: 'btn btn-xs btn-error',
-                              method: :delete, data: { turbo_frame: "_top" } %>
-              </div>
-            <% end %>
+          <% if can? :manage, chapter %>
+            <%= link_to 'Edit', edit_chapter_path(chapter), class: 'btn btn-xs btn-info',
+                        data: { turbo_frame: "edit_chapter_#{chapter.id}" } %>
+            <%= link_to 'Delete', chapter, class: 'btn btn-xs btn-error',
+                        method: :delete %>
           <% end %>
-        <% end %>
+        </div>
       </div>
-    </div>
+    <% end %>
   </div>
-</div>
 </div>

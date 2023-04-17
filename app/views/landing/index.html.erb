@@ -1,12 +1,16 @@
 <%= render 'landing/home/intro' %>
 
-<%= render 'landing/home/coming_up_events' %>
+<% if FeatureFlag.find_by(name: 'events').try(:enabled) %>
+  <%= render 'landing/home/coming_up_events' %>
+<% end %>
 
 <%= render 'landing/home/who_we_are' %>
 
 <%= render 'landing/home/activities' %>
 
-<%= render 'landing/home/projects' %>
+<% if FeatureFlag.find_by(name: 'projects').try(:enabled) %>
+  <%= render 'landing/home/projects' %>
+<% end %>
 
 <%= render 'landing/home/chapters' %>
 

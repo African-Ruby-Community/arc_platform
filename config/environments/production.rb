@@ -38,7 +38,7 @@ Rails.application.configure do
   # config.action_dispatch.x_sendfile_header = "X-Accel-Redirect" # for NGINX
 
   # Store uploaded files on the local file system (see config/storage.yml for options).
-  config.active_storage.service = :local
+  config.active_storage.service = :digitalocean
 
   # Mount Action Cable outside main process or domain.
   # config.action_cable.mount_path = nil
@@ -96,7 +96,7 @@ Rails.application.configure do
   config.action_mailer.default_url_options = { host: 'https://rubycommunity.africa' }
   config.action_mailer.delivery_method = :sendgrid_actionmailer
   config.action_mailer.sendgrid_actionmailer_settings = {
-    api_key: ERails.application.credentials.sendgrid_api_key,
+    api_key: Rails.application.credentials.sendgrid_api_key,
     raise_delivery_errors: true
   }
 end
