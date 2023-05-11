@@ -1,0 +1,16 @@
+current directory: /home/wesley-waka/ver/arc_platform/vendor/bundle/ruby/2.7.0/gems/strscan-3.0.3/ext/strscan
+/usr/share/rvm/rubies/ruby-2.7.4/bin/ruby -I /usr/share/rvm/rubies/ruby-2.7.4/lib/ruby/2.7.0 -r ./siteconf20230511-77008-1o855xk.rb extconf.rb
+checking for onig_region_memsize() in ruby.h... yes
+creating Makefile
+
+current directory: /home/wesley-waka/ver/arc_platform/vendor/bundle/ruby/2.7.0/gems/strscan-3.0.3/ext/strscan
+make "DESTDIR=" clean
+
+current directory: /home/wesley-waka/ver/arc_platform/vendor/bundle/ruby/2.7.0/gems/strscan-3.0.3/ext/strscan
+make "DESTDIR="
+compiling strscan.c
+linking shared-object strscan.so
+
+current directory: /home/wesley-waka/ver/arc_platform/vendor/bundle/ruby/2.7.0/gems/strscan-3.0.3/ext/strscan
+make "DESTDIR=" install
+/usr/bin/install -m 0755 strscan.so ./.gem.20230511-77008-pcn2ly

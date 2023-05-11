@@ -1,0 +1,13 @@
+ARG NODE_VERSION=<%= node_version %>
+
+FROM <%= platform %>node:$NODE_VERSION-slim as client
+
+WORKDIR /rails/<%= api_client_dir %>
+
+ENV NODE_ENV=production
+
+<%= render partial: 'npm_install', locals: {sources: api_client_files} %>
+
+# build client application
+COPY<% if options.link? %> --link<% end %> <%= api_client_dir %> .
+RUN npm run build

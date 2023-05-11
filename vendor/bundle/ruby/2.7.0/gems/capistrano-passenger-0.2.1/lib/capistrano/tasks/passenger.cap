@@ -1,0 +1,109 @@
+namespace :passenger do
+  desc 'Restart your Passenger application'
+  task :restart do
+    restart_with_touch = fetch(:passenger_restart_with_touch, nil)
+    if restart_with_touch.nil? && fetch(:sshkit_backend) == SSHKit::Backend::Printer
+      run_locally do
+        fatal "In a dry run, we cannot check the passenger version, and therefore can't guess which passenger restart method to use.  Therefore, using --dry-run without setting `passenger_restart_with_touch` to either `true` or `false` is not supported."
+      end
+      exit
+    end
+    on roles(fetch(:passenger_roles)), in: fetch(:passenger_restart_runner), wait: fetch(:passenger_restart_wait), limit: fetch(:passenger_restart_limit) do
+      with fetch(:passenger_environment_variables) do
+        within(fetch(:passenger_in_gemfile, false) ? release_path : capture(:pwd)) do
+          if restart_with_touch.nil?
+            # 'passenger -v' may output one of the following depending on the version:
+            # Phusion Passenger version x.x.x
+            # Phusion Passenger Enterprise version x.x.x
+            # Phusion Passenger x.x.x
+            # Phusion Passenger Enterprise x.x.x
+            # and it may have a (R) after Passenger
+            passenger_version = capture(:passenger, '-v').match(/^Phusion Passenger(\(R\))? (Enterprise )?(version )?(.*)$/)[4]
+            restart_with_touch = Gem::Version.new(passenger_version) < Gem::Version.new('4.0.33')
+          end
+
+          if restart_with_touch
+            execute :mkdir, '-p', release_path.join('tmp')
+            execute :touch, release_path.join('tmp/restart.txt')
+          else
+            restart_command = fetch(:passenger_restart_command).split(" ").collect(&:to_sym) << fetch(:passenger_restart_options)
+            if fetch(:passenger_restart_with_sudo)
+              # We preprocess the command with SSHKit::Command to allow 'passenger-config' to be transformed with the command map.
+              restart_command = [:sudo, SSHKit::Command.new(*restart_command).to_s]
+            end
+            execute *restart_command
+          end
+        end
+      end
+    end
+  end
+
+  task :test_which_passenger do
+    on roles(fetch(:passenger_roles)) do
+      set(:passenger_in_path, test(:which, :passenger))
+    end
+  end
+
+  namespace :rvm do
+    task hook: :"passenger:test_which_passenger" do
+      unless fetch(:passenger_in_path)
+        if fetch(:passenger_rvm_ruby_version) == fetch(:rvm_ruby_version)
+          set :rvm_map_bins, fetch(:rvm_map_bins) + [:passenger, :'passenger-config', :'passenger-status']
+        else
+          after :'rvm:hook', :'passenger:rvm:after_rvm_path_is_set'
+        end
+      end
+    end
+
+    task :after_rvm_path_is_set do
+      # This is very similar to code in capistrano-rvm.  Ideally, there would be a way to hook into that code instead of duplicating it with only minor changes.
+      passenger_rvm_prefix = "#{fetch(:rvm_path)}/bin/rvm #{fetch(:passenger_rvm_ruby_version)} do"
+      [:passenger, :'passenger-config', :'passenger-status'].each do |command|
+        SSHKit.config.command_map.prefix[command.to_sym].unshift(passenger_rvm_prefix)
+      end
+    end
+  end
+
+  namespace :rbenv do
+    task hook: :"passenger:test_which_passenger" do
+      set :rbenv_map_bins, fetch(:rbenv_map_bins) + [:passenger, :'passenger-config', :'passenger-status'] unless fetch(:passenger_in_path)
+    end
+  end
+
+  namespace :chruby do
+    task hook: :"passenger:test_which_passenger" do
+      set :chruby_map_bins, fetch(:chruby_map_bins) + [:passenger, :'passenger-config', :'passenger-status'] unless fetch(:passenger_in_path)
+    end
+  end
+
+  namespace :bundler do
+    task :hook do
+      set :bundle_bins, fetch(:bundle_bins) + [:passenger, :'passenger-config', :'passenger-status'] if fetch(:passenger_in_gemfile, false)
+    end
+  end
+end
+
+namespace :load do
+  task :defaults do
+    set :passenger_roles, :app
+    set :passenger_restart_runner, :sequence
+    set :passenger_restart_wait, 5
+    set :passenger_restart_limit, 2
+    set :passenger_restart_with_sudo, false
+    set :passenger_environment_variables, {}
+    set :passenger_restart_command, 'passenger-config restart-app'
+    set :passenger_restart_options, -> { "#{deploy_to} --ignore-app-not-running" }
+    set :passenger_rvm_ruby_version, ->{ fetch(:rvm_ruby_version) }
+    _tasks = Rake.application.tasks.collect(&:to_s)
+    if _tasks.include?("bundler:map_bins")
+      before :'bundler:map_bins', :'passenger:bundler:hook'
+    end
+    if _tasks.include?("rvm:hook")
+      before :'rvm:hook', :'passenger:rvm:hook'
+    elsif _tasks.include?("rbenv:map_bins")
+      before :'rbenv:map_bins', :'passenger:rbenv:hook'
+    elsif _tasks.include?("chruby:map_bins")
+      before :'chruby:map_bins', :'passenger:chruby:hook'
+    end
+  end
+end

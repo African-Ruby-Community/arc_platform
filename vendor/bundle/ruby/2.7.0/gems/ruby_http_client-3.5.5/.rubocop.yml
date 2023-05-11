@@ -1,0 +1,49 @@
+inherit_from: .rubocop_todo.yml
+
+AllCops:
+  Exclude:
+    - bin/**/*
+    - script/**/*
+    - vendor/**/*
+    - cookbooks/**/*
+
+ClassLength:
+  Enabled: false
+CyclomaticComplexity:
+  Enabled: false
+Documentation:
+  Enabled: false
+Encoding:
+  Enabled: false
+Layout/EmptyLinesAroundBlockBody:
+  Enabled: true
+Layout/ExtraSpacing:
+  Enabled: true
+  AllowForAlignment: false
+  ForceEqualSignAlignment: false
+Layout/SpaceBeforeFirstArg:
+  Enabled: true
+LineLength:
+  Enabled: false
+MethodLength:
+  Enabled: false
+Metrics/AbcSize:
+  Enabled: false
+Metrics/BlockLength:
+  Enabled: false
+Metrics/ModuleLength:
+  Enabled: false
+Naming/FileName:
+  Enabled: true
+PerceivedComplexity:
+  Enabled: false
+Style/ClassAndModuleChildren:
+  Enabled: false
+Style/RescueModifier:
+  Enabled: true
+Style/StringLiterals:
+  Enabled: true
+Style/NumericLiterals:
+  Enabled: false
+Style/FrozenStringLiteralComment:
+  Enabled: false

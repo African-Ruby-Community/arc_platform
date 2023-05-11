@@ -1,0 +1,41 @@
+#!/bin/bash -e
+
+<% if options.swap -%>
+<% if run_as_root? -%>
+<% @space = "" -%>
+<% else -%>
+<% @space = "  " -%>
+if [ $UID -eq 0 ]; then
+<% end -%>
+<%= @space %># allocate swap space
+<%= @space %>fallocate -l <%= options.swap %> /swapfile
+<%= @space %>chmod 0600 /swapfile
+<%= @space %>mkswap /swapfile
+<%= @space %>echo 10 > /proc/sys/vm/swappiness
+<%= @space %>swapon /swapfile
+<%= @space %>echo 1 > /proc/sys/vm/overcommit_memory
+<% unless run_as_root? -%>
+  exec su rails $0 $@
+fi
+<% end -%>
+
+<% end -%>
+<% if options.prepare -%>
+<% if procfile.size > 1 -%>
+# If running the production procfile then create or migrate existing database
+if [ "${*}" == "foreman start --procfile=Procfile.prod" ]; then
+<% else -%>
+# If running the rails server then create or migrate existing database
+if [ "${*}" == "./bin/rails server" ]; then
+<% end -%>
+<% if options.precompile == "defer" -%>
+  ./bin/rails assets:precompile
+<% end -%>
+  ./bin/rails <%= dbprep_command %>
+fi
+
+<% elsif !options.swap -%>
+# Add any container initialization steps here
+
+<% end -%>
+exec "${@}"

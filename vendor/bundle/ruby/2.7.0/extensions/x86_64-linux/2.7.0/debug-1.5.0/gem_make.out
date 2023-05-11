@@ -1,0 +1,19 @@
+current directory: /home/wesley-waka/ver/arc_platform/vendor/bundle/ruby/2.7.0/gems/debug-1.5.0/ext/debug
+/usr/share/rvm/rubies/ruby-2.7.4/bin/ruby -I /usr/share/rvm/rubies/ruby-2.7.4/lib/ruby/2.7.0 -r ./siteconf20230511-77008-lg9xxo.rb extconf.rb
+checking for rb_iseq_parameters(NULL, 0) in VALUE rb_iseq_parameters(void *, int is_proc);... yes
+checking for rb_iseq_code_location(NULL, NULL, NULL, NULL, NULL) in void rb_iseq_code_location(void *, int *first_lineno, int *first_column, int *last_lineno, int *last_column);... yes
+checking for rb_iseq_type(NULL) in VALUE rb_iseq_type(void *);... no
+creating Makefile
+
+current directory: /home/wesley-waka/ver/arc_platform/vendor/bundle/ruby/2.7.0/gems/debug-1.5.0/ext/debug
+make "DESTDIR=" clean
+
+current directory: /home/wesley-waka/ver/arc_platform/vendor/bundle/ruby/2.7.0/gems/debug-1.5.0/ext/debug
+make "DESTDIR="
+compiling debug.c
+compiling iseq_collector.c
+linking shared-object debug/debug.so
+
+current directory: /home/wesley-waka/ver/arc_platform/vendor/bundle/ruby/2.7.0/gems/debug-1.5.0/ext/debug
+make "DESTDIR=" install
+/usr/bin/install -m 0755 debug.so ./.gem.20230511-77008-j28q4n/debug
