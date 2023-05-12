@@ -1,0 +1,17 @@
+current directory: /home/wesley-waka/ver/arc_platform/vendor/bundle/ruby/2.7.0/gems/racc-1.6.0/ext/racc/cparse
+/usr/share/rvm/rubies/ruby-2.7.4/bin/ruby -I /usr/share/rvm/rubies/ruby-2.7.4/lib/ruby/2.7.0 -r ./siteconf20230511-77008-p8laxa.rb extconf.rb
+checking for rb_block_call()... yes
+checking for rb_ary_subseq()... yes
+creating Makefile
+
+current directory: /home/wesley-waka/ver/arc_platform/vendor/bundle/ruby/2.7.0/gems/racc-1.6.0/ext/racc/cparse
+make "DESTDIR=" clean
+
+current directory: /home/wesley-waka/ver/arc_platform/vendor/bundle/ruby/2.7.0/gems/racc-1.6.0/ext/racc/cparse
+make "DESTDIR="
+compiling cparse.c
+linking shared-object racc/cparse.so
+
+current directory: /home/wesley-waka/ver/arc_platform/vendor/bundle/ruby/2.7.0/gems/racc-1.6.0/ext/racc/cparse
+make "DESTDIR=" install
+/usr/bin/install -m 0755 cparse.so ./.gem.20230511-77008-143l8pw/racc

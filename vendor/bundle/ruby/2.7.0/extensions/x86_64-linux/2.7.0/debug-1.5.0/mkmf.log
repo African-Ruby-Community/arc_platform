@@ -1,0 +1,89 @@
+have_func: checking for rb_iseq_parameters(NULL, 0) in VALUE rb_iseq_parameters(void *, int is_proc);... -------------------- yes
+
+"gcc -o conftest -I/usr/share/rvm/rubies/ruby-2.7.4/include/ruby-2.7.0/x86_64-linux -I/usr/share/rvm/rubies/ruby-2.7.4/include/ruby-2.7.0/ruby/backward -I/usr/share/rvm/rubies/ruby-2.7.4/include/ruby-2.7.0 -I.    -g -O2 -fPIC conftest.c  -L. -L/usr/share/rvm/rubies/ruby-2.7.4/lib -Wl,-rpath,/usr/share/rvm/rubies/ruby-2.7.4/lib -L. -fstack-protector-strong -rdynamic -Wl,-export-dynamic     -Wl,-rpath,'/../lib' -Wl,-rpath,'/../lib' -lruby  -lm   -lc"
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: int main(int argc, char **argv)
+4: {
+5:   return !!argv[argc];
+6: }
+/* end */
+
+"gcc -o conftest -I/usr/share/rvm/rubies/ruby-2.7.4/include/ruby-2.7.0/x86_64-linux -I/usr/share/rvm/rubies/ruby-2.7.4/include/ruby-2.7.0/ruby/backward -I/usr/share/rvm/rubies/ruby-2.7.4/include/ruby-2.7.0 -I.    -g -O2 -fPIC conftest.c  -L. -L/usr/share/rvm/rubies/ruby-2.7.4/lib -Wl,-rpath,/usr/share/rvm/rubies/ruby-2.7.4/lib -L. -fstack-protector-strong -rdynamic -Wl,-export-dynamic     -Wl,-rpath,'/../lib' -Wl,-rpath,'/../lib' -lruby  -lm   -lc"
+checked program was:
+/* begin */
+ 1: #include "ruby.h"
+ 2: 
+ 3: VALUE rb_iseq_parameters(void *, int is_proc);
+ 4: /*top*/
+ 5: extern int t(void);
+ 6: int main(int argc, char **argv)
+ 7: {
+ 8:   if (argc > 1000000) {
+ 9:     int (* volatile tp)(void)=(int (*)(void))&t;
+10:     printf("%d", (*tp)());
+11:   }
+12: 
+13:   return !!argv[argc];
+14: }
+15: 
+16: int t(void) { rb_iseq_parameters(NULL, 0); return 0; }
+/* end */
+
+--------------------
+
+have_func: checking for rb_iseq_code_location(NULL, NULL, NULL, NULL, NULL) in void rb_iseq_code_location(void *, int *first_lineno, int *first_column, int *last_lineno, int *last_column);... -------------------- yes
+
+"gcc -o conftest -I/usr/share/rvm/rubies/ruby-2.7.4/include/ruby-2.7.0/x86_64-linux -I/usr/share/rvm/rubies/ruby-2.7.4/include/ruby-2.7.0/ruby/backward -I/usr/share/rvm/rubies/ruby-2.7.4/include/ruby-2.7.0 -I.    -g -O2 -fPIC conftest.c  -L. -L/usr/share/rvm/rubies/ruby-2.7.4/lib -Wl,-rpath,/usr/share/rvm/rubies/ruby-2.7.4/lib -L. -fstack-protector-strong -rdynamic -Wl,-export-dynamic     -Wl,-rpath,'/../lib' -Wl,-rpath,'/../lib' -lruby  -lm   -lc"
+checked program was:
+/* begin */
+ 1: #include "ruby.h"
+ 2: 
+ 3: void rb_iseq_code_location(void *, int *first_lineno, int *first_column, int *last_lineno, int *last_column);
+ 4: /*top*/
+ 5: extern int t(void);
+ 6: int main(int argc, char **argv)
+ 7: {
+ 8:   if (argc > 1000000) {
+ 9:     int (* volatile tp)(void)=(int (*)(void))&t;
+10:     printf("%d", (*tp)());
+11:   }
+12: 
+13:   return !!argv[argc];
+14: }
+15: 
+16: int t(void) { rb_iseq_code_location(NULL, NULL, NULL, NULL, NULL); return 0; }
+/* end */
+
+--------------------
+
+have_func: checking for rb_iseq_type(NULL) in VALUE rb_iseq_type(void *);... -------------------- no
+
+"gcc -o conftest -I/usr/share/rvm/rubies/ruby-2.7.4/include/ruby-2.7.0/x86_64-linux -I/usr/share/rvm/rubies/ruby-2.7.4/include/ruby-2.7.0/ruby/backward -I/usr/share/rvm/rubies/ruby-2.7.4/include/ruby-2.7.0 -I.    -g -O2 -fPIC conftest.c  -L. -L/usr/share/rvm/rubies/ruby-2.7.4/lib -Wl,-rpath,/usr/share/rvm/rubies/ruby-2.7.4/lib -L. -fstack-protector-strong -rdynamic -Wl,-export-dynamic     -Wl,-rpath,'/../lib' -Wl,-rpath,'/../lib' -lruby  -lm   -lc"
+/usr/bin/ld: /tmp/cck7mXZs.o: in function `t':
+/home/wesley-waka/ver/arc_platform/vendor/bundle/ruby/2.7.0/gems/debug-1.5.0/ext/debug/conftest.c:16: undefined reference to `rb_iseq_type'
+collect2: error: ld returned 1 exit status
+checked program was:
+/* begin */
+ 1: #include "ruby.h"
+ 2: 
+ 3: VALUE rb_iseq_type(void *);
+ 4: /*top*/
+ 5: extern int t(void);
+ 6: int main(int argc, char **argv)
+ 7: {
+ 8:   if (argc > 1000000) {
+ 9:     int (* volatile tp)(void)=(int (*)(void))&t;
+10:     printf("%d", (*tp)());
+11:   }
+12: 
+13:   return !!argv[argc];
+14: }
+15: 
+16: int t(void) { rb_iseq_type(NULL); return 0; }
+/* end */
+
+--------------------
+

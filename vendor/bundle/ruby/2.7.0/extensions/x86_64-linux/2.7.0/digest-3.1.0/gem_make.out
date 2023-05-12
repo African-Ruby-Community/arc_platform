@@ -1,0 +1,18 @@
+current directory: /home/wesley-waka/ver/arc_platform/vendor/bundle/ruby/2.7.0/gems/digest-3.1.0/ext/digest/sha2
+/usr/share/rvm/rubies/ruby-2.7.4/bin/ruby -I /usr/share/rvm/rubies/ruby-2.7.4/lib/ruby/2.7.0 -r ./siteconf20230511-77008-7byr04.rb extconf.rb
+checking for u_int8_t... yes
+checking for sys/cdefs.h... yes
+creating Makefile
+
+current directory: /home/wesley-waka/ver/arc_platform/vendor/bundle/ruby/2.7.0/gems/digest-3.1.0/ext/digest/sha2
+make "DESTDIR=" clean
+
+current directory: /home/wesley-waka/ver/arc_platform/vendor/bundle/ruby/2.7.0/gems/digest-3.1.0/ext/digest/sha2
+make "DESTDIR="
+compiling sha2init.c
+compiling sha2.c
+linking shared-object digest/sha2.so
+
+current directory: /home/wesley-waka/ver/arc_platform/vendor/bundle/ruby/2.7.0/gems/digest-3.1.0/ext/digest/sha2
+make "DESTDIR=" install
+/usr/bin/install -m 0755 sha2.so ./.gem.20230511-77008-1xa8tvd/digest
