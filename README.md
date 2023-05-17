@@ -158,9 +158,9 @@ Run the following command in the terminal
 
 ### Step 4: Setup the database
 
-``` $ rails db:create ```
+``` $ ./bin/rails db:create```
 
-``` $ rails db:migrate ```
+``` $ ./bin/rails db:migrate```
 
 ### Step 4: Install yarn dependancies
 
