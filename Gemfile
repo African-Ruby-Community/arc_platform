@@ -70,3 +70,6 @@ group :test do
   gem 'simplecov', require: false  # Code coverage analysis tool for ruby
   gem 'webdrivers'
 end
+
+gem "rails_admin", "~> 3.1"
+gem "sassc-rails"
