@@ -9,6 +9,15 @@
   font-size: 14px;
 }
 
+/* Add CSS variable for repetitive colors */
+
+:root {
+    --red: #D0021B;
+    --lightblue: #348eda;
+    --orange: #ff9f00;
+    --lightgreen: #68B90F;
+  }
+
 img {
   max-width: 100%;
 }
@@ -136,15 +145,15 @@ p li, ul li, ol li {
     LINKS & BUTTONS
 ------------------------------------- */
 a {
-  color: #348eda;
+  color: var(--lightblue);
   text-decoration: underline;
 }
 
 .btn-primary {
   text-decoration: none;
   color: #FFF;
-  background-color: #348eda;
-  border: solid #348eda;
+  background-color: var(--lightblue);
+  border: solid var(--lightblue);
   border-width: 10px 20px;
   line-height: 2em;
   /* 2em * 14px = 28px, use px to get airier line-height also in Thunderbird, and Yahoo!, Outlook.com, AOL webmail clients */
@@ -160,9 +169,9 @@ a {
 .btn-warning {
     text-decoration: none;
     color: #FFF;
-    background-color: #ff9f00;
-    border: solid #ff9f00;
-    border-color: #ff9f00;
+    background-color: var(--orange);
+    border: solid var(--orange);
+    border-color: var(--orange);
     border-width: 10px 20px;
     line-height: 2em;
     /* 2em * 14px = 28px, use px to get airier line-height also in Thunderbird, and Yahoo!, Outlook.com, AOL webmail clients */
@@ -178,9 +187,9 @@ a {
 .btn-success {
     text-decoration: none;
     color: #FFF;
-    background-color: #68B90F;
-    border: solid #68B90F;
-    border-color: #68B90F;
+    background-color: var(--lightgreen);
+    border: solid var(--lightgreen);
+    border-color: var(--lightgreen);
     border-width: 10px 20px;
     line-height: 2em;
     /* 2em * 14px = 28px, use px to get airier line-height also in Thunderbird, and Yahoo!, Outlook.com, AOL webmail clients */
@@ -196,9 +205,9 @@ a {
 .btn-danger {
     text-decoration: none;
     color: #FFF;
-    background-color: #D0021B;
-    border: solid #D0021B;
-    border-color: #D0021B;
+    background-color: var(--red);
+    border: solid var(--red);
+    border-color: var(--red);
     border-width: 10px 20px;
     line-height: 2em;
     /* 2em * 14px = 28px, use px to get airier line-height also in Thunderbird, and Yahoo!, Outlook.com, AOL webmail clients */
@@ -257,13 +266,13 @@ a {
   font-size: 16px;
 }
 .alert.alert-warning {
-  background-color: #FF9F00;
+  background-color: var(--orange);
 }
 .alert.alert-bad {
-  background-color: #D0021B;
+  background-color: var(--red);
 }
 .alert.alert-good {
-  background-color: #68B90F;
+  background-color: var(--lightgreen);
 }
 
 /* -------------------------------------
