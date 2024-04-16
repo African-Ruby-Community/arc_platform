@@ -10,6 +10,7 @@ class User < ApplicationRecord
   # Associations
   has_many :users_chapters, dependent: :nullify
   has_many :chapters, through: :users_chapters
+  has_many :learning_materials
 
   # Callbacks
   before_create :set_defaults # Set model defaults before create
