@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-RSpec.feature "LearningMaterials", type: :feature do
+RSpec.feature 'LearningMaterials', type: :feature do
   before :each do
     visit learning_materials_path
   end
