@@ -39,4 +39,12 @@ RailsAdmin.config do |config|
     # history_index
     # history_show
   end
+
+  # Configuring rails admin to use cancancan for authorization
+  config.authorize_with :cancancan
+  config.authorize_with do
+    unless current_user && current_user.organization_admin?
+      redirect_to main_app.root_path, alert: 'You are not authorized to access this page.'
+    end
+  end
 end

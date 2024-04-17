@@ -21,7 +21,7 @@
 
             <li><%= link_to 'Chapters', chapters_path %></li>
 
-            <li><%= link_to 'Learning materials', landing_learn_path %></li>
+            <li><%= link_to 'Learning materials', learning_materials_path %></li>
 
             <% if FeatureFlag.find_by(name: 'projects').try(:enabled) %>
               <li><%= link_to 'Projects', '#' %></li>

@@ -18,5 +18,5 @@ Rails.application.routes.draw do
   root 'landing#index'
 
   get 'about_us', to: 'landing#about', as: :landing_about
-  get 'learn', to: 'landing#learn', as: :landing_learn
+  # get 'learn', to: 'landing#learn', as: :landing_learn
 end
