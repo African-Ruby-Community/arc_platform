@@ -65,6 +65,7 @@ end
 group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem 'capybara'
+  gem "rspec-rails", "~> 6.1"
   gem 'faker', '~> 3.1'
   gem 'selenium-webdriver'
   gem 'simplecov', require: false  # Code coverage analysis tool for ruby
@@ -74,4 +75,3 @@ end
 gem "rails_admin", "~> 3.1"
 gem "sassc-rails"
 
-gem "rspec-rails", "~> 6.1"

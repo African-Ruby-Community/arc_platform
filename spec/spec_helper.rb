@@ -91,11 +91,4 @@ RSpec.configure do |config|
   # as the one that triggered the failure.
   Kernel.srand config.seed
 =end
-
-  # Capybara configuration
-  require 'capybara/rspec'
-  require 'capybara/rails'
-
-  # Configure Capybara to use the Rack app
-  Capybara.app = Rails.application
 end
