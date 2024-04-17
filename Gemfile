@@ -73,3 +73,5 @@ end
 
 gem "rails_admin", "~> 3.1"
 gem "sassc-rails"
+
+gem "rspec-rails", "~> 6.1"
