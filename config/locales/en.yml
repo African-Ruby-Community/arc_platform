@@ -29,4 +29,8 @@ en:
     destroy:
       success: 'Project was successfully destroyed.'
 
+  errors:
+    messages:
+      invalid_url: "must be a valid URL"
+
 
