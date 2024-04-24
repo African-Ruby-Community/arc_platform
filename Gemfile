@@ -16,8 +16,6 @@ gem 'image_processing', '~> 1.2'
 gem 'jbuilder' # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem 'jsbundling-rails' # Bundle and transpile JavaScript [https://github.com/rails/jsbundling-rails]
 gem 'mini_magick', '~> 4.12'
-# Motor Admin allows you to deploy a no-code admin panel for your application in less than a minute
-gem 'motor-admin', '~> 0.4.7'
 gem 'pg', '~> 1.1' # Use postgresql as the database for Active Record
 gem 'premailer-rails', '~> 1.12' # This gem is a drop in solution for styling HTML emails with CSS
 gem 'puma', '~> 5.0' # Use the Puma web server [https://github.com/puma/puma]

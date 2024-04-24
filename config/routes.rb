@@ -2,9 +2,6 @@
 
 Rails.application.routes.draw do
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
-  authenticate :user do
-    mount Motor::Admin => '/admin'
-  end
   resources :projects, only: %i[index show]
   resources :chapters, only: %i[index show]
   resources :countries, only: %i[index show]
@@ -18,5 +15,4 @@ Rails.application.routes.draw do
   root 'landing#index'
 
   get 'about_us', to: 'landing#about', as: :landing_about
-  # get 'learn', to: 'landing#learn', as: :landing_learn
 end
