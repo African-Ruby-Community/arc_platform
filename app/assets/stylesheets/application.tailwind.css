@@ -1,6 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
 
 @layer base {
     :root {
@@ -9,6 +12,7 @@
 }
 
 @layer components {
+
     .turbo-progress-bar {
         background: linear-gradient(to right, hsl(var(--p)), hsl(var(--b1)));
     }

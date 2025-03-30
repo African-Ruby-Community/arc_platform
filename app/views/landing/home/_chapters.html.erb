@@ -1,59 +1,20 @@
 <div style="background-image: url(<%= image_path('countries.png') %>);">
-  <h1 class="pt-16 pb-16 text-4xl text-red-600 font-bold text-center">
+  <h1 class="md:pt-28 pt-16 pb-16 text-4xl text-red-600 font-bold text-center">
     Chapters
   </h1>
 
-  <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4
-xl:grid-cols-5 gap-2 px-20 place-content-center">
-    <div class="place-self-center w-72 md:w-48 card border border-red-600
-       rounded-b-md rounded-tr-md">
-
-      <%= image_tag('country_kenya.png', alt: "Nairuby",class: 'pt-2 place-self-center h-16 md:36') %>
-      <p class="place-self-center text-2xl text-red-600">Kenya</p>
-
-      <%= link_to new_user_registration_path, class: 'place-self-center pb-6' do %>
-        <p>Join community</p>
+  <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-5 px-20 place-content-center">
+    <% chapters. each do |chapter| %>
+      <%= link_to new_user_registration_path, class: 'place-self-center w-72 md:w-48 card border border-red-600 rounded flex flex-col gap-4 hover:scale-95 p-3' do %>
+        <%= image_tag chapter[:image], alt: chapter[:alt], class: 'pt-2 place-self-center h-16 md:36' %>
+        <p class="text-center text-2xl text-red-600"><%= chapter[:country] %></p>
+        <p class="place-self-center pb-6 hover:underline font-semibold">Join community</p>
       <% end %>
-    </div>
+    <% end %>
 
-    <div class="place-self-center w-72 md:w-48 card border border-red-600
-       rounded-b-md rounded-tr-md">
-
-      <%= image_tag('country_rwanda.png', alt:"ARC_Rwanda", class: 'pt-2 place-self-center h-16 md:36') %>
-      <p class="place-self-center text-2xl text-red-600">Rwanda</p>
-
-      <%= link_to new_user_registration_path, class: 'place-self-center pb-6' do %>
-        <p>Join community</p>
-      <% end %>
-    </div>
-
-    <div class="place-self-center w-72 md:w-48 card border border-red-600
-       rounded-b-md rounded-tr-md">
-
-      <%= image_tag('country_tanzania.png',alt:"ARC_Tanzania", class: 'pt-2 place-self-center h-16 md:36') %>
-      <p class="place-self-center text-2xl text-red-600">Tanzania</p>
-
-      <%= link_to new_user_registration_path, class: 'place-self-center pb-6' do %>
-        <p>Join community</p>
-      <% end %>
-    </div>
-
-    <div class="place-self-center w-72 md:w-48 card border border-red-600
-       rounded-b-md rounded-tr-md">
-
-      <%= image_tag('country_uganda.png',alt:"ARC_Uganda", class: 'pt-2 place-self-center h-16 md:36') %>
-      <p class="place-self-center text-2xl text-red-600">Uganda</p>
-
-      <%= link_to new_user_registration_path, class: 'place-self-center pb-6' do %>
-        <p>Join community</p>
-      <% end %>
-    </div>
-
-    <a href="mailto:organisers@rubycommunity.africa" class="place-self-center w-72 md:w-48 card border border-red-600
-       rounded-b-md rounded-tr-md">
-
+    <a href="mailto:organisers@rubycommunity.africa" class="place-self-center w-72 md:w-48  card border border-red-600 rounded flex flex-col gap-4 p-3 hover:scale-95">
       <%= image_tag('add.png',alt:" Add Chapter",class: 'pt-2 place-self-center h-16 md:36') %>
-      <p class="place-self-center text-xl text-red-600">Request new chapter</p>
+      <p class="text-center text-xl text-red-600">Request new chapter</p>
       <p class="pb-6"></p>
     </a>
   </div>

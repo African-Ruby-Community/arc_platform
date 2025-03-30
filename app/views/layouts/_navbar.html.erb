@@ -1,0 +1,140 @@
+<navbar class="sticky top-0 z-50 font-inter">
+  <div class="relative bg-gray-50  border-red-400">
+    <div class="mx-auto flex max-w-7xl items-center justify-between px-4 py-2 sm:px-6
+  md:justify-start md:space-x-10 lg:px-8">
+      <div class="dropdown">
+        <label tabindex="0" class="btn btn-ghost md:hidden">
+          <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/>
+          </svg>
+        </label>
+        <ul tabindex="0" class="menu menu-compact dropdown-content mt-3 p-2 shadow
+        bg-base-100 rounded-box w-52 md:hidden ">
+          <li><%= link_to 'Home', root_path %></li>
+          <li><%= link_to 'About ARC', landing_about_path %></li>
+
+          <% if FeatureFlag.find_by(name: 'events').try(:enabled) %>
+            <li><a href="#">Events</a></li>
+          <% end %>
+
+          <li><%= link_to 'Chapters', chapters_path %></li>
+
+          <% if FeatureFlag.find_by(name: 'projects').try(:enabled) %>
+            <li><a href="#">Projects</a></li>
+          <% end %>
+
+          <li><%= link_to 'Learning Materials', landing_learn_path %></li>
+
+          <% if user_signed_in? %>
+            <li><%= button_to "Sign out", destroy_user_session_path, method: :delete %></li>
+          <% else %>
+            <li><%= link_to 'Sign up', new_user_registration_path %></li>
+            <li><%= link_to 'Sign in', new_user_session_path %></li>
+          <% end %>
+        </ul>
+      </div>
+      <div class="flex justify-start lg:w-0 lg:flex-1">
+        <%= link_to root_path do %>
+          <span class="sr-only">African Ruby Community</span>
+          <%= image_tag('arc_logo_coloured.png', alt: "Community Logo",class: "h-8 w-auto sm:h-7") %>
+        <% end %>
+      </div>
+      <nav class="hidden space-x-10 md:flex font-semibold text-gray-800 text-sm py-4">
+        <%= link_to 'Home', root_path,
+                    class: " hover:text-red-600" %>
+        <%= link_to 'About', landing_about_path,
+                    class: "hover:text-red-600" %>
+
+        <% if FeatureFlag.find_by(name: 'events').try(:enabled) %>
+          <a href="#" class="text-sm font-small hover:text-red-600">Events</a>
+        <% end %>
+
+        <% if FeatureFlag.find_by(name: 'conferences').try(:enabled) %>
+          <a href="#" class="hover:text-red-600">
+            Conferences
+          </a>
+        <% end %>
+
+        <%= link_to 'Chapters', chapters_path,
+                    class: "hover:text-red-600" %>
+
+        <% if FeatureFlag.find_by(name: 'projects').try(:enabled) %>
+          <a href="#" class="hover:text-red-600">
+            Projects
+          </a>
+        <% end %>
+
+        <%= link_to 'Learning Materials', landing_learn_path,
+                    class: 'hover:text-red-600' %>
+      </nav>
+      <% if user_signed_in? %>
+
+        <div class="hidden items-center justify-end md:flex md:flex-1 lg:w-0">
+          <% if current_user.organization_admin? %>
+            <div class="dropdown dropdown-end">
+              <button class="hover:text-red-600">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                      viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                      stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                      class="feather feather-settings">
+                  <circle cx="12" cy="12" r="3">
+                  </circle>
+                  <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0
+                1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0
+                1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0
+                0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0
+                .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0
+                0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83
+                0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2
+                0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0
+                1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0
+                1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+                </svg>
+              </button>
+              <ul tabindex="0" class="menu dropdown-content p-2 shadow bg-base-100 rounded-box
+              w-52 mt-4">
+                <li>
+                  <div class="grid grid-cols-1 divide-y">
+                    <b>Settings</b>
+                    <div/>
+                  </div>
+                </li>
+                <li>
+                  <%= link_to 'Countries', countries_path %>
+                </li>
+                <li>
+                  <%= link_to 'Chapters', chapters_path %>
+                </li>
+              </ul>
+            </div>
+          <% end %>
+
+          <div class="dropdown dropdown-end ml-8">
+            <button class="hover:text-red-600">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round" class="feather feather-user">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                <circle cx="12" cy="7" r="4"></circle>
+              </svg>
+            </button>
+            <ul tabindex="0" class="menu dropdown-content p-2 shadow bg-base-100 rounded-box w-52 mt-4">
+              <li>
+                <%= link_to 'Update profile', edit_user_registration_path %>
+              </li>
+            </ul>
+          </div>
+
+          <%= button_to "Sign out", destroy_user_session_path, method: :delete, class: "whitespace-nowrap text-sm font-small text-gray-500
+        hover:text-red-700 ml-8" %>
+        </div>
+      <% else %>
+        <div class="hidden items-center justify-end md:flex md:flex-1 lg:w-0">
+          <%= link_to new_user_session_path do %>
+            <button class="border-2 border-red-600 rounded-full py-1 px-3 text-sm flex justify-center items-center normal-case text-red-600 hover:bg-red-600 hover:text-white font-semibold">Sign in</button>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</navbar>

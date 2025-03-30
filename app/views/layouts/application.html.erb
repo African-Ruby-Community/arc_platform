@@ -13,26 +13,9 @@
 </head>
 
 <body>
-<div class="mx-8">
-  <div class="bg-white">
-    <header class="sticky top-0 z-50">
-      <div class="relative bg-white border-b border-red-400">
-        <div class="mx-auto flex max-w-7xl items-center justify-between px-4 py-2 sm:px-6
-      md:justify-start md:space-x-10 lg:px-8">
-          <div class="dropdown">
-            <label tabindex="0" class="btn btn-ghost md:hidden">
-              <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/>
-              </svg>
-            </label>
-            <ul tabindex="0" class="menu menu-compact dropdown-content mt-3 p-2 shadow
-            bg-base-100 rounded-box w-52 md:hidden">
-              <li><%= link_to 'Home', root_path %></li>
-              <li><%= link_to 'About ARC', landing_about_path %></li>
+  <div class="bg-gray-50">
 
-              <% if FeatureFlag.find_by(name: 'events').try(:enabled) %>
-                <li><a href="#">Events</a></li>
-              <% end %>
+    <%= render 'layouts/navbar' %>
 
               <% if FeatureFlag.find_by(name: 'conferences').try(:enabled) %>
                 <li><a href="#">Conferences</a></li>
@@ -167,12 +150,13 @@
     </header>
 
     <main style="min-height: 45vh">
+
+    <main class="mx-8" style="min-height: 45vh">
       <%= yield %>
     </main>
 
     <%= render 'layouts/flash_messages' %>
     <%= render 'layouts/footer' %>
   </div>
-</div>
 </body>
 </html>

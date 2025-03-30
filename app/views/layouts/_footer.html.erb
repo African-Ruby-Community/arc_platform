@@ -1,122 +1,61 @@
-<footer aria-labelledby="footer-heading">
-  <div class="flex pt-32">
-    <div class="basis-2/6">
-      <%= link_to root_path, class: "justify-end pr-20" do %>
-        <%= image_tag('arc_dark_gray_logo.png', alt: "Community Logo", class: 'w-20 md:w-48') %>
+<footer aria-labelledby="footer-heading" class="md:pt-32 pt-24 px-20 lg:ml-20">
+  <div class="grid md:grid-cols-3 md:gap-4 gap-12 justify-center items-center">
+    <%= link_to root_path, class: "justify-end pr-20" do %>
+      <%= image_tag('arc_logo_coloured.png', alt: "Community Logo", class: 'w-32 md:w-48') %>
+    <% end %>
+
+    <ul class="flex flex-col gap-3">
+      <li  class="hover:text-red-600 hover:underline"><%= link_to 'Home', root_path %></li>
+      <% if FeatureFlag.find_by(name: 'events').try(:enabled) %>
+        <li class="hover:text-red-600 hover:underline"><%= link_to 'Events', '#' %></li>
       <% end %>
-    </div>
 
-    <div class="basis-3/6 text-sm">
-      <div class="grid grid-cols-2 md:grid-cols-2 place-content-center">
-        <div class="place-self-center-">
-          <ul>
-            <li><%= link_to 'Home', root_path %></li>
-            <% if FeatureFlag.find_by(name: 'events').try(:enabled) %>
-              <li><%= link_to 'Events', '#' %></li>
-            <% end %>
+      <li class="hover:text-red-600 hover:underline"><%= link_to 'Chapters', chapters_path %></li>
 
-            <% if FeatureFlag.find_by(name: 'conferences').try(:enabled) %>
-              <li><%= link_to 'Conferences', '#' %></li>
-            <% end %>
+      <li class="hover:text-red-600 hover:underline"><%= link_to 'Learning materials', landing_learn_path %></li>
 
             <li><%= link_to 'Chapters', chapters_path %></li>
 
             <li><%= link_to 'Learning materials', learning_materials_path %></li>
+      <% if FeatureFlag.find_by(name: 'projects').try(:enabled) %>
+        <li class="hover:text-red-600 hover:underline"><%= link_to 'Projects', '#' %></li>
+      <% end %>
+    </ul>
 
-            <% if FeatureFlag.find_by(name: 'projects').try(:enabled) %>
-              <li><%= link_to 'Projects', '#' %></li>
-            <% end %>
-          </ul>
-        </div>
-        <div class="place-self-center">
-          <ul>
-            <li><%= link_to 'Sponsor', 'mailto:organisers@rubycommunity.africa' %></li>
+    <ul class="flex flex-col gap-3">
+      <li class="hover:text-red-600 hover:underline"><%= link_to 'Sponsor', 'mailto:organisers@rubycommunity.africa' %></li>
 
-            <% if FeatureFlag.find_by(name: 'members').try(:enabled) %>
-              <li><%= link_to 'Members', '#' %></li>
-            <% end %>
+      <% if FeatureFlag.find_by(name: 'members').try(:enabled) %>
+        <li class="hover:text-red-600 hover:underline"><%= link_to 'Members', '#' %></li>
+      <% end %>
 
-            <li><%= link_to 'About', landing_about_path %></li>
+      <li class="hover:text-red-600 hover:underline"><%= link_to 'About', landing_about_path %></li>
 
-            <% if FeatureFlag.find_by(name: 'contact_us').try(:enabled) %>
-              <li><%= link_to 'Contact Us', '#' %></li>
-            <% end %>
+      <% if FeatureFlag.find_by(name: 'contact_us').try(:enabled) %>
+        <li class="hover:text-red-600 hover:underline"><%= link_to 'Contact Us', '#' %></li>
+      <% end %>
 
-            <% if FeatureFlag.find_by(name: 'contact_us').try(:enabled) %>
-              <li><%= link_to 'Code of conduct', '#' %></li>
-            <% end %>
-          </ul>
-        </div>
-      </div>
-    </div>
+      <% if FeatureFlag.find_by(name: 'contact_us').try(:enabled) %>
+        <li class="hover:text-red-600 hover:underline"><%= link_to 'Code of conduct', '#' %></li>
+      <% end %>
+    </ul>
+  </div>
 
-    <div class="basis-1/6 text-sm">
-      <ul>
-        <li><b>Connect</b></li>
-        <li>
-          <%= link_to 'https://twitter.com/ruby_african' do %>
-            <div class="inline-flex text-sm">
-              <div class="pr-4 self-center">
-                <%= image_tag('brands_twitter.png', alt: "ARC Twitter", class: "w-5" )%>
-              </div>
-            </div>
+  <div class="flex flex-col justify-center items-center pt-12">
+      <h1 class="pt-4 pb-12 md:text-4xl text-2xl text-red-600 font-bold text-center">
+        Connect
+      </h1>
+      <ul class="flex md:flex-row flex-col md:mt-4 md:gap-10 gap-5">
+        <% socials.each do |social| %>
+          <% if social[:show] === true %>
+            <li class='md:border-2 border-red-600 p-5 rounded-full'>
+              <%= link_to social[:link] do %>
+                <%= image_tag social[:image], alt: social[:alt], class: "md:w-5 w-8 hover:scale-105" %>
+              <% end %>
+            </li>
           <% end %>
-        </li>
-
-        <% if FeatureFlag.find_by(name: 'telegram').try(:enabled) %>
-          <li>
-            <%= link_to '#' do %>
-              <div class="inline-flex text-sm">
-                <div class="pr-4 self-center">
-                  <%= image_tag('brands_telegram.png',alt: "ARC telegram", class: "w-5") %>
-                </div>
-                Telegram
-              </div>
-            <% end %>
-          </li>
         <% end %>
-
-        <li>
-          <%= link_to 'https://www.facebook.com/rubycommunity.africa' do %>
-            <div class="inline-flex text-sm">
-              <div class="pr-4 self-center">
-                <%= image_tag('brands_facebook.png',alt: "ARC Facebook", class: "w-5") %>
-              </div>
-            </div>
-          <% end %>
-        </li>
-
-        <li>
-          <%= link_to '#' do %>
-            <div class="inline-flex text-sm">
-              <div class="pr-4 self-center">
-                <%= image_tag('brands_instagram.png', alt: "ARC Instagram", class: "w-5") %>
-              </div>
-            </div>
-          <% end %>
-        </li>
-
-        <li>
-          <%= link_to 'https://www.linkedin.com/company/african-ruby-community/' do %>
-            <div class="inline-flex text-sm">
-              <div class="pr-4 self-center">
-                <%= image_tag('brands_linkedin.png',alt:"ARC LinkedIn", class: "w-5") %>
-              </div>
-            </div>
-          <% end %>
-        </li>
-
-        <li>
-          <%= link_to 'https://github.com/nairuby' do %>
-            <div class="inline-flex text-sm">
-              <div class="pr-4 self-center">
-                <%= image_tag('brands_github.png', alt: "ARC Github", class: "w-5" )%>
-              </div>
-            </div>
-          <% end %>
-        </li>
       </ul>
-    </div>
   </div>
 
   <p class="text-center pt-10 pb-10">All Rights Reserved. Copyright <%= Date.today.year %></p>

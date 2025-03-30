@@ -1,5 +1,9 @@
 # Africa Ruby Community (ARC) Platform
 
+[![Arc Platform CI Workflow](https://github.com/nairuby/arc_platform/actions/workflows/ci.yml/badge.svg)](https://github.com/nairuby/arc_platform/actions/workflows/ci.yml)
+![Ruby](https://img.shields.io/badge/Ruby-3.4.1-red?logo=ruby)
+![Rails](https://img.shields.io/badge/Rails-7.2.2-blue?logo=rubyonrails)
+
 ## Introduction
 The Africa Ruby Community (ARC) Platform is a project aimed at creating a hub for Ruby language enthusiasts in Africa. This platform facilitates connection, knowledge sharing, collaboration on projects, and staying updated with the latest Ruby community developments. Whether you're a seasoned developer or a beginner, this platform offers tailored resources for different countries and cities, merchandise, meetup information, and details about online workshops and webinars.
 
@@ -9,9 +13,11 @@ The Africa Ruby Community (ARC) Platform is a project aimed at creating a hub fo
 *Note: This project is open source, and contributions are encouraged.*
 
 ## Application Setup
-To follow along, watch this youtube tutorial on how to set up the application step by step on WSL.
+- To follow along, watch this youtube tutorial on how to set up the application step by step on WSL.
 
 [![Application Setup](https://img.youtube.com/vi/-mz76HidnGA/0.jpg)](https://www.youtube.com/watch?v=-mz76HidnGA)
+
+- [Old README](./README.md): `rvm` and `rvenv` users
 
 ## Step 1: Install Prerequisites
 
@@ -57,13 +63,19 @@ asdf plugin add nodejs
 Install Ruby and set the default version by running the following commands:
 
 ```sh
-asdf install ruby 3.2.2 
+asdf install ruby 3.4.1 
 
 # Set the default Ruby version
-asdf global ruby 3.2.2 
+asdf global ruby 3.4.1 
 
 # Update to the latest Rubygems version
 gem update --system
+```
+
+Install foreman gem
+
+```shell
+gem install foreman
 ```
 
 Confirm the default Ruby version matches the version you just installed.
@@ -72,7 +84,7 @@ Confirm the default Ruby version matches the version you just installed.
 which ruby
 #=> /Users/username/.asdf/shims/ruby
 ruby -v
-#=> 3.2.2
+#=> 3.4.1
 ```
 
 Install Node.js for handling Javascript in our Rails app
@@ -93,7 +105,7 @@ npm install -g yarn
 To switch to a different Ruby and Node version for a specific project, you can use the following command to set the Ruby or Node version for that project. You should be in the project directory.
 
 ```sh
-asdf local ruby <ruby version>  # eg 3.0.2
+asdf local ruby <ruby version>  # eg 3.4.1
 asdf local nodejs <nodejs version> # eg 20.9.0
 ```
 

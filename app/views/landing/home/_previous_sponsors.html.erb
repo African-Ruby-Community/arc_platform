@@ -1,70 +1,31 @@
 <div class="container mx-auto px-20 bg-zinc-50">
-  <h1 class="pt-16 text-xl text-red-600 font-bold pb-6">
+  <h1 class="pt-16 pb-12 text-4xl text-red-600 font-bold text-center">
     Previous Sponsors
   </h1>
 
-  <div class="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-6
-xl:grid-cols-6 gap-2 place-content-center">
+  <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 gap-2 lg:ml-28">
 
-    <div class="place-self-center w-20 card">
-      <%= link_to 'https://www.shopify.com/', target: '_blank' do %>
-        <%= image_tag 'sponsors/previous/shopify.webp', alt: 'Shopify',
-                      class: 'max-w-none w-40 md:w-20 pb-6' %>
+    <% previous_sponsors.each do |sponsor| %>
+      <%= link_to sponsor[:link], target: '_blank' do %>
+        <div class="flex items-center justify-center w-full">
+          <div class="w-36 h-40 card">
+            <%= image_tag sponsor[:image], alt: sponsor[:alt] %>
+          </div>
+        </div>
       <% end %>
-    </div>
-
-    <div class="place-self-center w-20 card">
-      <%= link_to 'https://www.turing.com/', target: '_blank' do %>
-        <%= image_tag 'sponsors/previous/turing.png', alt: 'Turing',
-                      class: 'max-w-none w-40 md:w-20 pb-6' %>
-      <% end %>
-    </div>
-
-    <div class="place-self-center w-20 card">
-      <%= link_to 'https://kopokopo.co.ke', target: '_blank' do %>
-        <%= image_tag 'sponsors/previous/kopokopo.png', alt: 'KopoKopo',
-                      class: 'max-w-none w-40 md:w-20 pb-6' %>
-      <% end %>
-    </div>
-
-    <div class="place-self-center w-20 card">
-      <%= link_to 'https://kwara.com/', target: '_blank' do %>
-        <%= image_tag 'sponsors/previous/kwara.png', alt: 'Kwara',
-                      class: 'max-w-none w-40 md:w-20 pb-6' %>
-      <% end %>
-    </div>
-
-    <div class="place-self-center w-20 card">
-      <%= link_to 'https://ihub.co.ke/', target: '_blank' do %>
-        <%= image_tag 'sponsors/previous/ihub.png', alt: 'iHub, Nairobi',
-                      class: 'max-w-none w-40 md:w-20 pb-6' %>
-      <% end %>
-    </div>
-
-    <div class="place-self-center w-20 card">
-      <%= link_to 'https://andela.com/', target: '_blank' do %>
-        <%= image_tag 'sponsors/previous/andela.png', alt: 'Andela',
-                      class: 'max-w-none w-40 md:w-20 pb-6' %>
-      <% end %>
-    </div>
+    <% end %>
   </div>
 
   <div class="flex container justify-center pt-12 pb-12">
     <a href="mailto:organisers@rubycommunity.africa">
-      <div class="inline-flex text-sm">
-        <p class="text-xl">
-          Become a sponsor
-        </p>
-
-        <div class="pl-4 self-center">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
-               class="w-8">
-            <path fill-rule="evenodd" d="M2 10a.75.75 0 01.75-.75h12.59l-2.1-1.95a.75.75 0
+      <button class="btn btn-primary rounded-full py-4 px-8 text-white flex justify-center items-center gap-2 md:w-full w-60">
+        <span>Become a sponsor</span>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-4">
+          <path fill-rule="evenodd" d="M2 10a.75.75 0 01.75-.75h12.59l-2.1-1.95a.75.75 0
             111.02-1.1l3.5 3.25a.75.75 0 010 1.1l-3.5 3.25a.75.75 0
             11-1.02-1.1l2.1-1.95H2.75A.75.75 0 012 10z" clip-rule="evenodd"/>
-          </svg>
-        </div>
-      </div>
+        </svg>
+      </button>
     </a>
   </div>
 </div>
