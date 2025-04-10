@@ -10,6 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+
 ActiveRecord::Schema[7.0].define(version: 2024_04_15_124125) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -75,6 +76,18 @@ ActiveRecord::Schema[7.0].define(version: 2024_04_15_124125) do
     t.boolean "enabled"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "learning_materials", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "thumbnail"
+    t.integer "tag"
+    t.string "learning_material_title"
+    t.text "learning_material_description"
+    t.string "learning_material_link"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_learning_materials_on_user_id"
   end
 
   create_table "motor_alert_locks", force: :cascade do |t|
@@ -323,6 +336,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_04_15_124125) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "learning_materials", "users"
   add_foreign_key "motor_alert_locks", "motor_alerts", column: "alert_id"
   add_foreign_key "motor_alerts", "motor_queries", column: "query_id"
   add_foreign_key "motor_note_tag_tags", "motor_note_tags", column: "tag_id"

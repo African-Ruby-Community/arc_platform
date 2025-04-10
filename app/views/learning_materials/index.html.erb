@@ -1,0 +1,94 @@
+<% content_for(:title,"Learning Materials") %>
+<% content_for(:description,"A list of ruby and ruby on rails learning resources compiled by the ARC community") %>
+
+<section class="max-w-screen-xl mx-auto p-5 sm:p-10 md:p-16 pt-20">
+    <div class="pb-15">
+    <h1 style="color: #D0021B;" class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-left">Featured Materials</h1>
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-10 pt-7">
+    <% if @learning_materials.empty? %>
+      <h2>There are no created learning materials yet</h2> 
+    <% else %>      
+      <% # Display the selected random records with thumbnails %>
+      <% @random_learning_materials.each do |learning_material| %>
+        <div class="rounded overflow-hidden shadow-lg p-4 border-b-2 border-dashed border-black-600">
+          <a href="#"></a>
+          <div class="relative">
+            <div class="py-4" style="height: 300px;">
+              <img src="<%= url_for(learning_material.thumbnail) %>" class="w-full h-full object-cover rounded-lg">
+            </div>
+            <div class="text-sm absolute top-0 right-0 bg-indigo-600 px-4 text-white rounded-full h-16 w-16 flex items-center justify-center mt-3 mr-3 hover:bg-white hover:text-indigo-600 transition duration-500 ease-in-out">
+              <span class="font-bold"><%= learning_material.created_at.strftime("%b %d") %></span>
+            </div>
+          </div>
+          <div class="px-6 py-4 flex justify-between items-center">
+            <p class="font-semibold text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl inline-block hover:text-indigo-600 transition duration-500 ease-in-out"><%= learning_material.learning_material_title %></p>
+            <p class="text-gray-500 text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl"><%= learning_material.tag %></p>
+          </div>
+          <div class="px-6 py-4 flex justify-between items-center">
+            <p class="py-2 text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl font-normal"><%= learning_material.learning_material_description %></p>
+          </div>
+          <div class="px-6 py-4 flex flex-row items-center">
+            <span class="py-1 text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl font-regular mr-1">
+              <%= link_to "READ MORE HERE", learning_material.learning_material_link, class: "learning_materialslink ml-1", target: "_blank", style: "color: #D0021B;" %>
+            </span>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+
+  <div class="pb-20 pt-20">
+  <h2 style="color: #D0021B;" class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-left">Other Resources</h2>
+</div>
+
+  <% # Display the remaining records regardless of whether it has thumbnail or not %>
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-10 max-w-screen-xl mx-auto p-5 sm:p-10 md:p-16">
+    <% @learning_materials_with_or_without_thumbnails.each do |learning_material| %>
+      <div class="rounded overflow-hidden shadow-lg p-4 border-b border-dotted border-gray-400">
+        <a href="#"></a>
+        <div class="relative">
+          <% if learning_material.thumbnail.attached? %>
+            <div class="py-4" style="height: 300px;">
+              <img src="<%= url_for(learning_material.thumbnail) %>" class="w-full h-full object-cover rounded-lg">
+            </div>
+          <% else %>
+            <div class="py-4" style="height: 300px;">
+              <img src="/assets/learningmaterialsthumbnail.jpeg" class="w-full h-full object-cover rounded-lg">
+            </div>
+          <% end %>
+          <div class="text-sm absolute top-0 right-0 bg-indigo-600 px-4 text-white rounded-full h-16 w-16 flex items-center justify-center mt-3 mr-3 hover:bg-white hover:text-indigo-600 transition duration-500 ease-in-out">
+            <span class="font-bold"><%= learning_material.created_at.strftime("%b %d") %></span>
+          </div>
+        </div>
+        <div class="px-6 py-4 flex justify-between items-center">
+          <p class="font-semibold text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl inline-block hover:text-indigo-600 transition duration-500 ease-in-out"><%= learning_material.learning_material_title %></p>
+          <p class="text-gray-500 text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl"><%= learning_material.tag %></p>
+        </div>
+        <div class="px-6 py-4 flex justify-between items-center">
+          <p class="py-2 text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl font-normal"><%= learning_material.learning_material_description %></p>
+        </div>
+        <div class="px-6 py-4 flex flex-row items-center">
+          <span class="py-1 text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl font-regular mr-1">
+            <%= link_to "READ MORE HERE", learning_material.learning_material_link, class: "learningmaterialslink ml-1", target: "_blank", style: "color: #D0021B;" %>
+          </span>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="pb-20 pt-20">
+    <h2 style="color: #D0021B;" class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-left">If you may not want the view above, here is a list of the same details shown above.</h2>
+  </div>
+
+<ol type="1" start="1" class="max-w-md space-y-1 text-gray-500 dark:text-gray-400" style="list-style-type: decimal; padding-left: 20px;">
+  <% @learning_materials.each do |learning_material| %>
+    <li class="py-2">
+      <span class="py-1 text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl font-regular mr-1">
+        <%= link_to learning_material.learning_material_title, learning_material.learning_material_link, class: "learningmaterialslink ml-1", target: "_blank", style: "color: #D0021B;" %> <span> - <%= learning_material.learning_material_description %> </span>
+      </span>
+    </li>
+  <% end %>
+</ol>
+</section>
