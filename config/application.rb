@@ -10,6 +10,8 @@ Bundler.require(*Rails.groups)
 
 module ArcPlatform
   class Application < Rails::Application
+    # Use Rack::Attack for rate limiting and blocking abusive requests
+    config.middleware.use Rack::Attack
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 7.0
 

@@ -7,7 +7,11 @@
       <h2 class="card-title">Create an account</h2>
 
       <%= simple_form_for(resource, as: resource_name,
-                          url: registration_path(resource_name)) do |f| %>
+                          url: registration_path(resource_name),
+                          html: { data: { controller: "bot-detection", bot_detection_target: "form" } }) do |f| %>
+
+        <%= f.invisible_captcha :nickname %>
+
         <%= f.input :email, placeholder: 'Enter email address', label: 'Email',
                     input_html: { class: 'input-bordered w-full', autocomplete: 'email' } %>
 
@@ -26,6 +30,7 @@
         </div>
 
         <%= f.input :github_username, placeholder: 'Enter Github username', label: 'Github username',
+                    hint: 'Must be a valid GitHub account. We will verify this username.',
                     input_html: { class: 'input-bordered w-full', autocomplete: 'github_username' } %>
 
         <%= f.input :password, placeholder: 'Enter password', label: 'Password',
@@ -33,6 +38,12 @@
 
         <%= f.input :password_confirmation, placeholder: 'Confirm Password',
                     label: 'Confirm Password', input_html: { class: 'input-bordered w-full' } %>
+
+        <%# --- Cloudflare Turnstile Widget --- %>
+        <div class="pt-4 pb-4">
+          <%= cloudflare_turnstile %>
+        </div>
+        <%# --- End Cloudflare Turnstile Widget --- %>
 
         <div class="card-actions justify-end pt-8">
           <%= f.button :button, 'Create Account', class: 'btn btn-primary' %>

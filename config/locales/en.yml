@@ -29,4 +29,8 @@ en:
     destroy:
       success: 'Project was successfully destroyed.'
 
+  registrations:
+    bot_detection_failed_alert: "Sorry, we couldn't process your request."
+    turnstile_forbidden_error: "We had a problem creating your account."
+
 

@@ -7,6 +7,7 @@
       <h2 class="card-title">Sign In</h2>
       <%= simple_form_for(resource, as: resource_name,
                           url: session_path(resource_name)) do |f| %>
+        <%= f.invisible_captcha :nickname %>
         <%= f.input :email, placeholder: 'Enter email address', label: 'Email',
                     input_html: { class: 'input-bordered w-full', autofocus: true, autocomplete: 'email' } %>
 
