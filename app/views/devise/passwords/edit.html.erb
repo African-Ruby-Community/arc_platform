@@ -19,6 +19,7 @@
                                                              autocomplete: "new-password" } %>
 
         <div class="card-actions justify-end pt-8">
+          <%= cloudflare_turnstile %>
           <%= f.button :button, 'Change my password', class: 'btn btn-primary' %>
         </div>
       <% end %>
