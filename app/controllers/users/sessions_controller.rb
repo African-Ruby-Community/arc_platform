@@ -2,6 +2,6 @@
 
 module Users
   class SessionsController < Devise::SessionsController
-    invisible_captcha only: [:create], honeypot: :nickname
+    # invisible_captcha only: [:create], honeypot: :nickname
   end
 end

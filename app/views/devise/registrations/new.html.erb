@@ -10,7 +10,7 @@
                           url: registration_path(resource_name),
                           html: { data: { controller: "bot-detection", bot_detection_target: "form" } }) do |f| %>
 
-        <%= f.invisible_captcha :nickname %>
+        <%#= f.invisible_captcha :nickname %>
 
         <%= f.input :email, placeholder: 'Enter email address', label: 'Email',
                     input_html: { class: 'input-bordered w-full', autocomplete: 'email' } %>

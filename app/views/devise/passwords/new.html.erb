@@ -8,7 +8,7 @@
 
       <%= simple_form_for(resource, as: resource_name,
                           url: password_path(resource_name)) do |f| %>
-        <%= f.invisible_captcha :nickname %>
+        <%#= f.invisible_captcha :nickname %>
         <%= f.input :email, placeholder: 'Enter email address', label: 'Email',
                     input_html: { class: 'input-bordered w-full', autocomplete: 'email',
                                   autofocus: true } %>
