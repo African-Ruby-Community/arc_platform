@@ -12,8 +12,6 @@
         <%= f.input :email, placeholder: 'Enter email address', label: 'Email',
                     input_html: { class: 'input-bordered w-full', autocomplete: 'email',
                                   autofocus: true } %>
-        <%# Add the Cloudflare Turnstile widget here %>
-        <%= cloudflare_turnstile %>
 
         <div class="card-actions justify-end pt-8">
           <%= f.button :button, 'Send me instructions', class: 'btn btn-primary' %>

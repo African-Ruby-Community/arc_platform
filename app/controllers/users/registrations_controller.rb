@@ -6,19 +6,8 @@ module Users
   class RegistrationsController < Devise::RegistrationsController
     ##
     # Devise override Registration create action
-
-    invisible_captcha only: [:create], honeypot: :nickname
-
-    # Cloudflare Turnstile verification.
-    # This before_action will ONLY run in production environment.
-    # It will raise RailsCloudflareTurnstile::Forbidden on failure.
-    before_action :validate_cloudflare_turnstile, only: [:create] if Rails.env.production?
-
-    # This will catch the RailsCloudflareTurnstile::Forbidden exception
-    # raised by `validate_cloudflare_turnstile` and redirect the user.
-    rescue_from RailsCloudflareTurnstile::Forbidden, with: :forbidden_turnstile
-
-    before_action :check_bot_detection, only: [:create]
+    # allow_unathenticated_access only: [:new, :create]
+    before_action :verify_turnstile, only: [:create]
 
     def create
       super do
@@ -28,17 +17,18 @@ module Users
 
     private
 
-    def check_bot_detection
-      # If JavaScript is disabled or bot detection indicates a bot, reject the submission
-      return unless params[:js_enabled].blank? || params[:bot_detection] == 'true'
+    def verify_turnstile
+      token = params['cf-turnstile-response']
+      return if TurnstileVerifier.new(token, request.remote_ip).verify
 
-      flash[:alert] = I18n.t('registrations.bot_detection_failed_alert')
-      redirect_to new_user_registration_path
+      handle_failed_turnstile_verification
     end
 
-    def forbidden_turnstile
-      flash[:error] = I18n.t('registrations.turnstile_forbidden_error')
-      redirect_to root_path
+    def handle_failed_turnstile_verification
+      self.resource = resource_class.new(sign_in_params)
+      clean_up_passwords(resource)
+      flash.now[:alert] = I18n.t('turnstile.errors.registration_failed')
+      render :new, status: :unprocessable_entity
     end
   end
 end

@@ -3,10 +3,12 @@ require:
   - rubocop-rails
 
 AllCops:
+  UseCache: false
+  UseServer: false
   NewCops: enable
   SuggestExtensions:
     rubocop-rake: false
-  TargetRubyVersion: 3.0.2
+  TargetRubyVersion: 3.4
   Exclude:
     - bin/**/*
     - config/**/*
@@ -19,3 +21,7 @@ AllCops:
 
 Style/Documentation:
   Enabled: false
+
+Rails/LexicallyScopedActionFilter:
+  Exclude:
+    - 'app/controllers/users/sessions_controller.rb'

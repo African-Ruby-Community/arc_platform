@@ -7,9 +7,9 @@
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
   <%= favicon_link_tag 'favicon.ico' %>
-  <%= cloudflare_turnstile_script_tag %>
 
   <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+  <%= javascript_include_tag "https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit", "data-turbo-track": "reload", defer: true %>
   <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
 </head>
 

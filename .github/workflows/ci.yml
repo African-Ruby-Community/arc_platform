@@ -5,11 +5,11 @@ jobs:
     name: RuboCop Linter
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - name: Setup Ruby 3.4.1
+      - uses: actions/checkout@v5
+      - name: Setup Ruby 3.4.4
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: '3.4.1' # Not needed with a .ruby-version file
+          ruby-version: '3.4.4' # Not needed with a .ruby-version file
           bundler-cache: true
 
       - run: bundle exec rubocop
@@ -28,11 +28,11 @@ jobs:
           --health-retries 5
 
     steps:
-      - uses: actions/checkout@v4
-      - name: Setup Ruby 3.4.1
+      - uses: actions/checkout@v5
+      - name: Setup Ruby 3.4.4
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: '3.4.1' # Not needed with a .ruby-version file
+          ruby-version: '3.4.4' # Not needed with a .ruby-version file
           bundler-cache: true
 
       - name: Setup Node
@@ -42,7 +42,7 @@ jobs:
           
       - name: Find yarn cache location
         id: yarn-cache
-        run: echo "::set-output name=dir::$(yarn cache dir)"
+        run: echo "dir=$(yarn cache dir)" >> $GITHUB_OUTPUT
         
       - name: JS package cache
         uses: actions/cache@v4

@@ -39,11 +39,8 @@
         <%= f.input :password_confirmation, placeholder: 'Confirm Password',
                     label: 'Confirm Password', input_html: { class: 'input-bordered w-full' } %>
 
-        <%# --- Cloudflare Turnstile Widget --- %>
-        <div class="pt-4 pb-4">
-          <%= cloudflare_turnstile %>
-        </div>
-        <%# --- End Cloudflare Turnstile Widget --- %>
+
+        <%= render "shared/cloudflare_turnstile" %>
 
         <div class="card-actions justify-end pt-8">
           <%= f.button :button, 'Create Account', class: 'btn btn-primary' %>

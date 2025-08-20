@@ -33,4 +33,12 @@ en:
     bot_detection_failed_alert: "Sorry, we couldn't process your request."
     turnstile_forbidden_error: "We had a problem creating your account."
 
-
+  turnstile:
+    warnings:
+      pass: "Turnstile: PASS secret in use. All checks passed. Use FAIL secret for failure tests or real secret in production."
+      fail_mismatch: "Turnstile: FAIL sitekey with non-FAIL secret. This may yield unexpected PASS results."
+      verification_failed: "Turnstile verification failed: %{errors}"
+      verification_error: "Turnstile verification error (attempt %{attempt}/%{max}): %{error}"
+    errors:
+      registration_failed: 'Please complete the Turnstile challenge to create an account.'
+      login_failed: 'Please complete the Turnstile challenge to sign in.'
