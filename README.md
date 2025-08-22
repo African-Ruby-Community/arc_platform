@@ -1,7 +1,7 @@
 # Africa Ruby Community (ARC) Platform
 
-[![Arc Platform CI Workflow](https://github.com/nairuby/arc_platform/actions/workflows/ci.yml/badge.svg)](https://github.com/nairuby/arc_platform/actions/workflows/ci.yml)
-![Ruby](https://img.shields.io/badge/Ruby-3.4.1-red?logo=ruby)
+[![Arc Platform CI Workflow](https://github.com/African-Ruby-Community/arc_platform/actions/workflows/ci.yml/badge.svg)](https://github.com/African-Ruby-Community/arc_platform/actions/workflows/ci.yml)
+![Ruby](https://img.shields.io/badge/Ruby-3.4.4-red?logo=ruby)
 ![Rails](https://img.shields.io/badge/Rails-7.2.2-blue?logo=rubyonrails)
 
 ## Introduction
