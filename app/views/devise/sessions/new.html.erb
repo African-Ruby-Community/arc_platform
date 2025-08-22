@@ -5,16 +5,37 @@
     </figure>
     <div class="card-body">
       <h2 class="card-title">Sign In</h2>
+      <% if @turnstile_error %>
+        <div class="alert alert-error mb-4">
+          <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+          </svg>
+          <span><%= @turnstile_error %></span>
+        </div>
+      <% end %>
+
       <%= simple_form_for(resource, as: resource_name,
-                          url: session_path(resource_name)) do |f| %>
+                          url: session_path(resource_name), html: { id: 'new_user' }) do |f| %>
         <%= f.input :email, placeholder: 'Enter email address', label: 'Email',
                     input_html: { class: 'input-bordered w-full', autofocus: true, autocomplete: 'email' } %>
 
         <%= f.input :password, placeholder: 'Enter password', label: 'Password',
                     input_html: { class: 'input-bordered w-full' } %>
 
+
+
+        <%= render "shared/cloudflare_turnstile" %>
+
+
         <div class="card-actions justify-end pt-8">
-          <%= f.button :button, 'Sign In', class: 'btn btn-primary' %>
+          <%= f.button :button, 'Sign In',
+                       class: 'btn btn-primary
+              disabled:cursor-not-allowed
+              disabled:bg-gray-200
+              disabled:text-gray-400
+              disabled:border-gray-300
+              disabled:shadow-none', disabled: true
+          %>
         </div>
       <% end %>
 

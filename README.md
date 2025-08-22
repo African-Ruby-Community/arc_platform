@@ -85,10 +85,10 @@ asdf plugin add nodejs
 Install Ruby and set the default version by running the following commands:
 
 ```sh
-asdf install ruby 3.4.1 
+asdf install ruby 3.4.4
 
 # Set the default Ruby version
-asdf global ruby 3.4.1 
+asdf global ruby 3.4.4
 
 # Update to the latest Rubygems version
 gem update --system

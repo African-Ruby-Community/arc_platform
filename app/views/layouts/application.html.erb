@@ -1,28 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>ArcPlatform <%= " - " + yield(:title) if content_for?(:title)%></title>
-  <meta name="description" content=<%= content_for?(:description) ? yield(:description) : "African Ruby Community, ARC is an organization that was started in 2010. The community currently has over reach of over 5,000 members spread across East Africa, made of developers (Engineers),entrepreneurs, designers and freelancers."%>>
+  <title>ArcPlatform <%= " - " + yield(:title) if content_for?(:title) %></title>
+  <meta name="description" content=<%= content_for?(:description) ? yield(:description) : "African Ruby Community, ARC is an organization that was started in 2010. The community currently has over reach of over 5,000 members spread across East Africa, made of developers (Engineers),entrepreneurs, designers and freelancers." %>>
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
   <%= favicon_link_tag 'favicon.ico' %>
 
   <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+  <%= javascript_include_tag "https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit", "data-turbo-track": "reload", defer: true %>
   <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
 </head>
 
 <body>
-  <div class="bg-gray-50">
+<div class="bg-gray-50">
 
-    <%= render 'layouts/navbar' %>
+  <%= render 'layouts/navbar' %>
 
-    <main class="mx-8" style="min-height: 45vh">
-      <%= yield %>
-    </main>
+  <main class="mx-8" style="min-height: 45vh">
+    <%= yield %>
+  </main>
 
-    <%= render 'layouts/flash_messages' %>
-    <%= render 'layouts/footer' %>
-  </div>
+  <%= render 'layouts/flash_messages' %>
+  <%= render 'layouts/footer' %>
+</div>
 </body>
 </html>

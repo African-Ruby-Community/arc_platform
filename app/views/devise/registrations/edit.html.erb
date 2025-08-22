@@ -43,10 +43,12 @@
 
       <div class="divider"></div>
 
+      <%= render "shared/cloudflare_turnstile" %>
+
       <div class="flex justify-center">
         <span class="label-text">
-            <%= button_to "Unhappy? Cancel my account", registration_path(resource_name),
-                          data: { confirm: "Are you sure?" }, method: :delete %>
+          <%= button_to "Unhappy? Cancel my account", registration_path(resource_name),
+                        data: { confirm: "Are you sure?" }, method: :delete %>
         </span>
       </div>
     </div>

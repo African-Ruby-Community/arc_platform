@@ -3,7 +3,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '3.4.1'
+ruby '3.4.4'
 
 gem 'active_storage_validations', '~> 1.0' # Active Storage gems for validating attachments https://github.com/igorkasyanchuk/active_storage_validations
 gem 'aws-sdk-s3', '~> 1.119', require: false # Official AWS Ruby gem for Amazon S3
@@ -13,6 +13,7 @@ gem 'cssbundling-rails' # Bundle and process CSS [https://github.com/rails/cssbu
 gem 'devise' # Devise 4.0 works with Rails 4.1 onwards.
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 gem 'image_processing', '~> 1.2'
+gem 'invisible_captcha' # Spam protection solution [https://github.com/markets/invisible_captcha]
 gem 'jbuilder' # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem 'jsbundling-rails' # Bundle and transpile JavaScript [https://github.com/rails/jsbundling-rails]
 gem 'mini_magick', '~> 4.12'
@@ -20,10 +21,11 @@ gem 'mini_magick', '~> 4.12'
 gem 'motor-admin', '~> 0.4.7'
 gem 'pg', '~> 1.1' # Use postgresql as the database for Active Record
 gem 'premailer-rails', '~> 1.12' # This gem is a drop in solution for styling HTML emails with CSS
-gem 'puma', '~> 5.0' # Use the Puma web server [https://github.com/puma/puma]
+gem 'puma', '~> 6.0' # Use the Puma web server [https://github.com/puma/puma]
 gem 'rails', '~> 7.2.2.1' # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem 'redis', '~> 4.0' # Use Redis adapter to run Action Cable in production
 # An ActionMailer adapter to send email using SendGrid's HTTPS Web API (instead of SMTP).
+gem 'rack-attack' # Rack middleware for blocking & throttling abusive requests
 gem 'sendgrid-actionmailer', '~> 3.2'
 gem 'simple_form', '~> 5.1' # Gem to pimp up forms
 gem 'sitemap_generator' # A dynamic sitemap generator gem for the Ruby on Rails framework
@@ -31,6 +33,7 @@ gem 'sprockets-rails' # The original asset pipeline for Rails [https://github.co
 gem 'stimulus-rails' # Hotwire's modest JavaScript framework [https://stimulus.hotwired.dev]
 gem 'turbo-rails' # Hotwire's SPA-like page accelerator [https://turbo.hotwired.dev]
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
+gem 'rails_cloudflare_turnstile'
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
 # gem "kredis" # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
@@ -40,10 +43,10 @@ gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
-  gem 'debug', platforms: %i[mri mingw x64_mingw]
-  gem 'rubocop', '~> 1.51.0', require: false
-  gem 'rubocop-performance', '~> 1.18', require: false
-  gem 'rubocop-rails', '~> 2.19.1', require: false
+  gem 'debug', '~> 1.10.0', platforms: %i[mri mingw x64_mingw]
+  gem 'rubocop', '~> 1.79.2', require: false
+  gem 'rubocop-performance', '~> 1.25.0', require: false
+  gem 'rubocop-rails', '~> 2.30.3', require: false
 end
 
 group :development do
@@ -72,7 +75,8 @@ group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem 'capybara'
   gem 'faker', '~> 3.1'
+  gem 'mocha'
   gem 'selenium-webdriver'
-  gem 'simplecov', require: false  # Code coverage analysis tool for ruby
+  gem 'simplecov', require: false # Code coverage analysis tool for ruby
   gem 'webdrivers'
 end
