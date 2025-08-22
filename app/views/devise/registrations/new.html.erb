@@ -43,8 +43,16 @@
         <%= render "shared/cloudflare_turnstile" %>
 
         <div class="card-actions justify-end pt-8">
-          <%= f.button :button, 'Create Account', class: 'btn btn-primary' %>
+          <%= f.button :button, 'Create Account', class: 'btn btn-primary
+
+          disabled:cursor-not-allowed
+              disabled:bg-gray-200
+              disabled:text-gray-400
+              disabled:border-gray-300
+              disabled:shadow-none', disabled: true %>
         </div>
+
+
       <% end %>
 
       <div class="divider"></div>
