@@ -1,0 +1,27 @@
+sw:
+  unauthorsed:
+    sign_in: 'Tafadhali Ingia kwenye akaunti ili kukamilisha hatua'
+
+  chapters:
+    create: 
+      success: "Sura iliundwa vyema"
+    update:
+      success: "Sura ilibadilishwa kwa mafanikio"
+    destroy:
+      success: "Sura ilifutwa vyema"
+
+  countries:
+    create: 
+      success: "Nchi iliundwa vyema"
+    update:
+      success: "Nchi ilibadilishwa kwa mafanikio"
+    destroy:
+      success: "Nchi ilifutwa vyema"
+
+  projects:
+    create: 
+      success: "Mradi uliundwa vyema"
+    update:
+      success: "Mradi ulibadilishwa kwa mafanikio"
+    destroy:
+      success: "Mradi ulifutwa vyema"
