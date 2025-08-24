@@ -32,7 +32,7 @@ class TurnstileVerifier
 
   private
 
-  def attempt_verification?
+  def attempt_verification
     MAX_RETRIES.times do |attempt|
       return true if successful?(attempt)
 
