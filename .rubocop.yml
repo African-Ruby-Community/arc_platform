@@ -25,3 +25,4 @@ Style/Documentation:
 Rails/LexicallyScopedActionFilter:
   Exclude:
     - 'app/controllers/users/sessions_controller.rb'
+
