@@ -26,6 +26,3 @@ Rails/LexicallyScopedActionFilter:
   Exclude:
     - 'app/controllers/users/sessions_controller.rb'
 
-Naming/PredicateName:
-  Exclude:
-    - 'app/services/turnstile_verifier.rb'

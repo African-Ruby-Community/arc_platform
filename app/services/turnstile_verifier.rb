@@ -32,7 +32,7 @@ class TurnstileVerifier
 
   private
 
-  def attempt_verification
+  def attempt_verification # rubocop:disable Naming/PredicateMethod
     MAX_RETRIES.times do |attempt|
       return true if successful?(attempt)
 
