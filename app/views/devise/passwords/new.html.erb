@@ -4,16 +4,17 @@
       <%= image_tag 'sign_up_karate.png' %>
     </figure>
     <div class="card-body">
-      <h2 class="card-title">Forgot your password?</h2>
+      <h2 class="card-title"><%= t('devise.views.passwords.new.title') %></h2>
 
       <%= simple_form_for(resource, as: resource_name,
                           url: password_path(resource_name)) do |f| %>
-        <%= f.input :email, placeholder: 'Enter email address', label: 'Email',
+        <%#= f.invisible_captcha :nickname %>
+        <%= f.input :email, placeholder: t('devise.views.passwords.new.email_placeholder'), label: t('devise.views.passwords.new.email_label'),
                     input_html: { class: 'input-bordered w-full', autocomplete: 'email',
                                   autofocus: true } %>
 
         <div class="card-actions justify-end pt-8">
-          <%= f.button :button, 'Send me instructions', class: 'btn btn-primary' %>
+          <%= f.button :button, t('devise.views.passwords.new.submit_button'), class: 'btn btn-primary' %>
         </div>
       <% end %>
 

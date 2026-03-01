@@ -1,17 +1,1 @@
 # See https://www.robotstxt.org/robotstxt.html for documentation on how to use the robots.txt file
-User-agent: *
-
-Disallow: /admin
-Disallow: /chapters/new
-Disallow: /chapters/edit
-Disallow: /countries/new
-Disallow: /countries/edit
-Disallow: /projects/new
-Disallow: /projects/edit
-Disallow: /users/
-# Overriding /users route to add the sign in and sign up page to be indexed
-Allow: /users/sign_up  
-Allow: /users/sign_in
-
-
-Sitemap: https://rubycommunity.africa/sitemap.xml

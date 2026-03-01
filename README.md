@@ -2,9 +2,9 @@
 
 # Africa Ruby Community (ARC) Platform
 
-[![Arc Platform CI Workflow](https://github.com/nairuby/arc_platform/actions/workflows/ci.yml/badge.svg)](https://github.com/nairuby/arc_platform/actions/workflows/ci.yml)
-![Ruby](https://img.shields.io/badge/Ruby-3.4.1-red?logo=ruby)
-![Rails](https://img.shields.io/badge/Rails-7.2.2-blue?logo=rubyonrails)
+[![Arc Platform CI Workflow](https://github.com/African-Ruby-Community/arc_platform/actions/workflows/ci.yml/badge.svg)](https://github.com/African-Ruby-Community/arc_platform/actions/workflows/ci.yml)
+![Ruby](https://img.shields.io/badge/Ruby-3.4.4-red?logo=ruby)
+![Rails](https://img.shields.io/badge/Rails-8.0.2-blue?logo=rubyonrails)
 
 ## Introduction
 The Africa Ruby Community (ARC) Platform is a project aimed at creating a hub for Ruby language enthusiasts in Africa. This platform facilitates connection, knowledge sharing, collaboration on projects, and staying updated with the latest Ruby community developments. Whether you're a seasoned developer or a beginner, this platform offers tailored resources for different countries and cities, merchandise, meetup information, and details about online workshops and webinars.
@@ -87,10 +87,10 @@ asdf plugin add nodejs
 Install Ruby and set the default version by running the following commands:
 
 ```sh
-asdf install ruby 3.4.1
+asdf install ruby 3.4.4
 
 # Set the default Ruby version
-asdf global ruby 3.4.1
+asdf global ruby 3.4.4
 
 # Update to the latest Rubygems version
 gem update --system

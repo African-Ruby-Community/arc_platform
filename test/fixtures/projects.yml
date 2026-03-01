@@ -21,15 +21,19 @@
 #
 
 one:
-  name: MyString
+  name: Test Project One
+  slug: test-project-one
   description: MyText
+  intro: This is a test project
   chapter: one
   start_date: 2023-02-12 20:20:17
   end_date: 2023-02-12 20:20:17
 
 two:
-  name: MyString
+  name: Test Project Two
+  slug: test-project-two
   description: MyText
+  intro: This is another test project
   chapter: two
   start_date: 2023-02-12 20:20:17
   end_date: 2023-02-12 20:20:17

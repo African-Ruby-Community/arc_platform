@@ -1,0 +1,285 @@
+# Kiswahili translations for Arc Platform
+# Tafsiri za Kiswahili kwa Arc Platform
+
+sw:
+  # Common translations
+  common:
+    actions:
+      save: 'Hifadhi'
+      cancel: 'Ghairi'
+      edit: 'Hariri'
+      delete: 'Futa'
+      back: 'Rudi'
+      submit: 'Wasilisha'
+      confirm: 'Je, una uhakika?'
+      join_us: 'Jiunge Nasi'
+      read_more: 'Soma zaidi'
+    messages:
+      success: 'Operesheni imekamilika kwa mafanikio'
+      error: 'Hitilafu imetokea'
+      not_found: 'Rekodi haijapatikana'
+      unauthorized: 'Huna ruhusa ya kufanya kitendo hiki'
+  
+  # Authentication and authorization
+  unauthorized:
+    sign_in: 'Tafadhali ingia ili kufanya kitendo hiki'
+    
+  # Flash messages
+  flash:
+    notice: 'Taarifa'
+    alert: 'Tahadhari'
+    success: 'Mafanikio'
+    error: 'Hitilafu'
+  
+  # Models
+  activerecord:
+    models:
+      chapter: 'Sura'
+      project: 'Mradi'
+      country: 'Nchi'
+    attributes:
+      chapter:
+        title: 'Kichwa'
+        description: 'Maelezo'
+      project:
+        name: 'Jina'
+        description: 'Maelezo'
+      country:
+        name: 'Jina'
+        code: 'Msimbo'
+  
+  # Controllers
+  chapters:
+    create:
+      success: 'Sura imeundwa kwa mafanikio.'
+    update:
+      success: 'Sura imesasishwa kwa mafanikio.'
+    destroy:
+      success: 'Sura imefutwa kwa mafanikio.'
+
+  countries:
+    create:
+      success: 'Nchi imeundwa kwa mafanikio.'
+    update:
+      success: 'Nchi imesasishwa kwa mafanikio.'
+    destroy:
+      success: 'Nchi imefutwa kwa mafanikio.'
+
+  projects:
+    create:
+      success: 'Mradi umeundwa kwa mafanikio.'
+    update:
+      success: 'Mradi umesasishwa kwa mafanikio.'
+    destroy:
+      success: 'Mradi umefutwa kwa mafanikio.'
+
+  # Devise and authentication
+  registrations:
+    bot_detection_failed_alert: "Samahani, hatukuweza kushughulikia ombi lako."
+    turnstile_forbidden_error: "Tulikuwa na tatizo la kuunda akaunti yako."
+
+  # Turnstile (CAPTCHA)
+  turnstile:
+    warnings:
+      pass: "Turnstile: Siri ya PASS inatumika. Ukaguzi wote umepita. Tumia siri ya FAIL kwa majaribio ya kushindwa au siri halisi katika uzalishaji."
+      fail_mismatch: "Turnstile: Sitekey ya FAIL na siri isiyo ya FAIL. Hii inaweza kutoa matokeo ya PASS yasiyotarajiwa."
+      verification_failed: "Uthibitisho wa Turnstile umeshindwa: %{errors}"
+      verification_error: "Hitilafu ya uthibitisho wa Turnstile (jaribio %{attempt}/%{max}): %{error}"
+    errors:
+      registration_failed: 'Tafadhali kamilisha changamoto ya Turnstile ili kuunda akaunti.'
+      login_failed: 'Tafadhali kamilisha changamoto ya Turnstile ili kuingia.'
+  
+  # Landing page translations
+  landing:
+    index:
+      intro:
+        title: "Jumuiya ya Ruby ya Kiafrika"
+        subtitle: "Ruby Conf Africa 2026"
+        conference_dates: "21-22 Agosti 2026"
+        conference_description: "Jiunge na mkutano mkuu wa Ruby nchini Afrika!"
+        description: "Shirika la kijamii linaloongoza ustadi wa uprogramu wa kompyuta kwa kutumia lugha ya uprogramu ya Ruby."
+        members_count: "Wanachama katika Afrika Mashariki"
+        years_count: "Miaka ya jumuiya ya Ruby"
+        conference_alt: "Ruby Conf Africa 2025"
+      who_we_are:
+        title: "Jumuiya ya Ruby ya Kiafrika"
+        subtitle: "Sisi ni nani?"
+        description_1: "Jumuiya ya Ruby ya Kiafrika, ARC ni shirika lililoanzishwa mwaka 2010. Jumuiya hii kwa sasa ina wanachama zaidi ya 5,000 waliotawanyika katika Afrika Mashariki, wakiwemo wabunifu (wahandisi), wajasiriamali, wabunifu wa michoro na wafanyakazi huru. Katika maendeleo na maonyesho, jumuiya inazingatia teknolojia na mifumo ya Ruby, ambayo yote ni ya chanzo huria na inatumika sana na makampuni mapya kuunda miundo na kufanya uthibitisho wa dhana pamoja na mkakati wa kuingia sokoni."
+        description_2: "Jumuiya inaandaa mikutano ya kila wiki na kila mwezi katika miji mbalimbali ya Afrika Mashariki. Jumuiya inakupatia Mkutano wa Ruby kila mwaka na mada mbalimbali ili kujaza pengo linalopo kati ya shule na tasnia na kwa kurudi inasaidia kuchochea uvumbuzi na ukuaji katika mchango wa uchumi wa kimataifa."
+      activities:
+        title: "Shughuli"
+        items:
+          meetups: "Mikutano ya ndani"
+          conferences: "mikutano"
+          programming: "uprogramu"
+          workshops: "warsha"
+          hackathons: "mashindano ya uprogramu"
+      chapters:
+        title: "Sura"
+        join_community: "Jiunge na jumuiya"
+        request_new_chapter: "Omba sura mpya"
+        add_chapter_alt: "Ongeza Sura"
+      events:
+        title: "Matukio Yanayokuja"
+        view_more: "Ona matukio zaidi"
+        placeholder_content: "maudhui"
+      sponsors:
+        featured_title: "Wafadhili Wakuu"
+        previous_title: "Wafadhili wa Awali"
+        become_sponsor: "Kuwa mfadhili"
+    about:
+      title: "Kuhusu ARC - Jumuiya ya Ruby ya Kiafrika"
+      page_title: "Kuhusu sisi"
+      page_description: "ARC inaunganisha wajasiriamali, wabunifu, wabunifu wa michoro, wachangiaji wa chanzo huria pamoja"
+      workshop_alt: "Warsha ya ARC"
+      description_1: "Jumuiya ya Ruby ya Kiafrika, ARC, ni shirika lililoanzishwa mwaka 2010. Jumuiya hii kwa sasa ina ufikio wa zaidi ya wanachama 5,000 waliotawanyika katika Afrika Mashariki, wakiwemo wabunifu (wahandisi), wajasiriamali, wabunifu wa michoro, na wafanyakazi huru. Katika maendeleo na maonyesho, jumuiya inazingatia teknolojia na mifumo ya Ruby, ambayo yote ni ya chanzo huria na inatumika sana na makampuni mapya kuunda miundo na kufanya uthibitisho wa dhana pamoja na mkakati wa kuingia sokoni."
+      description_2: "Jumuiya inaandaa mikutano ya kila wiki na kila mwezi katika miji mbalimbali ya Afrika Mashariki. Jumuiya inakupatia Mkutano wa Ruby kila mwaka na mada mbalimbali ili kujaza pengo linalopo kati ya shule na tasnia na kwa kurudi inasaidia kuchochea uvumbuzi na ukuaji katika mchango wa uchumi wa kimataifa."
+      description_3: "ARC inaunganisha wajasiriamali, wabunifu, wabunifu wa michoro, na wachangiaji wa chanzo huria. Kwa nini? Tunaamini katika mbinu ya jumla; kupitia ujasiriamali, \"mbinu ya suluhisho,\" na chanzo huria, tunaweza kutatua matatizo mengi. Hii kwa kurudi inawapa nguvu kila mtu anayehudhuria \"zana\" za kiteknolojia na \"mbinu\" za ujasiriamali ili kufikia uwezo wao kamili na kuhamasisha ulimwengu mzima na jamii zao."
+
+  # Chapters page translations
+  chapters:
+    index:
+      title: "Sura"
+      page_title: "Sura"
+      page_description: "Maonyesho ya jumuiya mbalimbali za ruby zilizotawanyika katika eneo la Afrika Mashariki."
+    countries:
+      kenya: "Kenya"
+      rwanda: "Rwanda"
+      tanzania: "Tanzania"
+      uganda: "Uganda"
+    alt_text:
+      nairuby: "Nairuby"
+      arc_rwanda: "ARC_Rwanda"
+      arc_tanzania: "ARC_Tanzania"
+      arc_uganda: "ARC_Uganda"
+
+  # Helper data translations
+  activities:
+    meetups: "Mikutano ya ndani"
+    conferences: "mikutano"
+    programming: "uprogramu"
+    workshops: "warsha"
+    hackathons: "mashindano ya uprogramu"
+
+  sponsors:
+    current:
+      solutech: "Solutech"
+      app_signal: "App Signal"
+      ruby_central: "Ruby Central"
+      kopo_kopo: "Kopo Kopo"
+      finplus: "Finplus Group"
+      typesense: "Typesense"
+      daystar: "Daystar"
+      prosper: "Prosper Hedge"
+      gurzu: "Gurzu"
+      must_company: "Must Company"
+    previous:
+      shopify: "Shopify"
+      microverse: "Microverse"
+      planet_argon: "Planet Argon"
+      nairobits: "Nairobits"
+      turing: "Turing"
+      kwara: "Kwara"
+      ihub: "iHub, Nairobi"
+      friendly_rb: "FriendlyRB"
+      kca: "Chuo Kikuu cha KCA"
+      andela: "Andela"
+
+  social_media:
+    twitter: "ARC Twitter"
+    telegram: "ARC telegram"
+    facebook: "ARC facebook"
+    instagram: "ARC Instagram"
+    linkedin: "ARC LinkedIn"
+    github: "ARC Github"
+
+  # Projects page translations
+  projects:
+    index:
+      title: "Miradi ya Kijamii"
+      description: "Gundua miradi ya ajabu iliyotengenezwa na Jumuiya ya Ruby ya Kiafrika"
+      search_placeholder: "Tafuta miradi..."
+    show:
+      back_to_projects: "Rudi kwa Miradi"
+      featured_badge: "⭐ Mradi wa Kipekee"
+      about_project: "Kuhusu Mradi"
+      view_live: "Ona Moja kwa Moja"
+      github: "GitHub"
+      project_creators: "Wabunifu wa Mradi"
+      love_this_project: "Unapenda mradi huu?"
+      share_message: "Ushiriki na mtandao wako!"
+      more_from_chapter: "Zaidi kutoka %{chapter_name}"
+    featured:
+      title: "Mradi wa Kipekee"
+      view_project: "Ona Mradi"
+      prev: "← Uliopita"
+      next: "Ifuatayo →"
+    grid:
+      featured: "Kipekee"
+      preview: "Onyesho"
+    share:
+      whatsapp_label: "Shiriki kwenye WhatsApp"
+      facebook_label: "Shiriki kwenye Facebook"
+      twitter_label: "Shiriki kwenye Twitter"
+      linkedin_label: "Shiriki kwenye LinkedIn"
+
+  # Navigation translations
+  navigation:
+    home: "Nyumbani"
+    about: "Kuhusu"
+    about_arc: "Kuhusu ARC"
+    events: "Matukio"
+    conferences: "Mikutano"
+    chapters: "Sura"
+    projects: "Miradi"
+    learning_materials: "Nyenzo za Kujifunzia"
+    sign_in: "Ingia"
+    sign_up: "Jisajili"
+    sign_out: "Toka"
+    settings: "Mipangilio"
+    countries: "Nchi"
+    update_profile: "Sasisha wasifu"
+    community_name: "Jumuiya ya Ruby ya Kiafrika"
+
+  # Footer translations
+  footer:
+    home: "Nyumbani"
+    events: "Matukio"
+    chapters: "Sura"
+    projects: "Miradi"
+    learning_materials: "Nyenzo za kujifunzia"
+    sponsor: "Mfadhili"
+    members: "Wanachama"
+    about: "Kuhusu"
+    contact_us: "Wasiliana Nasi"
+    code_of_conduct: "Kanuni za maadili"
+    connect: "Unganisha"
+    copyright: "Haki Zote Zimehifadhiwa. Jumuiya ya Ruby ya Kiafrika. Hakimiliki %{year}"
+
+  # Learning Materials page translations
+  learning_materials:
+    index:
+      title: "Nyenzo za Kujifunzia"
+      page_title: "Nyenzo za Kujifunzia"
+      page_description: "Orodha ya nyenzo za kujifunzia ruby na ruby on rails zilizokusanywa na jumuiya ya ARC"
+      search_placeholder: "Tafuta nyenzo (mfano: Rails, Ruby, Active Record, Hotwire)"
+      all_levels: "Viwango Vyote"
+      beginner: "Mwanzo"
+      intermediate: "Kati"
+      expert: "Mtaalamu"
+      search_button: "Tafuta"
+      featured: "Kipekee"
+      open_resource: "Fungua rasilimali"
+
+  # Date and time formats
+  date:
+    formats:
+      default: "%Y-%m-%d"
+      long: "%d %B, %Y"
+      short: "%d %b"
+  
+  time:
+    formats:
+      default: "%a, %d %b %Y %H:%M:%S %z"
+      long: "%d %B, %Y %H:%M"
+      short: "%d %b %H:%M"

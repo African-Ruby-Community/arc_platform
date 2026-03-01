@@ -2,6 +2,61 @@
 
 en:
   devise:
+    views:
+      sessions:
+        new:
+          title: "Sign In"
+          email_label: "Email"
+          email_placeholder: "Enter email address"
+          password_label: "Password"
+          password_placeholder: "Enter password"
+          submit_button: "Sign In"
+      registrations:
+        new:
+          title: "Create an account"
+          email_label: "Email"
+          email_placeholder: "Enter email address"
+          name_label: "Full name"
+          name_placeholder: "Enter full name"
+          phone_number_label: "Phone number"
+          phone_number_placeholder: "Enter phone number"
+          phone_number_hint: "Start with a country e.g 254xxxxxxxxx. Use a WhatsApp number if possible"
+          chapter_label: "Chapter"
+          github_username_label: "Github username"
+          github_username_placeholder: "Enter Github username"
+          github_username_hint: "Must be a valid GitHub account. We will verify this username."
+          password_label: "Password"
+          password_placeholder: "Enter password"
+          password_confirmation_label: "Confirm Password"
+          password_confirmation_placeholder: "Confirm Password"
+          submit_button: "Create Account"
+      passwords:
+        new:
+          title: "Forgot your password?"
+          email_label: "Email"
+          email_placeholder: "Enter email address"
+          submit_button: "Send me instructions"
+        edit:
+          title: "Change your password"
+          password_label: "Password"
+          password_placeholder: "Enter new password"
+          password_confirmation_label: "Confirm password"
+          password_confirmation_placeholder: "Confirm new password"
+          submit_button: "Change my password"
+      confirmations:
+        new:
+          title: "Resend confirmation instructions"
+          email_label: "Email"
+          email_placeholder: "Enter email address"
+          submit_button: "Resend instructions"
+      shared:
+        links:
+          have_account: "Have an account? Go to login"
+          need_account: "Need an account? Sign up!"
+          forgot_password: "Forgot your password?"
+          no_confirmation: "Didn't receive confirmation instructions?"
+          no_unlock: "Didn't receive unlock instructions?"
+          sign_in_with: "Sign in with %{provider}"
     confirmations:
       confirmed: "Your email address has been successfully confirmed."
       send_instructions: "You will receive an email with instructions for how to confirm your email address in a few minutes."

@@ -4,17 +4,17 @@
       <%= image_tag 'sign_up_karate.png' %>
     </figure>
     <div class="card-body">
-      <h2 class="card-title">Resend confirmation instructions</h2>
+      <h2 class="card-title"><%= t('devise.views.confirmations.new.title') %></h2>
 
       <%= simple_form_for(resource, as: resource_name,
                           url: confirmation_path(resource_name)) do |f| %>
-        <%= f.input :email, placeholder: 'Enter email address', label: 'Email',
+        <%= f.input :email, placeholder: t('devise.views.confirmations.new.email_placeholder'), label: t('devise.views.confirmations.new.email_label'),
                     input_html: { class: 'input-bordered w-full', autocomplete: 'email',
                                   autofocus: true,
                                   value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email) } %>
 
         <div class="card-actions justify-end pt-8">
-          <%= f.button :button, 'Resend instructions', class: 'btn btn-primary' %>
+          <%= f.button :button, t('devise.views.confirmations.new.submit_button'), class: 'btn btn-primary' %>
         </div>
       <% end %>
 

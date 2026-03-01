@@ -4,22 +4,22 @@
       <%= image_tag 'sign_up_karate.png' %>
     </figure>
     <div class="card-body">
-      <h2 class="card-title">Change your password</h2>
+      <h2 class="card-title"><%= t('devise.views.passwords.edit.title') %></h2>
 
       <%= simple_form_for(resource, as: resource_name,
                           url: password_path(resource_name), html: { method: :put }) do |f| %>
         <%= f.hidden_field :reset_password_token %>
 
-        <%= f.input :password, placeholder: 'Enter new password', label: 'Password',
+        <%= f.input :password, placeholder: t('devise.views.passwords.edit.password_placeholder'), label: t('devise.views.passwords.edit.password_label'),
                     input_html: { class: 'input-bordered w-full', autofocus: true,
                                   autocomplete: "new-password" } %>
 
-        <%= f.input :password_confirmation, placeholder: 'Confirm new password',
-                    label: 'Confirm password', input_html: { class: 'input-bordered w-full',
+        <%= f.input :password_confirmation, placeholder: t('devise.views.passwords.edit.password_confirmation_placeholder'),
+                    label: t('devise.views.passwords.edit.password_confirmation_label'), input_html: { class: 'input-bordered w-full',
                                                              autocomplete: "new-password" } %>
 
         <div class="card-actions justify-end pt-8">
-          <%= f.button :button, 'Change my password', class: 'btn btn-primary' %>
+          <%= f.button :button, t('devise.views.passwords.edit.submit_button'), class: 'btn btn-primary' %>
         </div>
       <% end %>
 

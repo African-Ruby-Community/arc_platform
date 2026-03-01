@@ -1,0 +1,39 @@
+# == Schema Information
+#
+# Table name: learning_materials
+#
+#  id         :bigint           not null, primary key
+#  featured   :boolean
+#  level      :integer
+#  link       :string
+#  thumbnail  :string
+#  title      :string
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+# Indexes
+#
+#  index_learning_materials_on_featured  (featured)
+#  index_learning_materials_on_level     (level)
+#  index_learning_materials_on_title     (title)
+#
+ruby_basics:
+  title: Rails Guides
+  level: 0 # beginner
+  thumbnail: https://example.com/rg.png
+  link: https://guides.rubyonrails.org/
+  featured: true
+
+rails_intermediate:
+  title: Ruby Intermediate
+  level: 1 # intermediate
+  thumbnail: https://example.com/ruby.png
+  link: https://www.ruby-lang.org/
+  featured: false
+
+rails_advanced:
+  title: Advanced Ruby
+  level: 2 # expert
+  thumbnail: https://dragonruby.org/assets/logo-e7ffdf25e7e410056429e9378cdc22a931780525e1b9411478d17c86509a2a22.png
+  link: https://dragonruby.org/
+  featured: false
