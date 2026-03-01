@@ -1,17 +1,61 @@
-<div id="featured-sponsors" class="py-24 md:py-32 bg-zinc-50 dark:bg-zinc-900 transition-colors duration-300">
+<section id="featured-sponsors" class="border-t border-zinc-200/50 dark:border-zinc-800/50 bg-zinc-50 dark:bg-zinc-900 py-24 md:py-32 transition-colors duration-300">
   <div class="mx-auto max-w-7xl px-6">
-    <h2 class="pb-12 text-4xl font-bold text-center text-zinc-900 dark:text-white tracking-tight">
-      Featured Sponsors
-    </h2>
 
-    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6 place-content-center">
-      <% featured_sponsors.each do |sponsor| %>
-        <%= link_to sponsor[:link], target: '_blank' do %>
-          <div class="flex items-center justify-center rounded-xl border border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-800 p-6 hover:border-red-300 dark:hover:border-red-500/50 transition-colors">
-            <%= image_tag sponsor[:image], alt: sponsor[:alt], class: 'max-h-12 w-auto object-contain' %>
-          </div>
-        <% end %>
-      <% end %>
+    <%# Header %>
+    <div class="text-center">
+      <span class="text-sm font-medium uppercase tracking-widest text-red-500">
+        Supported by
+      </span>
+      <h2 class="mt-4 text-4xl font-bold tracking-tight text-zinc-900 dark:text-white md:text-5xl">
+        Our Sponsors
+      </h2>
+      <p class="mx-auto mt-4 max-w-2xl text-zinc-500 dark:text-zinc-400">
+        We are grateful to the organizations that support the growth of the
+        Ruby ecosystem in Africa.
+      </p>
     </div>
+
+    <%# Featured sponsors %>
+    <div class="mt-16">
+      <h3 class="mb-8 text-center text-sm font-medium uppercase tracking-widest text-zinc-400 dark:text-zinc-500">
+        Featured Sponsors
+      </h3>
+      <div class="flex flex-wrap items-center justify-center gap-4">
+        <% featured_sponsors.each do |sponsor| %>
+          <%= link_to sponsor[:link], target: '_blank',
+              class: "flex items-center justify-center rounded-xl border border-zinc-200/50 dark:border-zinc-700/50 bg-white/50 dark:bg-zinc-800/30 px-8 py-5 transition-colors hover:border-red-300/50 dark:hover:border-red-500/30 hover:bg-white dark:hover:bg-zinc-800/60" do %>
+            <%= image_tag sponsor[:image], alt: sponsor[:alt], class: "h-8 w-auto object-contain" %>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+
+    <%# Previous sponsors %>
+    <div class="mt-16">
+      <h3 class="mb-8 text-center text-sm font-medium uppercase tracking-widest text-zinc-400 dark:text-zinc-500">
+        Previous Sponsors
+      </h3>
+      <div class="flex flex-wrap items-center justify-center gap-4">
+        <% previous_sponsors.each do |sponsor| %>
+          <%= link_to sponsor[:link], target: '_blank',
+              class: "flex items-center justify-center rounded-xl border border-zinc-200/30 dark:border-zinc-700/30 bg-zinc-50/20 dark:bg-zinc-800/20 px-8 py-5 opacity-75 transition-colors hover:opacity-100 hover:border-zinc-300 dark:hover:border-zinc-600" do %>
+            <%= image_tag sponsor[:image], alt: sponsor[:alt], class: "h-8 w-auto object-contain" %>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+
+    <%# CTA %>
+    <div class="mt-16 flex justify-center">
+      <a href="mailto:organisers@rubycommunity.africa"
+         class="inline-flex items-center gap-2 bg-red-600 text-white text-base px-6 py-3 rounded-md font-semibold hover:bg-red-700 transition-colors">
+        Become a Sponsor
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+             fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
+        </svg>
+      </a>
+    </div>
+
   </div>
-</div>
+</section>
