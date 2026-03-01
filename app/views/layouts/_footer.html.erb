@@ -1,67 +1,78 @@
-<footer class="border-t border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900 transition-colors duration-300">
-  <div class="mx-auto max-w-7xl px-6 py-16 md:py-20">
+<footer class="border-t border-zinc-200/50 dark:border-zinc-800/50 bg-white dark:bg-zinc-950 transition-colors duration-300">
+  <div class="mx-auto max-w-7xl px-6 py-16">
 
-    <div class="grid grid-cols-1 gap-10 md:grid-cols-4">
+    <div class="grid gap-12 md:grid-cols-4">
+
       <%# Brand %>
-      <div class="md:col-span-2">
-        <%= link_to root_path, class: "flex items-center gap-2 mb-4" do %>
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+      <div class="md:col-span-1">
+        <%= link_to root_path, class: "flex items-center gap-2" do %>
+          <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none"
                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                class="text-red-500">
             <path d="M2.7 10.3a2.41 2.41 0 0 0 0 3.41l7.59 7.59a2.41 2.41 0 0 0 3.41 0l7.59-7.59a2.41 2.41 0 0 0 0-3.41l-7.59-7.59a2.41 2.41 0 0 0-3.41 0Z"/>
           </svg>
-          <span class="text-lg font-bold tracking-tight text-zinc-900 dark:text-white">ARC</span>
+          <span class="text-xl font-bold tracking-tight text-zinc-900 dark:text-white">ARC</span>
         <% end %>
-        <p class="text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed max-w-xs">
-          African Ruby Community — building the future with Ruby in Africa since 2010.
+        <p class="mt-4 text-sm leading-relaxed text-zinc-500 dark:text-zinc-400">
+          African Ruby Community. Promoting computer software programming
+          skills with the Ruby programming language across Africa since 2010.
         </p>
-        <%# Social icons %>
-        <% if FeatureFlag.find_by(name: 'social_links').try(:enabled) || true %>
-          <div class="flex gap-4 mt-6">
-            <% socials.each do |social| %>
-              <% if social[:show] == true %>
-                <%= link_to social[:link], class: "text-zinc-400 hover:text-red-500 transition-colors" do %>
-                  <%= image_tag social[:image], alt: social[:alt], class: "w-5 h-5" %>
+      </div>
+
+      <%# Community links %>
+      <div>
+        <h4 class="text-sm font-semibold uppercase tracking-widest text-zinc-900 dark:text-white">
+          Community
+        </h4>
+        <ul class="mt-4 flex flex-col gap-3">
+          <li><%= link_to 'About', landing_about_path, class: "text-sm text-zinc-500 dark:text-zinc-400 transition-colors hover:text-zinc-900 dark:hover:text-white" %></li>
+          <li><a href="#activities" class="text-sm text-zinc-500 dark:text-zinc-400 transition-colors hover:text-zinc-900 dark:hover:text-white">Activities</a></li>
+          <li><a href="#chapters" class="text-sm text-zinc-500 dark:text-zinc-400 transition-colors hover:text-zinc-900 dark:hover:text-white">Chapters</a></li>
+          <li><a href="#featured-sponsors" class="text-sm text-zinc-500 dark:text-zinc-400 transition-colors hover:text-zinc-900 dark:hover:text-white">Sponsors</a></li>
+        </ul>
+      </div>
+
+      <%# Resources links %>
+      <div>
+        <h4 class="text-sm font-semibold uppercase tracking-widest text-zinc-900 dark:text-white">
+          Resources
+        </h4>
+        <ul class="mt-4 flex flex-col gap-3">
+          <li><%= link_to 'Learning Materials', landing_learn_path, class: "text-sm text-zinc-500 dark:text-zinc-400 transition-colors hover:text-zinc-900 dark:hover:text-white" %></li>
+          <li><a href="https://rubyconf.africa" target="_blank" class="text-sm text-zinc-500 dark:text-zinc-400 transition-colors hover:text-zinc-900 dark:hover:text-white">RubyConf Africa</a></li>
+          <li><%= link_to 'Sign Up', new_user_registration_path, class: "text-sm text-zinc-500 dark:text-zinc-400 transition-colors hover:text-zinc-900 dark:hover:text-white" %></li>
+          <li><%= link_to 'Sign In', new_user_session_path, class: "text-sm text-zinc-500 dark:text-zinc-400 transition-colors hover:text-zinc-900 dark:hover:text-white" %></li>
+        </ul>
+      </div>
+
+      <%# Social links — driven by the socials helper %>
+      <div>
+        <h4 class="text-sm font-semibold uppercase tracking-widest text-zinc-900 dark:text-white">
+          Social
+        </h4>
+        <ul class="mt-4 flex flex-col gap-3">
+          <% socials.each do |social| %>
+            <% if social[:show] %>
+              <li>
+                <%= link_to social[:link], target: '_blank',
+                    class: "text-sm text-zinc-500 dark:text-zinc-400 transition-colors hover:text-zinc-900 dark:hover:text-white" do %>
+                  <%= social[:alt].sub('ARC ', '') %>
                 <% end %>
-              <% end %>
+              </li>
             <% end %>
-          </div>
-        <% end %>
-      </div>
-
-      <%# Nav links %>
-      <div>
-        <h3 class="text-xs font-semibold uppercase tracking-widest text-zinc-900 dark:text-white mb-4">Community</h3>
-        <ul class="flex flex-col gap-2.5">
-          <li><%= link_to 'Home', root_path, class: "text-sm text-zinc-500 dark:text-zinc-400 hover:text-red-600 dark:hover:text-red-400 transition-colors" %></li>
-          <li><%= link_to 'About', landing_about_path, class: "text-sm text-zinc-500 dark:text-zinc-400 hover:text-red-600 dark:hover:text-red-400 transition-colors" %></li>
-          <li><%= link_to 'Chapters', chapters_path, class: "text-sm text-zinc-500 dark:text-zinc-400 hover:text-red-600 dark:hover:text-red-400 transition-colors" %></li>
-          <% if FeatureFlag.find_by(name: 'events').try(:enabled) %>
-            <li><a href="#" class="text-sm text-zinc-500 dark:text-zinc-400 hover:text-red-600 dark:hover:text-red-400 transition-colors">Events</a></li>
-          <% end %>
-          <% if FeatureFlag.find_by(name: 'projects').try(:enabled) %>
-            <li><a href="#" class="text-sm text-zinc-500 dark:text-zinc-400 hover:text-red-600 dark:hover:text-red-400 transition-colors">Projects</a></li>
           <% end %>
         </ul>
       </div>
 
-      <%# Resources %>
-      <div>
-        <h3 class="text-xs font-semibold uppercase tracking-widest text-zinc-900 dark:text-white mb-4">Resources</h3>
-        <ul class="flex flex-col gap-2.5">
-          <li><a href="mailto:organisers@rubycommunity.africa" class="text-sm text-zinc-500 dark:text-zinc-400 hover:text-red-600 dark:hover:text-red-400 transition-colors">Become a Sponsor</a></li>
-          <li><%= link_to 'Learning Materials', landing_learn_path, class: "text-sm text-zinc-500 dark:text-zinc-400 hover:text-red-600 dark:hover:text-red-400 transition-colors" %></li>
-          <% if FeatureFlag.find_by(name: 'contact_us').try(:enabled) %>
-            <li><a href="#" class="text-sm text-zinc-500 dark:text-zinc-400 hover:text-red-600 dark:hover:text-red-400 transition-colors">Contact Us</a></li>
-            <li><a href="#" class="text-sm text-zinc-500 dark:text-zinc-400 hover:text-red-600 dark:hover:text-red-400 transition-colors">Code of Conduct</a></li>
-          <% end %>
-        </ul>
-      </div>
     </div>
 
-    <div class="mt-12 border-t border-zinc-200 dark:border-zinc-800 pt-8">
-      <p class="text-center text-sm text-zinc-400 dark:text-zinc-500">
+    <%# Bottom bar %>
+    <div class="mt-16 flex flex-col items-center justify-between gap-4 border-t border-zinc-200/50 dark:border-zinc-800/50 pt-8 md:flex-row">
+      <p class="text-sm text-zinc-500 dark:text-zinc-400">
         &copy; <%= Date.today.year %> African Ruby Community. All rights reserved.
+      </p>
+      <p class="text-sm text-zinc-500 dark:text-zinc-400">
+        Built with Ruby, powered by community.
       </p>
     </div>
 
