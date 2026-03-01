@@ -1,46 +1,200 @@
-<div class="flex justify-center pt-16 ">
-  <div class="card md:w-1/2 bg:w-1/2 bg-base-100 shadow-xl">
-    <figure>
-      <%= image_tag 'sign_up_karate.png' %>
-    </figure>
-    <div class="card-body">
-      <h2 class="card-title">Create an account</h2>
+<% content_for :title, "Sign Up" %>
+<% content_for :full_width do %><% end %>
 
-      <%= simple_form_for(resource, as: resource_name,
-                          url: registration_path(resource_name)) do |f| %>
-        <%= f.input :email, placeholder: 'Enter email address', label: 'Email',
-                    input_html: { class: 'input-bordered w-full', autocomplete: 'email' } %>
+<div class="min-h-[calc(100vh-4rem)] grid grid-cols-1 lg:grid-cols-2">
 
-        <%= f.input :name, placeholder: 'Enter full name', label: 'Full name',
-                    input_html: { class: 'input-bordered w-full', autocomplete: 'name' } %>
+  <%# Left — form %>
+  <div class="flex flex-col justify-center px-8 py-12 md:px-14 lg:px-20 bg-white dark:bg-zinc-950">
+    <div class="w-full max-w-lg mx-auto lg:mx-0">
 
-        <%= f.input :phone_number, placeholder: 'Enter phone number', label: 'Phone number',
-                    hint: 'Start with a country e.g 254xxxxxxxxx. Use a WhatsApp number if possible',
-                    input_html: { class: 'input-bordered w-full', autocomplete: 'phone_number' } %>
+      <%# Logo %>
+      <div class="mb-10">
+        <%= link_to root_path, class: "inline-flex items-center gap-2" do %>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+               stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+               class="text-red-500">
+            <path d="M2.7 10.3a2.41 2.41 0 0 0 0 3.41l7.59 7.59a2.41 2.41 0 0 0 3.41 0l7.59-7.59a2.41 2.41 0 0 0 0-3.41l-7.59-7.59a2.41 2.41 0 0 0-3.41 0Z"/>
+          </svg>
+          <span class="text-lg font-bold tracking-tight text-zinc-900 dark:text-white">ARC</span>
+        <% end %>
+      </div>
 
-        <div class="form-control email optional user_chapter">
-          <label class="label"><span class="label-text">Chapter</span></label>
-          <%= select_tag :chapter_id, options_from_collection_for_select(Chapter.all, 'id', 'name'),
-                         include_blank: false,
-                         class: "input input-bordered string email required input-bordered w-full" %>
-        </div>
+      <%# Header %>
+      <div class="mb-7">
+        <h1 class="text-3xl md:text-4xl font-bold tracking-tight text-zinc-900 dark:text-white mb-2">
+          Join ARC
+        </h1>
+        <p class="text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed">
+          Create your account and connect with Ruby developers
+        </p>
+      </div>
 
-        <%= f.input :github_username, placeholder: 'Enter Github username', label: 'Github username',
-                    input_html: { class: 'input-bordered w-full', autocomplete: 'github_username' } %>
-
-        <%= f.input :password, placeholder: 'Enter password', label: 'Password',
-                    input_html: { class: 'input-bordered w-full' } %>
-
-        <%= f.input :password_confirmation, placeholder: 'Confirm Password',
-                    label: 'Confirm Password', input_html: { class: 'input-bordered w-full' } %>
-
-        <div class="card-actions justify-end pt-8">
-          <%= f.button :button, 'Create Account', class: 'btn btn-primary' %>
+      <%# Error messages %>
+      <% if resource.errors.any? %>
+        <div class="mb-5 rounded-lg border border-red-200 dark:border-red-800 bg-red-50 dark:bg-red-950/30 px-4 py-3">
+          <ul class="text-sm text-red-600 dark:text-red-400 space-y-1">
+            <% resource.errors.full_messages.each do |msg| %>
+              <li><%= msg %></li>
+            <% end %>
+          </ul>
         </div>
       <% end %>
 
-      <div class="divider"></div>
-      <%= render "devise/shared/links" %>
+      <%# Field helper macro %>
+      <% input_class = "w-full h-11 pl-10 pr-4 rounded-md border border-zinc-200 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-800/50 text-zinc-900 dark:text-white placeholder-zinc-400 dark:placeholder-zinc-500 text-sm focus:outline-none focus:ring-2 focus:ring-red-500/30 focus:border-red-500/50 transition-colors" %>
+
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+        <div class="space-y-4">
+
+          <%# Email — full width %>
+          <div class="space-y-1.5">
+            <%= f.label :email, "Email Address", class: "block text-sm font-medium text-zinc-900 dark:text-white" %>
+            <div class="relative">
+              <svg class="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-zinc-400 pointer-events-none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+              </svg>
+              <%= f.email_field :email, autocomplete: "email", placeholder: "you@example.com", required: true, class: input_class %>
+            </div>
+          </div>
+
+          <%# Full name + Phone — two columns %>
+          <div class="grid grid-cols-2 gap-3">
+            <div class="space-y-1.5">
+              <%= f.label :name, "Full Name", class: "block text-sm font-medium text-zinc-900 dark:text-white" %>
+              <div class="relative">
+                <svg class="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-zinc-400 pointer-events-none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="8" r="4"/><path d="M20 21a8 8 0 1 0-16 0"/>
+                </svg>
+                <%= f.text_field :name, autocomplete: "name", placeholder: "Your name", required: true, class: input_class %>
+              </div>
+            </div>
+            <div class="space-y-1.5">
+              <%= f.label :phone_number, "Phone Number", class: "block text-sm font-medium text-zinc-900 dark:text-white" %>
+              <div class="relative">
+                <svg class="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-zinc-400 pointer-events-none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.99 12 19.79 19.79 0 0 1 1.94 3.37 2 2 0 0 1 3.91 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 8.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
+                </svg>
+                <%= f.telephone_field :phone_number, placeholder: "254xxxxxxxxx", required: true, class: input_class %>
+              </div>
+              <p class="text-xs text-zinc-400 dark:text-zinc-500">WhatsApp preferred.</p>
+            </div>
+          </div>
+
+          <%# Chapter + GitHub — two columns %>
+          <div class="grid grid-cols-2 gap-3">
+            <div class="space-y-1.5">
+              <label class="block text-sm font-medium text-zinc-900 dark:text-white" for="chapter_id">Chapter</label>
+              <%= select_tag :chapter_id,
+                  options_from_collection_for_select(Chapter.all, 'id', 'name'),
+                  include_blank: "Select chapter",
+                  class: "w-full h-11 px-3 rounded-md border border-zinc-200 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-800/50 text-zinc-900 dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-red-500/30 focus:border-red-500/50 transition-colors" %>
+            </div>
+            <div class="space-y-1.5">
+              <%= f.label :github_username, "GitHub Username", class: "block text-sm font-medium text-zinc-900 dark:text-white" %>
+              <div class="relative">
+                <svg class="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-zinc-400 pointer-events-none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
+                </svg>
+                <%= f.text_field :github_username, placeholder: "username", required: true, class: input_class %>
+              </div>
+              <p class="text-xs text-zinc-400 dark:text-zinc-500">We'll verify your account.</p>
+            </div>
+          </div>
+
+          <%# Password + Confirm — two columns %>
+          <div class="grid grid-cols-2 gap-3">
+            <div class="space-y-1.5">
+              <%= f.label :password, "Password", class: "block text-sm font-medium text-zinc-900 dark:text-white" %>
+              <div class="relative">
+                <svg class="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-zinc-400 pointer-events-none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                </svg>
+                <%= f.password_field :password, autocomplete: "new-password", placeholder: "••••••••", required: true, class: input_class %>
+              </div>
+            </div>
+            <div class="space-y-1.5">
+              <%= f.label :password_confirmation, "Confirm Password", class: "block text-sm font-medium text-zinc-900 dark:text-white" %>
+              <div class="relative">
+                <svg class="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-zinc-400 pointer-events-none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                </svg>
+                <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "••••••••", required: true, class: input_class %>
+              </div>
+            </div>
+          </div>
+
+          <%# Submit — full width %>
+          <%= f.submit "Create Account",
+              class: "w-full h-11 mt-2 rounded-md bg-red-600 text-white text-sm font-semibold hover:bg-red-700 active:bg-red-800 transition-colors cursor-pointer shadow-lg shadow-red-500/20" %>
+
+        </div>
+      <% end %>
+
+      <%# Divider + OmniAuth %>
+      <% if devise_mapping.omniauthable? %>
+        <div class="my-6 flex items-center gap-3">
+          <div class="flex-1 h-px bg-zinc-200 dark:bg-zinc-700"></div>
+          <span class="text-xs font-medium text-zinc-400 dark:text-zinc-500 uppercase tracking-wide">OR</span>
+          <div class="flex-1 h-px bg-zinc-200 dark:bg-zinc-700"></div>
+        </div>
+        <% resource_class.omniauth_providers.each do |provider| %>
+          <%= link_to omniauth_authorize_path(resource_name, provider), method: :post,
+              class: "flex w-full h-11 items-center justify-center gap-2 rounded-md border border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-800/50 text-sm font-medium text-zinc-700 dark:text-zinc-300 hover:bg-zinc-50 dark:hover:bg-zinc-800 transition-all mb-3" do %>
+            <svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
+            </svg>
+            Sign up with <%= OmniAuth::Utils.camelize(provider) %>
+          <% end %>
+        <% end %>
+      <% end %>
+
+      <%# Sign in link %>
+      <p class="text-center text-sm text-zinc-500 dark:text-zinc-400 mt-8">
+        Already have an account?
+        <%= link_to "Sign in", new_session_path(resource_name),
+            class: "text-red-500 hover:text-red-600 font-medium transition-colors" %>
+      </p>
+
+      <%# Footer links %>
+      <div class="mt-10 pt-8 border-t border-zinc-200 dark:border-zinc-800 flex gap-4 text-xs text-zinc-400 dark:text-zinc-500">
+        <a href="#" class="hover:text-zinc-600 dark:hover:text-zinc-300 transition-colors">Terms</a>
+        <a href="#" class="hover:text-zinc-600 dark:hover:text-zinc-300 transition-colors">Privacy</a>
+        <a href="mailto:organisers@rubycommunity.africa" class="hover:text-zinc-600 dark:hover:text-zinc-300 transition-colors">Contact</a>
+      </div>
+
     </div>
   </div>
+
+  <%# Right — community image %>
+  <div class="hidden lg:flex flex-col relative overflow-hidden">
+    <%= image_tag 'auth-community.jpg', alt: "Ruby Community",
+        class: "absolute inset-0 w-full h-full object-cover" %>
+    <div class="absolute inset-0" style="background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.4) 50%, transparent 100%)"></div>
+
+    <div class="absolute inset-0 flex flex-col items-start justify-end p-12 text-white">
+      <div class="max-w-sm">
+        <h2 class="text-2xl md:text-3xl font-bold tracking-tight mb-3">
+          Welcome to ARC
+        </h2>
+        <p class="text-white/80 text-sm leading-relaxed mb-6">
+          Join thousands of Ruby developers across Africa. Network, learn, and build amazing things together.
+        </p>
+        <div class="space-y-2 text-sm text-white/80">
+          <div class="flex items-center gap-2">
+            <span class="h-1.5 w-1.5 rounded-full bg-red-500 shrink-0"></span>
+            <span>Meetups &amp; Conferences</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="h-1.5 w-1.5 rounded-full bg-red-500 shrink-0"></span>
+            <span>Mentorship Programs</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="h-1.5 w-1.5 rounded-full bg-red-500 shrink-0"></span>
+            <span>Job Opportunities</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </div>
