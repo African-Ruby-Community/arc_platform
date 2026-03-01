@@ -2,18 +2,43 @@
 
 module ChaptersHelper
   ACTIVITIES = [
-    { image: 'activities_local_meetups.png', title: 'Local meetups' },
-    { image: 'activities_local_conferences.png', title: 'conferences' },
-    { image: 'activities_local_programming.png', title: 'programming' },
-    { image: 'activities_local_workshops.png', title: 'workshops' },
-    { image: 'activities_local_hackathons.png', title: 'hackathons' }
+    {
+      image: 'activities_local_meetups.png',
+      title: 'Local Meetups',
+      description: 'Weekly and monthly gatherings in cities across East Africa where developers share knowledge and network.',
+      svg_paths: '<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>'
+    },
+    {
+      image: 'activities_local_conferences.png',
+      title: 'Conferences',
+      description: 'RubyConf Africa brings together the best minds in the Ruby ecosystem for talks, workshops, and collaboration.',
+      svg_paths: '<path d="M2 3h20"/><path d="M21 3v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V3"/><path d="m7 21 5-5 5 5"/>'
+    },
+    {
+      image: 'activities_local_programming.png',
+      title: 'Programming',
+      description: 'Collaborative coding sessions, pair programming, and open-source contributions to the global Ruby ecosystem.',
+      svg_paths: '<path d="m18 16 4-4-4-4"/><path d="m6 8-4 4 4 4"/><path d="m14.5 4-5 16"/>'
+    },
+    {
+      image: 'activities_local_workshops.png',
+      title: 'Workshops',
+      description: 'Hands-on workshops for all skill levels, from Ruby fundamentals to advanced Rails development.',
+      svg_paths: '<path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>'
+    },
+    {
+      image: 'activities_local_hackathons.png',
+      title: 'Hackathons',
+      description: 'Competitive hackathons challenging developers to build innovative solutions using Ruby technologies.',
+      svg_paths: '<path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/>'
+    }
   ].freeze
 
   CHAPTERS = [
-    { country: 'Kenya', image: 'country_kenya.png', alt: 'Nairuby' },
-    { country: 'Rwanda', image: 'country_rwanda.png', alt: 'ARC_Rwanda' },
-    { country: 'Tanzania', image: 'country_tanzania.png', alt: 'ARC_Tanzania' },
-    { country: 'Uganda', image: 'country_uganda.png', alt: 'ARC_Uganda' }
+    { country: 'Kenya',    community: 'Nairuby',      image: 'country_kenya.png',    alt: 'Nairuby' },
+    { country: 'Rwanda',   community: 'ARC Rwanda',   image: 'country_rwanda.png',   alt: 'ARC Rwanda' },
+    { country: 'Tanzania', community: 'ARC Tanzania', image: 'country_tanzania.png', alt: 'ARC Tanzania' },
+    { country: 'Uganda',   community: 'ARC Uganda',   image: 'country_uganda.png',   alt: 'ARC Uganda' }
   ].freeze
 
   FEATURED_SPONSORS = [

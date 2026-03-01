@@ -1,25 +1,59 @@
-<div id="chapters" class="py-24 md:py-32" style="background-image: url(<%= image_path('countries.png') %>); background-size: cover; background-position: center;">
-  <div style="background: rgba(0,0,0,0.55);" class="py-12">
-    <h2 class="pb-12 text-4xl font-bold text-center text-white tracking-tight">
-      Chapters
-    </h2>
+<section id="chapters" class="py-24 md:py-32">
+  <div class="mx-auto max-w-7xl px-6">
 
-    <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-5 px-8 md:px-20 place-content-center">
+    <%# Header %>
+    <div class="text-center">
+      <span class="text-sm font-medium uppercase tracking-widest text-red-500">
+        Our reach
+      </span>
+      <h2 class="mt-4 text-4xl font-bold tracking-tight text-zinc-900 dark:text-white md:text-5xl">
+        Chapters
+      </h2>
+      <p class="mx-auto mt-4 max-w-2xl text-zinc-500 dark:text-zinc-400">
+        Active Ruby communities across East Africa, hosting local meetups and
+        contributing to the global ecosystem.
+      </p>
+    </div>
+
+    <%# Chapter cards %>
+    <div class="mt-16 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
       <% chapters.each do |chapter| %>
-        <%= link_to new_user_registration_path,
-            class: 'place-self-center w-72 md:w-48 rounded-xl border border-white/20 bg-white/10 backdrop-blur-sm flex flex-col gap-4 hover:scale-95 hover:bg-white/20 transition-all p-3' do %>
-          <%= image_tag chapter[:image], alt: chapter[:alt], class: 'pt-2 place-self-center h-16' %>
-          <p class="text-center text-2xl text-white font-semibold"><%= chapter[:country] %></p>
-          <p class="place-self-center pb-6 text-white/80 text-sm hover:underline font-medium">Join community</p>
+        <%= link_to new_user_registration_path, target: "_blank",
+            class: "group relative flex flex-col justify-between overflow-hidden rounded-2xl border border-zinc-200/50 dark:border-zinc-700/50 bg-white dark:bg-zinc-900 p-6 transition-all hover:border-red-300/50 dark:hover:border-red-500/30 hover:bg-zinc-50 dark:hover:bg-zinc-800/60" do %>
+          <div>
+            <div class="mb-4 inline-flex rounded-xl bg-red-500/10 p-3 text-red-500">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                   fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/>
+                <circle cx="12" cy="10" r="3"/>
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-zinc-900 dark:text-white"><%= chapter[:country] %></h3>
+            <p class="mt-1 text-sm text-zinc-500 dark:text-zinc-400"><%= chapter[:community] %></p>
+          </div>
+          <div class="mt-6 flex items-center gap-1 text-sm font-medium text-red-500">
+            Join community
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+                 fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                 class="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5">
+              <path d="M7 7h10v10"/><path d="M7 17 17 7"/>
+            </svg>
+          </div>
         <% end %>
       <% end %>
+    </div>
 
+    <%# Request new chapter %>
+    <div class="mt-6 flex justify-center">
       <a href="mailto:organisers@rubycommunity.africa"
-         class="place-self-center w-72 md:w-48 rounded-xl border border-white/20 bg-white/10 backdrop-blur-sm flex flex-col gap-4 hover:scale-95 hover:bg-white/20 transition-all p-3">
-        <%= image_tag 'add.png', alt: "Add Chapter", class: 'pt-2 place-self-center h-16' %>
-        <p class="text-center text-xl text-white font-semibold">Request new chapter</p>
-        <p class="pb-6"></p>
+         class="inline-flex items-center gap-2 rounded-md border border-zinc-200 dark:border-zinc-700 bg-transparent px-4 py-2 text-sm font-medium text-zinc-700 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+             fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M5 12h14"/><path d="M12 5v14"/>
+        </svg>
+        Request new chapter
       </a>
     </div>
+
   </div>
-</div>
+</section>

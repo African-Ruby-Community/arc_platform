@@ -4,10 +4,10 @@
   <div class="absolute inset-0 z-0">
     <%= image_tag 'hero-community.jpg', alt: "African Ruby Community gathering",
         class: "w-full h-full object-cover" %>
-    <%# Flat dark overlay — matches bg-background/85 %>
-    <div class="absolute inset-0" style="background: rgba(0,0,0,0.85);"></div>
-    <%# Top-and-bottom gradient — matches bg-gradient-to-b from-background via-transparent to-background %>
-    <div class="absolute inset-0" style="background: linear-gradient(to bottom, #000 0%, transparent 40%, transparent 60%, #000 100%);"></div>
+    <%# Flat overlay — white/85 in light mode, black/85 in dark mode %>
+    <div class="absolute inset-0 bg-white/80 dark:bg-black/85 transition-colors duration-300"></div>
+    <%# Top-and-bottom gradient — burns in page background at edges %>
+    <div class="absolute inset-0 bg-gradient-to-b from-white via-transparent to-white dark:from-black dark:via-transparent dark:to-black transition-colors duration-300"></div>
   </div>
 
   <div class="relative z-10 mx-auto w-full max-w-7xl px-6 py-24 md:py-32">
@@ -18,13 +18,13 @@
         RubyConf Africa 2025
       </div>
 
-      <h1 class="text-5xl font-extrabold leading-tight tracking-tight text-white md:text-7xl lg:text-8xl">
+      <h1 class="text-5xl font-extrabold leading-tight tracking-tight text-zinc-900 dark:text-white md:text-7xl lg:text-8xl transition-colors duration-300">
         Building the future
         <span class="text-red-500">with Ruby</span>
         in Africa.
       </h1>
 
-      <p class="mt-6 max-w-xl text-lg leading-relaxed text-zinc-400 md:text-xl">
+      <p class="mt-6 max-w-xl text-lg leading-relaxed text-zinc-600 dark:text-zinc-400 md:text-xl transition-colors duration-300">
         A community of 5,000+ developers, entrepreneurs, and designers across
         East Africa united by their passion for Ruby and open-source software.
       </p>
@@ -39,7 +39,7 @@
         <% end %>
 
         <%= link_to landing_about_path,
-            class: "inline-flex items-center justify-center text-base px-6 py-3 rounded-md font-semibold border border-zinc-600 text-zinc-200 hover:bg-zinc-800 hover:text-white transition-colors" do %>
+            class: "inline-flex items-center justify-center text-base px-6 py-3 rounded-md font-semibold border border-zinc-300 text-zinc-800 hover:bg-zinc-100 dark:border-zinc-600 dark:text-zinc-200 dark:hover:bg-zinc-800 dark:hover:text-white transition-colors" do %>
           Learn More
         <% end %>
       </div>
