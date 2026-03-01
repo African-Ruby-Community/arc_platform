@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   root 'landing#index'
 
-  get 'about_us', to: 'landing#about', as: :landing_about
-  get 'learn', to: 'landing#learn', as: :landing_learn
+  get 'about_us',   to: 'landing#about',      as: :landing_about
+  get 'activities', to: 'landing#activities', as: :landing_activities
+  get 'learn',      to: 'landing#learn',      as: :landing_learn
 end
