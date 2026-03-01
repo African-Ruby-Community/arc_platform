@@ -1,158 +1,182 @@
-<% content_for(:title,"Learning Materials") %>
-<% content_for(:description,"A list of ruby and ruby on rails learning resources compiled by the ARC community") %>
-<div class="container px-4 xl:px-56 mx-auto" class="text-red-500">
-  <h1 class="pt-16 text-4xl text-red-600 font-bold text-5xl" class="text-red-500">
-    Featured learning materials
-  </h1>
+<% content_for(:title, "Learning Materials") %>
+<% content_for(:description, "A curated list of Ruby and Rails learning resources compiled by the ARC community.") %>
+<% content_for :full_width do %><% end %>
 
-  <p class="pt-12 text-justify" class="text-red-500">
-    Take a look at our list of resources that can help you get up to speed with the Ruby programming
-    language from the basic building blocks upto to the various frameworks and tools in the Ruby
-    ecosystem. If you want to add your own resources, fork this repo and send in a pull request.
-  </p>
+<%# Hero %>
+<section class="relative flex h-[600px] items-center overflow-hidden -mt-16">
+  <div class="absolute inset-0">
+    <%= image_tag 'developers.jpg', alt: "Learning Ruby",
+        class: "w-full h-full object-cover" %>
+    <div class="absolute inset-0 dark:hidden"
+         style="background: linear-gradient(to right, rgba(255,255,255,0.97) 0%, rgba(255,255,255,0.6) 50%, rgba(255,255,255,0.1) 100%)"></div>
+    <div class="absolute inset-0 hidden dark:block"
+         style="background: linear-gradient(to right, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.5) 50%, transparent 100%)"></div>
+  </div>
+  <div class="relative z-10 mx-auto max-w-7xl px-6 w-full pt-16">
+    <div class="max-w-2xl">
+      <span class="mb-3 inline-block text-sm font-medium uppercase tracking-widest text-red-500">
+        Community Curated
+      </span>
+      <h1 class="text-5xl font-extrabold tracking-tight text-zinc-900 dark:text-white md:text-7xl mb-4">
+        Learning Materials
+      </h1>
+      <p class="text-lg text-zinc-600 dark:text-zinc-400 leading-relaxed">
+        Resources to help you get up to speed with Ruby — from beginner basics to advanced
+        frameworks. Curated by the ARC community.
+      </p>
+    </div>
+  </div>
+</section>
 
-  <h1 class="pt-6 text-xl text-red-600 font-bold pb-2" class="text-red-500">
-    Ruby
-  </h1>
+<%# Intro banner %>
+<div class="border-y border-zinc-200/50 dark:border-zinc-800/50 bg-zinc-50 dark:bg-zinc-900 transition-colors duration-300">
+  <div class="mx-auto max-w-7xl px-6 py-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+    <p class="text-sm text-zinc-600 dark:text-zinc-400 max-w-2xl">
+      Want to add a resource? Fork our repo and send a pull request — all contributions welcome.
+    </p>
+    <a href="https://github.com/nairuby" target="_blank" rel="noopener noreferrer"
+       class="inline-flex shrink-0 items-center gap-2 rounded-md border border-zinc-200 dark:border-zinc-700 px-4 py-2 text-sm font-medium text-zinc-700 dark:text-zinc-300 hover:border-red-400/50 hover:text-red-500 transition-colors">
+      <svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
+      </svg>
+      Contribute on GitHub
+    </a>
+  </div>
+</div>
 
-  <ul class="list-inside list-disc">
-    <li>
-      <a href="http://bedford-computing.co.uk/learning/wp-content/uploads/2015/12/LittleBookOfRuby.pdf" class="text-red-500">Little
-        Book of Ruby</a> - <em>The fastest, easiest way to learn Ruby from the ground up.</em>
-    </li>
-    <li>
-      <a href="https://www.ruby-doc.org/core" class="text-red-500">Ruby Core API Documentation</a>
-    </li>
-    <li>
-      <a href="https://www.ruby-lang.org" class="text-red-500">Download and install Ruby</a></li>
-    <li>
-      <a href="http://ruby-doc.com/docs/ProgrammingRuby/" class="text-red-500">The Pickaxe Book</a>
-    </li>
-    <li>
-      <a href="http://tryruby.org/" class="text-red-500">Try Ruby in Your Browser</a>
-    </li>
-    <li>
-      <a href="https://www.theodinproject.com/paths/full-stack-ruby-on-rails/courses/ruby" class="text-red-500">The Odin Project Ruby Course</a> - <em> Project-based learning </em>
-    </li>
-    <li>
-      <a href="https://www.manning.com/books/the-well-grounded-rubyist-third-edition" class="text-red-500">The Well-Grounded Rubyist</a>
-    </li>
-    <li>
-      <a href="https://www.codecademy.com/learn/learn-ruby" class="text-red-500">CodeAcademy Ruby
-        Track</a> - <em>Learn to code Ruby interactively</em>
-    </li>
-    <li>
-      <a href="http://rubykoans.com/" class="text-red-500">Ruby Koans</a>
-    </li>
-    <li>
-      <a href="https://www.bloc.io/ruby-warrior/" class="text-red-500">Ruby Warrior</a> - <em>based on
-      Ryan Bates’ command line version of the game</em>
-    </li>
-    <li>
-      <a href="https://pine.fm/LearnToProgram/" class="text-red-500">Learn To Program</a> -
-      <em>ground-level tutorial by Chris Pine </em>
-    </li>
-    <li>
-      <a href="https://rubymonk.com/" class="text-red-500">Ruby Monk</a>
-    </li>
-    <li>
-      <a href="https://netguru.co/blog/all-you-need-to-know-to-start-with-ruby" class="text-red-500">Ruby
-        Basic Tutorial</a>
-    </li>
-    <li>
-      <a href="https://leanpub.com/developing-games-with-ruby/read" class="text-red-500">Developing
-        Games With Ruby</a>
-    </li>
-    <li>
-      <a href="https://poignant.guide/" class="text-red-500">Why’s Poignant Guide to Ruby</a>
-    </li>
-    <li>
-      Others <a href="https://www.ruby-lang.org/en/community/" class="text-red-500">Ruby community
-      resources</a>
-    </li>
-  </ul>
+<%# Resources sections %>
+<div class="bg-white dark:bg-zinc-950 transition-colors duration-300">
+  <div class="mx-auto max-w-7xl px-6 py-20 md:py-28 space-y-20">
 
-  <h1 class="pt-6 text-xl text-red-600 font-bold pb-2" class="text-red-500">
-    Ruby Tools
-  </h1>
+    <%# ── Ruby ── %>
+    <div>
+      <div class="mb-8 flex items-center gap-4">
+        <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-red-500/10">
+          <svg class="h-5 w-5 text-red-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+               fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M2.7 10.3a2.41 2.41 0 0 0 0 3.41l7.59 7.59a2.41 2.41 0 0 0 3.41 0l7.59-7.59a2.41 2.41 0 0 0 0-3.41l-7.59-7.59a2.41 2.41 0 0 0-3.41 0Z"/>
+          </svg>
+        </div>
+        <div>
+          <h2 class="text-2xl font-bold tracking-tight text-zinc-900 dark:text-white">Ruby</h2>
+          <p class="text-sm text-zinc-500 dark:text-zinc-400">Core language resources and books</p>
+        </div>
+      </div>
 
-  <ul class="list-inside list-disc" class="text-red-500">
-    <li>
-      <a href="http://rubular.com/" class="text-red-500">Rubular</a> - <em>Interactive Ruby regular
-      expression editor</em>
-    </li>
-  </ul>
+      <div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+        <% [
+          { title: "Little Book of Ruby", url: "http://bedford-computing.co.uk/learning/wp-content/uploads/2015/12/LittleBookOfRuby.pdf", desc: "The fastest, easiest way to learn Ruby from the ground up." },
+          { title: "Ruby Core API Documentation", url: "https://www.ruby-doc.org/core", desc: "Official Ruby core API reference and documentation." },
+          { title: "Download and Install Ruby", url: "https://www.ruby-lang.org", desc: "Get Ruby set up on your machine from ruby-lang.org." },
+          { title: "The Pickaxe Book", url: "http://ruby-doc.com/docs/ProgrammingRuby/", desc: "Programming Ruby — the definitive reference for Ruby." },
+          { title: "Try Ruby in Your Browser", url: "http://tryruby.org/", desc: "Interactive Ruby tutorial — no installation needed." },
+          { title: "The Odin Project — Ruby", url: "https://www.theodinproject.com/paths/full-stack-ruby-on-rails/courses/ruby", desc: "Project-based Ruby learning for serious beginners." },
+          { title: "The Well-Grounded Rubyist", url: "https://www.manning.com/books/the-well-grounded-rubyist-third-edition", desc: "Thorough guide to mastering Ruby's core features." },
+          { title: "CodeAcademy Ruby Track", url: "https://www.codecademy.com/learn/learn-ruby", desc: "Learn to code Ruby interactively in your browser." },
+          { title: "Ruby Koans", url: "http://rubykoans.com/", desc: "Learn Ruby through a series of small exercises." },
+          { title: "Ruby Warrior", url: "https://www.bloc.io/ruby-warrior/", desc: "Game-based learning inspired by Ryan Bates' CLI version." },
+          { title: "Learn To Program", url: "https://pine.fm/LearnToProgram/", desc: "Ground-level programming tutorial by Chris Pine." },
+          { title: "Ruby Monk", url: "https://rubymonk.com/", desc: "Free interactive Ruby programming tutorials." },
+          { title: "Developing Games With Ruby", url: "https://leanpub.com/developing-games-with-ruby/read", desc: "Build games using Ruby — free to read online." },
+          { title: "Why's Poignant Guide to Ruby", url: "https://poignant.guide/", desc: "The legendary quirky intro to Ruby by _why." },
+          { title: "Ruby Community Resources", url: "https://www.ruby-lang.org/en/community/", desc: "The official listing of Ruby community resources." }
+        ].each do |r| %>
+          <%= render partial: 'landing/learn_resource', locals: { resource: r } %>
+        <% end %>
+      </div>
+    </div>
 
-  <h1 class="pt-6 text-xl text-red-600 font-bold pb-2" class="text-red-500">
-    Frameworks
-  </h1>
+    <%# ── Ruby Tools ── %>
+    <div>
+      <div class="mb-8 flex items-center gap-4">
+        <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-red-500/10">
+          <svg class="h-5 w-5 text-red-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+               fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
+          </svg>
+        </div>
+        <div>
+          <h2 class="text-2xl font-bold tracking-tight text-zinc-900 dark:text-white">Ruby Tools</h2>
+          <p class="text-sm text-zinc-500 dark:text-zinc-400">Utilities and developer tools for Ruby</p>
+        </div>
+      </div>
 
-  <ul class="list-inside list-disc">
-    <li>Jekyll
-      <ul class="pl-5">
-        <li>◦ <a href="http://jekyllrb.com" class="text-red-500">Official Documentation</a></li>
-        <li>◦
-          <a href="https://help.github.com/articles/using-jekyll-with-pages" class="text-red-500">Using
-            Jekyll with GitHub Pages</a></li>
-      </ul>
-    </li>
-    <li>Rails
-      <ul class="pl-5">
-        <li>
-          ◦
-          <a href="http://railsapps.github.io/what-is-ruby-rails.html" class="text-red-500">What is
-            Ruby and Ruby on Rails?</a>
-        </li>
-        <li>
-          ◦
-          <a href="http://www.createdbypete.com/articles/ruby-on-rails-development-setup-for-mac-osx/" class="text-red-500">Installing
-            Rails on Mac OS X</a>
-        </li>
-        <li>
-          ◦
-          <a href="http://railsapps.github.io/installrubyonrails-ubuntu.html" class="text-red-500">Installing
-            Rails on Ubuntu</a>
-        </li>
-        <li>
-          ◦ <a href="http://guides.rubyonrails.org/getting_started.html" class="text-red-500">Getting
-          Started with Rails</a> from
-          <a href="http://guides.rubyonrails.org/index.html" class="text-red-500">the official Rails
-            guides</a>
-        </li>
-        <li>
-          ◦
-          <a href="http://ruby.railstutorial.org/" class="text-red-500">Ruby on Rails Tutorials</a>
-          by <a href="http://michaelhartl.com/" class="text-red-500">Michael Hartl</a>
-        </li>
-        <li>
-          ◦ <a href="http://railsforzombies.org/" class="text-red-500">Rails for Zombies</a> -
-          <em>Learn Rails the Zombie way</em>
-        </li>
-        <li>
-          ◦ <a href="http://railsforzombies.org/" class="text-red-500">The Odin Project</a> - <em> Full stack Ruby on Rails </em>
+      <div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+        <% [
+          { title: "Rubular", url: "http://rubular.com/", desc: "Interactive Ruby regular expression editor — test regexes in real time." }
+        ].each do |r| %>
+          <%= render partial: 'landing/learn_resource', locals: { resource: r } %>
+        <% end %>
+      </div>
+    </div>
 
-        </li>
-        <li>
-          ◦
-          <a href="http://pragprog.com/titles/rails4/agile-web-development-with-rails" class="text-red-500">Agile
-            Web Development with Rails</a>
-        </li>
-        <li>
-          ◦ <a href="http://www.jetbrains.com/ruby/" class="text-red-500">RubyMine</a> -
-          <em>Ruby on Rails IDE</em>
-        </li>
-        <li>
-          ◦ Others
-          <a href="http://www.amazon.com/" class="text-red-500">Ruby on Rails books on Amazon</a>
-        </li>
-        <li>
-          ◦ <a href="http://railscasts.com/" class="text-red-500">Railscasts</a>
-        </li>
-        <li>
-          ◦ <a href="https://gorails.com/" class="text-red-500">Go Rails</a>-
-          <em>More Rails Screencasts</em>
-        </li>
-      </ul>
-    </li>
-  </ul>
+    <%# ── Frameworks ── %>
+    <div>
+      <div class="mb-8 flex items-center gap-4">
+        <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-red-500/10">
+          <svg class="h-5 w-5 text-red-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+               fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect width="18" height="18" x="3" y="3" rx="2"/><path d="M3 9h18M3 15h18M9 3v18"/>
+          </svg>
+        </div>
+        <div>
+          <h2 class="text-2xl font-bold tracking-tight text-zinc-900 dark:text-white">Frameworks</h2>
+          <p class="text-sm text-zinc-500 dark:text-zinc-400">Jekyll, Rails and more</p>
+        </div>
+      </div>
+
+      <%# Jekyll %>
+      <h3 class="mb-4 text-sm font-semibold uppercase tracking-widest text-zinc-400 dark:text-zinc-500">Jekyll</h3>
+      <div class="mb-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+        <% [
+          { title: "Jekyll Official Documentation", url: "http://jekyllrb.com", desc: "The official Jekyll static site generator documentation." },
+          { title: "Jekyll with GitHub Pages", url: "https://help.github.com/articles/using-jekyll-with-pages", desc: "Deploy Jekyll sites effortlessly with GitHub Pages." }
+        ].each do |r| %>
+          <%= render partial: 'landing/learn_resource', locals: { resource: r } %>
+        <% end %>
+      </div>
+
+      <%# Rails %>
+      <h3 class="mb-4 text-sm font-semibold uppercase tracking-widest text-zinc-400 dark:text-zinc-500">Ruby on Rails</h3>
+      <div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+        <% [
+          { title: "What is Ruby on Rails?", url: "http://railsapps.github.io/what-is-ruby-rails.html", desc: "A clear explanation of Ruby on Rails for beginners." },
+          { title: "Installing Rails on Mac OS X", url: "http://www.createdbypete.com/articles/ruby-on-rails-development-setup-for-mac-osx/", desc: "Step-by-step setup guide for Mac developers." },
+          { title: "Installing Rails on Ubuntu", url: "http://railsapps.github.io/installrubyonrails-ubuntu.html", desc: "Step-by-step setup guide for Ubuntu developers." },
+          { title: "Getting Started with Rails", url: "http://guides.rubyonrails.org/getting_started.html", desc: "The official Rails getting started guide." },
+          { title: "Ruby on Rails Tutorial", url: "http://ruby.railstutorial.org/", desc: "Comprehensive tutorial by Michael Hartl." },
+          { title: "Rails for Zombies", url: "http://railsforzombies.org/", desc: "Learn Rails the Zombie way — fun and interactive." },
+          { title: "The Odin Project — Full Stack", url: "http://railsforzombies.org/", desc: "Full stack Ruby on Rails curriculum." },
+          { title: "Agile Web Development with Rails", url: "http://pragprog.com/titles/rails4/agile-web-development-with-rails", desc: "The pragmatic programmer's guide to Rails." },
+          { title: "RubyMine IDE", url: "http://www.jetbrains.com/ruby/", desc: "The smart Ruby on Rails IDE by JetBrains." },
+          { title: "Railscasts", url: "http://railscasts.com/", desc: "Screencasts covering a wide range of Rails topics." },
+          { title: "GoRails", url: "https://gorails.com/", desc: "More Rails screencasts — from beginner to advanced." },
+          { title: "Rails Books on Amazon", url: "http://www.amazon.com/", desc: "Browse Ruby on Rails books available on Amazon." }
+        ].each do |r| %>
+          <%= render partial: 'landing/learn_resource', locals: { resource: r } %>
+        <% end %>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<%# CTA %>
+<div class="border-t border-zinc-200/50 dark:border-zinc-800/50 bg-zinc-50 dark:bg-zinc-900 py-20 transition-colors duration-300">
+  <div class="mx-auto max-w-4xl px-6 text-center">
+    <h2 class="text-3xl font-bold tracking-tight text-zinc-900 dark:text-white md:text-4xl mb-4">
+      Know a great resource?
+    </h2>
+    <p class="text-zinc-600 dark:text-zinc-400 mb-8 leading-relaxed">
+      Help the community grow. Fork the repo and submit a pull request to add your favourite
+      Ruby learning materials.
+    </p>
+    <a href="https://github.com/nairuby" target="_blank" rel="noopener noreferrer"
+       class="inline-flex items-center gap-2 rounded-md bg-red-600 px-8 py-3 text-sm font-semibold text-white hover:bg-red-700 transition-colors">
+      <svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
+      </svg>
+      Submit a Resource
+    </a>
+  </div>
 </div>
