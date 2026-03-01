@@ -1,24 +1,142 @@
-<% content_for(:title,"Chapters") %>
-<% content_for(:description," A showcase of the different ruby communities spread across the East African region.") %>
-<div class="container pt-20 px-4 xl:px-56 mx-auto">
-  <h1 class="pt-16 pb-16 text-4xl text-red-600 font-bold text-5xl">
-    Chapters
-  </h1>
+<% content_for(:title, "Chapters") %>
+<% content_for(:description, "A showcase of the different Ruby communities spread across the East African region.") %>
+<% content_for :full_width do %><% end %>
 
-  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2
-    xl:grid-cols-3 gap-1 gap-y-20 mx-auto place-items-center">
-    <% @chapters.each do |chapter| %>
-      <div class="chapter-grid grid grid-rows-[auto,auto] flex-grow w-45 min-h-48 card rounded-box
-        place-items-center overflow-visible">
-        <%= image_tag chapter.image.attached? ? chapter.image.url : image_path('chapter.jpg'),
-                      alt: chapter.name,
-                      class: "rounded-lg rounded-tl-2xl"
-        %>
+<%# Use DB chapters when available, fall back to static helper data %>
+<% chapter_list = @chapters.any? ? @chapters : chapters %>
 
-        <div class="container mt-4">
-          <span class="text-lg"><%= chapter.name %></span>
+<%# Hero Section %>
+<section class="relative flex h-[600px] items-center overflow-hidden -mt-16">
+  <div class="absolute inset-0">
+    <%= image_tag 'hero-community.jpg', alt: "ARC Chapters",
+        class: "w-full h-full object-cover" %>
+    <div class="absolute inset-0 dark:hidden"
+         style="background: linear-gradient(to right, rgba(255,255,255,0.97) 0%, rgba(255,255,255,0.6) 50%, rgba(255,255,255,0.1) 100%)"></div>
+    <div class="absolute inset-0 hidden dark:block"
+         style="background: linear-gradient(to right, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.5) 50%, transparent 100%)"></div>
+  </div>
+
+  <div class="relative z-10 mx-auto max-w-7xl px-6 w-full pt-16">
+    <div class="max-w-2xl">
+      <h1 class="text-5xl font-extrabold tracking-tight text-zinc-900 dark:text-white md:text-7xl mb-4">
+        Our Chapters
+      </h1>
+      <p class="text-lg text-zinc-600 dark:text-zinc-400 leading-relaxed">
+        Meet Ruby developers in your city. Connect, learn, and grow with our regional chapters across East Africa.
+      </p>
+    </div>
+  </div>
+</section>
+
+<%# Chapters Grid %>
+<section class="border-t border-zinc-200/50 dark:border-zinc-800/50 bg-zinc-50 dark:bg-zinc-900 py-24 md:py-32 transition-colors duration-300">
+  <div class="mx-auto max-w-7xl px-6">
+
+    <div class="text-center mb-16">
+      <span class="text-sm font-medium uppercase tracking-widest text-red-500">East Africa</span>
+      <h2 class="mt-4 text-4xl font-bold tracking-tight text-zinc-900 dark:text-white md:text-5xl">
+        Active Chapters
+      </h2>
+      <p class="mx-auto mt-4 max-w-2xl text-zinc-500 dark:text-zinc-400">
+        Ruby communities bringing developers together across the region.
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-8">
+      <% chapter_list.each do |chapter| %>
+        <%# Support both ActiveRecord objects (DB) and hashes (static data) %>
+        <% ch_name     = chapter.respond_to?(:name)             ? chapter.name             : chapter[:community] %>
+        <% ch_location = chapter.respond_to?(:location)         ? chapter.location         : chapter[:location] %>
+        <% ch_desc     = chapter.respond_to?(:description)      ? chapter.description      : chapter[:description] %>
+        <% ch_members  = chapter.respond_to?(:users)            ? "#{chapter.users.count}" : chapter[:members] %>
+        <% ch_freq     = chapter.respond_to?(:meetup_frequency) ? chapter.meetup_frequency : chapter[:meetup_frequency] %>
+        <% ch_country  = chapter.respond_to?(:country)          ? chapter.country&.name    : chapter[:country] %>
+        <% ch_path     = chapter.respond_to?(:id)               ? chapter_path(chapter)    : nil %>
+
+        <div class="group rounded-2xl border border-zinc-200/50 dark:border-zinc-700/50 bg-white dark:bg-zinc-800/30 p-8
+                    hover:border-red-300/50 dark:hover:border-red-500/30 hover:bg-zinc-50 dark:hover:bg-zinc-800/60
+                    transition-all duration-300">
+
+          <div class="mb-6">
+            <h3 class="text-2xl font-semibold text-zinc-900 dark:text-white mb-2 group-hover:text-red-500 transition-colors">
+              <%= ch_name %>
+            </h3>
+            <div class="flex items-center gap-2 text-zinc-500 dark:text-zinc-400">
+              <svg class="h-4 w-4 text-red-500 shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                   fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/>
+              </svg>
+              <span class="text-sm"><%= ch_location %></span>
+            </div>
+          </div>
+
+          <p class="text-zinc-500 dark:text-zinc-400 mb-6 leading-relaxed"><%= ch_desc %></p>
+
+          <div class="grid gap-3 mb-6">
+            <div class="flex items-center gap-3 text-sm text-zinc-500 dark:text-zinc-400">
+              <svg class="h-4 w-4 text-red-500 shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                   fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/>
+                <path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+              </svg>
+              <span><%= ch_members %> members</span>
+            </div>
+            <% if ch_freq.present? %>
+              <div class="flex items-center gap-3 text-sm text-zinc-500 dark:text-zinc-400">
+                <svg class="h-4 w-4 text-red-500 shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                     fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" x2="16" y1="2" y2="6"/>
+                  <line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/>
+                </svg>
+                <span><%= ch_freq %></span>
+              </div>
+            <% end %>
+            <% if ch_country.present? %>
+              <div class="flex items-center gap-3 text-sm text-zinc-500 dark:text-zinc-400">
+                <svg class="h-4 w-4 text-red-500 shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                     fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="10"/>
+                  <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/>
+                </svg>
+                <span><%= ch_country %></span>
+              </div>
+            <% end %>
+          </div>
+
+          <% if ch_path %>
+            <%= link_to ch_path,
+                class: "flex w-full items-center justify-center gap-2 rounded-md border border-zinc-200 dark:border-zinc-700 px-4 py-2.5 text-sm font-medium text-zinc-700 dark:text-zinc-300 hover:border-red-400/50 hover:text-red-500 dark:hover:border-red-500/40 dark:hover:text-red-400 transition-colors group/btn" do %>
+              Learn More
+              <svg class="h-4 w-4 transition-transform group-hover/btn:translate-x-1" xmlns="http://www.w3.org/2000/svg"
+                   viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
+              </svg>
+            <% end %>
+          <% end %>
+
         </div>
-      </div>
+      <% end %>
+    </div>
+
+  </div>
+</section>
+
+<%# Start a Chapter CTA %>
+<section class="border-t border-zinc-200/50 dark:border-zinc-800/50 bg-white dark:bg-zinc-950 py-24 md:py-32 transition-colors duration-300">
+  <div class="mx-auto max-w-4xl px-6 text-center">
+    <h2 class="text-4xl font-bold tracking-tight text-zinc-900 dark:text-white md:text-5xl mb-6">
+      Want to Start a Chapter?
+    </h2>
+    <p class="text-lg text-zinc-600 dark:text-zinc-400 mb-8 leading-relaxed">
+      Interested in building the Ruby community in your city? We'd love to help you establish
+      a new ARC chapter. Connect with us to get started.
+    </p>
+    <%= link_to new_user_registration_path,
+        class: "inline-flex items-center gap-2 rounded-md bg-red-600 px-8 py-3 text-sm font-semibold text-white hover:bg-red-700 transition-colors" do %>
+      Get in Touch
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-4 h-4">
+        <path fill-rule="evenodd" d="M2 10a.75.75 0 01.75-.75h12.59l-2.1-1.95a.75.75 0 111.02-1.1l3.5 3.25a.75.75 0 010 1.1l-3.5 3.25a.75.75 0 11-1.02-1.1l2.1-1.95H2.75A.75.75 0 012 10z" clip-rule="evenodd"/>
+      </svg>
     <% end %>
   </div>
-</div>
+</section>

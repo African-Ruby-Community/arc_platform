@@ -35,10 +35,46 @@ module ChaptersHelper
   ].freeze
 
   CHAPTERS = [
-    { country: 'Kenya',    community: 'Nairuby',      image: 'country_kenya.png',    alt: 'Nairuby' },
-    { country: 'Rwanda',   community: 'ARC Rwanda',   image: 'country_rwanda.png',   alt: 'ARC Rwanda' },
-    { country: 'Tanzania', community: 'ARC Tanzania', image: 'country_tanzania.png', alt: 'ARC Tanzania' },
-    { country: 'Uganda',   community: 'ARC Uganda',   image: 'country_uganda.png',   alt: 'ARC Uganda' }
+    {
+      country: 'Kenya',
+      community: 'Nairuby (ARC Nairobi)',
+      location: 'Nairobi, Kenya',
+      members: '2,000+',
+      description: 'Our largest and flagship chapter, hosting weekly meetups and leading community initiatives across Kenya.',
+      meetup_frequency: 'Weekly on Wednesdays',
+      image: 'country_kenya.png',
+      alt: 'Nairuby'
+    },
+    {
+      country: 'Uganda',
+      community: 'ARC Kampala',
+      location: 'Kampala, Uganda',
+      members: '800+',
+      description: 'A vibrant community of developers fostering Ruby adoption and entrepreneurship in Uganda.',
+      meetup_frequency: 'Bi-weekly meetups',
+      image: 'country_uganda.png',
+      alt: 'ARC Uganda'
+    },
+    {
+      country: 'Rwanda',
+      community: 'ARC Kigali',
+      location: 'Kigali, Rwanda',
+      members: '600+',
+      description: 'Growing community connecting developers across Rwanda and promoting Ruby skills.',
+      meetup_frequency: 'Monthly meetups',
+      image: 'country_rwanda.png',
+      alt: 'ARC Rwanda'
+    },
+    {
+      country: 'Tanzania',
+      community: 'ARC Dar es Salaam',
+      location: 'Dar es Salaam, Tanzania',
+      members: '500+',
+      description: 'Building the developer community and tech ecosystem in Tanzania\'s commercial hub.',
+      meetup_frequency: 'Monthly meetups',
+      image: 'country_tanzania.png',
+      alt: 'ARC Tanzania'
+    }
   ].freeze
 
   FEATURED_SPONSORS = [
