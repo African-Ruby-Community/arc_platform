@@ -1,6 +1,6 @@
 <div class="container mx-auto px-20 bg-zinc-50">
   <h1 class="pt-16 pb-12 text-4xl text-red-600 font-bold text-center">
-    Previous Sponsors
+    <%= t('landing.index.sponsors.previous_title') %>
   </h1>
 
   <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 gap-2 lg:ml-28">
@@ -9,7 +9,7 @@
       <%= link_to sponsor[:link], target: '_blank' do %>
         <div class="flex items-center justify-center w-full">
           <div class="w-36 h-36 card">
-            <%= image_tag sponsor[:image], alt: sponsor[:alt] %>
+            <%= image_tag sponsor[:image], alt: t(sponsor[:alt_key]) %>
           </div>
         </div>
       <% end %>
@@ -19,7 +19,7 @@
   <div class="flex container justify-center pt-12 pb-12">
     <a href="mailto:organisers@rubycommunity.africa">
       <button class="btn btn-primary rounded-full py-4 px-8 text-white flex justify-center items-center gap-2 md:w-full w-60">
-        <span>Become a sponsor</span>
+        <span><%= t('landing.index.sponsors.become_sponsor') %></span>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-4">
           <path fill-rule="evenodd" d="M2 10a.75.75 0 01.75-.75h12.59l-2.1-1.95a.75.75 0
             111.02-1.1l3.5 3.25a.75.75 0 010 1.1l-3.5 3.25a.75.75 0

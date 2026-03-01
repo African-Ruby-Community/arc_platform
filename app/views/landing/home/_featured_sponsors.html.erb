@@ -16,7 +16,7 @@
 
 <div class="container mx-auto px-20 bg-zinc-50">
   <h1 class="pt-16 pb-12 text-4xl text-red-600 font-bold text-center">
-    Featured Sponsors
+    <%= t('landing.index.sponsors.featured_title') %>
   </h1>
 
   <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6 px-20 place-content-center">
@@ -24,7 +24,7 @@
       <%= link_to sponsor[:link], target: '_blank' do %>
         <div class="flex items-center justify-center w-full">
           <div class="min-w-[8rem] min-h-[8rem] max-w-[9rem] max-h-[9rem] lg:max-w-[8rem] lg:max-h-[8rem] xl:max-w-[12rem] xl:max-h-[12rem] card flex items-center justify-center overflow-hidden">
-            <%= image_tag sponsor[:image], alt: sponsor[:alt], class: 'w-full h-full object-contain' %>
+            <%= image_tag sponsor[:image], alt: t(sponsor[:alt_key]), class: 'w-full h-full object-contain' %>
           </div>
         </div>
       <% end %>

@@ -47,12 +47,14 @@ class User < ApplicationRecord
   # Associations
   has_many :users_chapters, dependent: :nullify
   has_many :chapters, through: :users_chapters
+  has_many :project_contributors, dependent: :destroy
+  has_many :contributed_projects, through: :project_contributors, source: :project
 
   # Callbacks
   before_create :set_defaults # Set model defaults before create
 
   # Enums
-  enum role: { member: 0, chapter_admin: 1, organization_admin: 2 }
+  enum :role, { member: 0, chapter_admin: 1, organization_admin: 2 }
 
   # Validations
   validates :email, :name, :phone_number, :github_username, presence: true
@@ -63,6 +65,9 @@ class User < ApplicationRecord
     { with: /\A(?!.*--|.*-$|.*_)[a-zA-Z0-9][\w-]+[a-zA-Z0-9]{0,39}\z/ },
                               unless: -> { github_username.blank? }
 
+  # Validate that the GitHub account exists
+  validate :github_account_exists, if: -> { github_username.present? }
+
   private
 
   ##
@@ -70,5 +75,13 @@ class User < ApplicationRecord
   # :member.
   def set_defaults
     self.role ||= :member
+  end
+
+  ##
+  # Validates that the GitHub account exists using the GithubAccountVerifier service
+  def github_account_exists
+    return if GithubAccountVerifier.exists?(github_username)
+
+    errors.add(:github_username, 'must be a valid GitHub account')
   end
 end

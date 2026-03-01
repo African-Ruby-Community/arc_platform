@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
 # config valid for current version and patch releases of Capistrano
-lock '~> 3.17.2'
+lock '~> 3.19.2'
 
 set :user, 'ubuntu'
 
 set :application, 'arc_platform'
-set :repo_url, 'git@github.com:banta/arc_platform.git'
+set :repo_url, 'git@github.com:Judahsan/arc_platform.git'
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
@@ -60,3 +60,48 @@ namespace :deploy do
   after :finishing, 'deploy:cleanup'
   after :finishing, 'deploy:restart'
 end
+
+namespace :sentry do
+  desc 'Notify Sentry of a new release'
+  task :notify_release do
+    on roles(:web) do
+      within release_path do
+        begin
+          # Get Sentry credentials with validation
+          auth_token = capture(:bundle, :exec, :rails, :runner, "puts Rails.application.credentials.dig(:sentry, :auth_token)")
+          org = capture(:bundle, :exec, :rails, :runner, "puts Rails.application.credentials.dig(:sentry, :org)")
+          
+          if auth_token.strip.empty? || org.strip.empty?
+            warn "Sentry credentials missing - skipping release notification"
+            next
+          end
+          
+          # Create release and upload sourcemaps
+          release_version = capture(:git, 'rev-parse HEAD').strip
+          
+          with rails_env: fetch(:rails_env),
+               SENTRY_AUTH_TOKEN: auth_token.strip,
+               SENTRY_ORG: org.strip do
+            
+            # Create release
+            execute :bundle, :exec, :sentry, "releases new #{release_version}"
+            
+            # Upload sourcemaps if assets exist
+            if test("[ -d #{release_path}/public/assets ]") 
+              execute :bundle, :exec, :sentry, "releases files #{release_version} upload-sourcemaps ./public/assets --url-prefix '~/assets'"
+            end
+            
+            # Finalize release
+            execute :bundle, :exec, :sentry, "releases finalize #{release_version}"
+          end
+          
+          info "Sentry release #{release_version} created successfully"
+        rescue => e
+          warn "Sentry release notification failed: #{e.message}"
+        end
+      end
+    end
+  end
+end
+
+after 'deploy:published', 'sentry:notify_release'

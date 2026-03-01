@@ -1,0 +1,285 @@
+# French translations for Arc Platform
+# Traductions françaises pour Arc Platform
+
+fr:
+  # Common translations
+  common:
+    actions:
+      save: 'Enregistrer'
+      cancel: 'Annuler'
+      edit: 'Modifier'
+      delete: 'Supprimer'
+      back: 'Retour'
+      submit: 'Soumettre'
+      confirm: 'Êtes-vous sûr?'
+      join_us: 'Rejoignez-nous'
+      read_more: 'Lire la suite'
+    messages:
+      success: 'Opération réussie'
+      error: 'Une erreur est survenue'
+      not_found: 'Enregistrement introuvable'
+      unauthorized: "Vous n'êtes pas autorisé à effectuer cette action"
+  
+  # Authentication and authorization
+  unauthorized:
+    sign_in: 'Veuillez vous connecter pour effectuer cette action'
+    
+  # Flash messages
+  flash:
+    notice: 'Avis'
+    alert: 'Alerte'
+    success: 'Succès'
+    error: 'Erreur'
+  
+  # Models
+  activerecord:
+    models:
+      chapter: 'Chapitre'
+      project: 'Projet'
+      country: 'Pays'
+    attributes:
+      chapter:
+        title: 'Titre'
+        description: 'Description'
+      project:
+        name: 'Nom'
+        description: 'Description'
+      country:
+        name: 'Nom'
+        code: 'Code'
+  
+  # Controllers
+  chapters:
+    create:
+      success: 'Le chapitre a été créé avec succès.'
+    update:
+      success: 'Le chapitre a été mis à jour avec succès.'
+    destroy:
+      success: 'Le chapitre a été supprimé avec succès.'
+
+  countries:
+    create:
+      success: 'Le pays a été créé avec succès.'
+    update:
+      success: 'Le pays a été mis à jour avec succès.'
+    destroy:
+      success: 'Le pays a été supprimé avec succès.'
+
+  projects:
+    create:
+      success: 'Le projet a été créé avec succès.'
+    update:
+      success: 'Le projet a été mis à jour avec succès.'
+    destroy:
+      success: 'Le projet a été supprimé avec succès.'
+
+  # Devise and authentication
+  registrations:
+    bot_detection_failed_alert: "Désolé, nous n'avons pas pu traiter votre demande."
+    turnstile_forbidden_error: "Nous avons rencontré un problème lors de la création de votre compte."
+
+  # Turnstile (CAPTCHA)
+  turnstile:
+    warnings:
+      pass: "Turnstile: Secret PASS utilisé. Tous les contrôles sont passés. Utilisez le secret FAIL pour les tests d'échec ou le secret réel en production."
+      fail_mismatch: "Turnstile: Clé de site FAIL avec un secret non-FAIL. Cela peut donner des résultats PASS inattendus."
+      verification_failed: "La vérification Turnstile a échoué: %{errors}"
+      verification_error: "Erreur de vérification Turnstile (tentative %{attempt}/%{max}): %{error}"
+    errors:
+      registration_failed: 'Veuillez compléter le défi Turnstile pour créer un compte.'
+      login_failed: 'Veuillez compléter le défi Turnstile pour vous connecter.'
+  
+  # Landing page translations
+  landing:
+    index:
+      intro:
+        title: "Communauté Ruby Africaine"
+        subtitle: "Ruby Conf Africa 2026"
+        conference_dates: "21-22 août 2026"
+        conference_description: "Rejoignez la plus grande conférence Ruby en Afrique !"
+        description: "Une organisation communautaire qui cherche à promouvoir les compétences de programmation logicielle avec le langage de programmation Ruby."
+        members_count: "Membres à travers l'Afrique de l'Est"
+        years_count: "Années de communauté Ruby"
+        conference_alt: "Ruby Conf Africa 2025"
+      who_we_are:
+        title: "Communauté Ruby Africaine"
+        subtitle: "Qui sommes-nous ?"
+        description_1: "La Communauté Ruby Africaine, ARC, est une organisation qui a été créée en 2010. La communauté compte actuellement plus de 5 000 membres répartis dans toute l'Afrique de l'Est, composés de développeurs (ingénieurs), d'entrepreneurs, de designers et de freelances. En termes de développement et de démonstrations, la communauté se concentre sur les technologies et frameworks Ruby, qui sont tous open source et largement utilisés par les startups pour prototyper et réaliser des preuves de concept avec une stratégie de mise sur le marché."
+        description_2: "La communauté organise des rencontres hebdomadaires et mensuelles dans différentes villes d'Afrique de l'Est. La communauté vous apporte la Conférence Ruby chaque année avec différents thèmes pour combler le fossé qui existe entre l'école et l'industrie et en retour aide à stimuler l'innovation et la croissance en contribution à l'économie mondiale."
+      activities:
+        title: "Activités"
+        items:
+          meetups: "Rencontres locales"
+          conferences: "conférences"
+          programming: "programmation"
+          workshops: "ateliers"
+          hackathons: "hackathons"
+      chapters:
+        title: "Chapitres"
+        join_community: "Rejoindre la communauté"
+        request_new_chapter: "Demander un nouveau chapitre"
+        add_chapter_alt: "Ajouter un Chapitre"
+      events:
+        title: "Événements à Venir"
+        view_more: "Voir plus d'événements"
+        placeholder_content: "contenu"
+      sponsors:
+        featured_title: "Sponsors Vedettes"
+        previous_title: "Sponsors Précédents"
+        become_sponsor: "Devenir sponsor"
+    about:
+      title: "À propos d'ARC - Communauté Ruby Africaine"
+      page_title: "À propos de nous"
+      page_description: "ARC rassemble entrepreneurs, développeurs, designers, contributeurs open source"
+      workshop_alt: "Atelier ARC"
+      description_1: "La Communauté Ruby Africaine, ARC, est une organisation qui a été créée en 2010. La communauté a actuellement une portée de plus de 5 000 membres répartis dans toute l'Afrique de l'Est, composés de développeurs (ingénieurs), d'entrepreneurs, de designers et de freelances. En termes de développement et de démonstrations, la communauté se concentre sur les technologies et frameworks Ruby, qui sont tous open source et largement utilisés par les startups pour prototyper et réaliser des preuves de concept avec une stratégie de mise sur le marché."
+      description_2: "La communauté organise des rencontres hebdomadaires et mensuelles dans différentes villes d'Afrique de l'Est. La communauté vous apporte la Conférence Ruby chaque année avec différents thèmes pour combler le fossé qui existe entre l'école et l'industrie et en retour aide à stimuler l'innovation et la croissance en contribution à l'économie mondiale."
+      description_3: "ARC rassemble entrepreneurs, développeurs, designers et contributeurs open source. Pourquoi ? Nous croyons en une approche holistique ; grâce à l'entrepreneuriat, une \"approche solution\" et l'open source, nous pouvons résoudre tant de problèmes. Cela en retour donne à tous ceux qui participent les \"outils\" technologiques et la \"méthodologie\" entrepreneuriale pour atteindre leur plein potentiel et inspirer le reste du monde et leurs communautés."
+
+  # Chapters page translations
+  chapters:
+    index:
+      title: "Chapitres"
+      page_title: "Chapitres"
+      page_description: "Une vitrine des différentes communautés ruby réparties dans la région d'Afrique de l'Est."
+    countries:
+      kenya: "Kenya"
+      rwanda: "Rwanda"
+      tanzania: "Tanzanie"
+      uganda: "Ouganda"
+    alt_text:
+      nairuby: "Nairuby"
+      arc_rwanda: "ARC_Rwanda"
+      arc_tanzania: "ARC_Tanzania"
+      arc_uganda: "ARC_Uganda"
+
+  # Helper data translations
+  activities:
+    meetups: "Rencontres locales"
+    conferences: "conférences"
+    programming: "programmation"
+    workshops: "ateliers"
+    hackathons: "hackathons"
+
+  sponsors:
+    current:
+      solutech: "Solutech"
+      app_signal: "App Signal"
+      ruby_central: "Ruby Central"
+      kopo_kopo: "Kopo Kopo"
+      finplus: "Finplus Group"
+      typesense: "Typesense"
+      daystar: "Daystar"
+      prosper: "Prosper Hedge"
+      gurzu: "Gurzu"
+      must_company: "Must Company"
+    previous:
+      shopify: "Shopify"
+      microverse: "Microverse"
+      planet_argon: "Planet Argon"
+      nairobits: "Nairobits"
+      turing: "Turing"
+      kwara: "Kwara"
+      ihub: "iHub, Nairobi"
+      friendly_rb: "FriendlyRB"
+      kca: "Université KCA"
+      andela: "Andela"
+
+  social_media:
+    twitter: "ARC Twitter"
+    telegram: "ARC telegram"
+    facebook: "ARC facebook"
+    instagram: "ARC Instagram"
+    linkedin: "ARC LinkedIn"
+    github: "ARC Github"
+
+  # Projects page translations
+  projects:
+    index:
+      title: "Projets Communautaires"
+      description: "Découvrez des projets incroyables créés par la Communauté Ruby Africaine"
+      search_placeholder: "Rechercher des projets..."
+    show:
+      back_to_projects: "Retour aux Projets"
+      featured_badge: "⭐ Projet Vedette"
+      about_project: "À propos du Projet"
+      view_live: "Voir en Direct"
+      github: "GitHub"
+      project_creators: "Créateurs du Projet"
+      love_this_project: "Vous aimez ce projet ?"
+      share_message: "Partagez-le avec votre réseau !"
+      more_from_chapter: "Plus de %{chapter_name}"
+    featured:
+      title: "Projet Vedette"
+      view_project: "Voir le Projet"
+      prev: "← Précédent"
+      next: "Suivant →"
+    grid:
+      featured: "Vedette"
+      preview: "Aperçu"
+    share:
+      whatsapp_label: "Partager sur WhatsApp"
+      facebook_label: "Partager sur Facebook"
+      twitter_label: "Partager sur Twitter"
+      linkedin_label: "Partager sur LinkedIn"
+
+  # Navigation translations
+  navigation:
+    home: "Accueil"
+    about: "À propos"
+    about_arc: "À propos d'ARC"
+    events: "Événements"
+    conferences: "Conférences"
+    chapters: "Chapitres"
+    projects: "Projets"
+    learning_materials: "Matériel d'Apprentissage"
+    sign_in: "Se connecter"
+    sign_up: "S'inscrire"
+    sign_out: "Se déconnecter"
+    settings: "Paramètres"
+    countries: "Pays"
+    update_profile: "Mettre à jour le profil"
+    community_name: "Communauté Ruby Africaine"
+
+  # Footer translations
+  footer:
+    home: "Accueil"
+    events: "Événements"
+    chapters: "Chapitres"
+    projects: "Projets"
+    learning_materials: "Matériel d'apprentissage"
+    sponsor: "Sponsor"
+    members: "Membres"
+    about: "À propos"
+    contact_us: "Nous contacter"
+    code_of_conduct: "Code de conduite"
+    connect: "Se connecter"
+    copyright: "Tous droits réservés. Communauté Ruby Africaine. Copyright %{year}"
+
+  # Learning Materials page translations
+  learning_materials:
+    index:
+      title: "Matériel d'Apprentissage"
+      page_title: "Matériel d'Apprentissage"
+      page_description: "Une liste de ressources d'apprentissage ruby et ruby on rails compilée par la communauté ARC"
+      search_placeholder: "Rechercher du matériel (ex: Rails, Ruby, Active Record, Hotwire)"
+      all_levels: "Tous Niveaux"
+      beginner: "Débutant"
+      intermediate: "Intermédiaire"
+      expert: "Expert"
+      search_button: "Rechercher"
+      featured: "Vedette"
+      open_resource: "Ouvrir la ressource"
+
+  # Date and time formats
+  date:
+    formats:
+      default: "%d/%m/%Y"
+      long: "%d %B %Y"
+      short: "%d %b"
+  
+  time:
+    formats:
+      default: "%a %d %b %Y %H:%M:%S %z"
+      long: "%d %B %Y %H:%M"
+      short: "%d %b %H:%M"

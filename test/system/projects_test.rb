@@ -12,40 +12,15 @@ class ProjectsTest < ApplicationSystemTestCase
     assert_selector 'h1', text: 'Projects'
   end
 
-  test 'should create project' do
+  test 'should show project details' do
+    visit project_url(@project)
+    assert_selector 'h1', text: @project.name
+  end
+
+  test 'should search projects' do
     visit projects_url
-    click_on 'New project'
-
-    fill_in 'Chapter', with: @project.chapter_id
-    fill_in 'Description', with: @project.description
-    fill_in 'End date', with: @project.end_date
-    fill_in 'Name', with: @project.name
-    fill_in 'Start date', with: @project.start_date
-    click_on 'Create Project'
-
-    assert_text 'Project was successfully created'
-    click_on 'Back'
-  end
-
-  test 'should update Project' do
-    visit project_url(@project)
-    click_on 'Edit this project', match: :first
-
-    fill_in 'Chapter', with: @project.chapter_id
-    fill_in 'Description', with: @project.description
-    fill_in 'End date', with: @project.end_date
-    fill_in 'Name', with: @project.name
-    fill_in 'Start date', with: @project.start_date
-    click_on 'Update Project'
-
-    assert_text 'Project was successfully updated'
-    click_on 'Back'
-  end
-
-  test 'should destroy Project' do
-    visit project_url(@project)
-    click_on 'Destroy this project', match: :first
-
-    assert_text 'Project was successfully destroyed'
+    fill_in 'query', with: @project.name
+    click_on '🔍'
+    assert_text @project.name
   end
 end

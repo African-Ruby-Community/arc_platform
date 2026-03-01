@@ -5,42 +5,38 @@
     <% end %>
 
     <ul class="flex flex-col gap-3">
-      <li  class="hover:text-red-600 hover:underline"><%= link_to 'Home', root_path %></li>
+      <li  class="hover:text-red-600 hover:underline"><%= link_to t('footer.home'), root_path %></li>
       <% if FeatureFlag.find_by(name: 'events').try(:enabled) %>
-        <li class="hover:text-red-600 hover:underline"><%= link_to 'Events', '#' %></li>
+        <li class="hover:text-red-600 hover:underline"><%= link_to t('footer.events'), '#' %></li>
       <% end %>
 
-      <li class="hover:text-red-600 hover:underline"><%= link_to 'Chapters', chapters_path %></li>
-
-      <li class="hover:text-red-600 hover:underline"><%= link_to 'Learning materials', landing_learn_path %></li>
-
-      <% if FeatureFlag.find_by(name: 'projects').try(:enabled) %>
-        <li class="hover:text-red-600 hover:underline"><%= link_to 'Projects', '#' %></li>
-      <% end %>
+      <li class="hover:text-red-600 hover:underline"><%= link_to t('footer.chapters'), chapters_path %></li>
+      <li class="hover:text-red-600 hover:underline"><%= link_to t('footer.projects'), projects_path %></li>
+      <li class="hover:text-red-600 hover:underline"><%= link_to t('footer.learning_materials'), learning_materials_path %></li>
     </ul>
 
     <ul class="flex flex-col gap-3">
-      <li class="hover:text-red-600 hover:underline"><%= link_to 'Sponsor', 'mailto:organisers@rubycommunity.africa' %></li>
+      <li class="hover:text-red-600 hover:underline"><%= link_to t('footer.sponsor'), 'mailto:organisers@rubycommunity.africa' %></li>
 
       <% if FeatureFlag.find_by(name: 'members').try(:enabled) %>
-        <li class="hover:text-red-600 hover:underline"><%= link_to 'Members', '#' %></li>
+        <li class="hover:text-red-600 hover:underline"><%= link_to t('footer.members'), '#' %></li>
       <% end %>
 
-      <li class="hover:text-red-600 hover:underline"><%= link_to 'About', landing_about_path %></li>
+      <li class="hover:text-red-600 hover:underline"><%= link_to t('footer.about'), landing_about_path %></li>
 
       <% if FeatureFlag.find_by(name: 'contact_us').try(:enabled) %>
-        <li class="hover:text-red-600 hover:underline"><%= link_to 'Contact Us', '#' %></li>
+        <li class="hover:text-red-600 hover:underline"><%= link_to t('footer.contact_us'), '#' %></li>
       <% end %>
 
       <% if FeatureFlag.find_by(name: 'contact_us').try(:enabled) %>
-        <li class="hover:text-red-600 hover:underline"><%= link_to 'Code of conduct', '#' %></li>
+        <li class="hover:text-red-600 hover:underline"><%= link_to t('footer.code_of_conduct'), '#' %></li>
       <% end %>
     </ul>
   </div>
 
   <div class="flex flex-col justify-center items-center pt-12">
       <h1 class="pt-4 pb-12 md:text-4xl text-2xl text-red-600 font-bold text-center">
-        Connect
+        <%= t('footer.connect') %>
       </h1>
       <ul class="flex md:flex-row flex-col md:mt-4 md:gap-10 gap-5">
         <% socials.each do |social| %>
@@ -55,5 +51,5 @@
       </ul>
   </div>
 
-  <p class="text-center pt-10 pb-10">All Rights Reserved. African Ruby Community. Copyright <%= Date.today.year %></p>
+  <p class="text-center pt-10 pb-10"><%= t('footer.copyright', year: Date.today.year) %></p>
 </footer>

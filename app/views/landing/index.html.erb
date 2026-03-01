@@ -8,10 +8,6 @@
 
 <%= render 'landing/home/activities' %>
 
-<% if FeatureFlag.find_by(name: 'projects').try(:enabled) %>
-  <%= render 'landing/home/projects' %>
-<% end %>
-
 <%= render 'landing/home/chapters' %>
 
 <%= render 'landing/home/featured_sponsors' %>

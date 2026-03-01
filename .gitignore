@@ -41,3 +41,7 @@ coverage/
 
 # Ignore JetBrains IDE .idea directory
 .idea/
+
+/config/credentials/development.key
+
+/config/credentials/test.key

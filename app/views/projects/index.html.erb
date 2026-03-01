@@ -1,12 +1,36 @@
-<p style="color: green"><%= notice %></p>
+<main class="min-h-screen bg-gradient-to-b from-gray-50 to-white">
+  <!-- Hero Section with Search -->
+  <div class="bg-gradient-to-r from-red-600 to-red-700 text-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
+      <div class="text-center mb-8">
+        <h1 class="text-4xl sm:text-5xl font-bold mb-4"><%= t('projects.index.title') %></h1>
+        <p class="text-red-100 text-lg max-w-2xl mx-auto"><%= t('projects.index.description') %></p>
+      </div>
+      
+      <!-- Search Bar -->
+      <%= form_with url: projects_path, method: :get, class: "max-w-2xl mx-auto" do |f| %>
+        <div class="relative">
+          <%= f.text_field :query, value: params[:query], placeholder: t('projects.index.search_placeholder'), class: "w-full px-6 py-4 pr-12 rounded-full text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-4 focus:ring-red-300 shadow-lg text-lg" %>
+          <button type="submit" class="absolute right-2 top-1/2 transform -translate-y-1/2 bg-red-600 hover:bg-red-700 text-white p-3 rounded-full transition-colors">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+            </svg>
+          </button>
+        </div>
+      <% end %>
+    </div>
+  </div>
 
-<h1>Projects</h1>
+  <!-- Main Content -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
+    <!-- Featured Section -->
+    <%= render 'featured_project', featured_project: @featured_project %>
 
-<div id="projects">
-  <% @projects.each do |project| %>
-    <%= render project %>
-    <p>
-      <%= link_to "Show this project", project %>
-    </p>
-  <% end %>
-</div>
+    <!-- Projects Grid -->
+    <section>
+      <%= render 'projects', projects: @projects, pagy: @pagy %>
+    </section>
+  </div>
+</main>
+
+

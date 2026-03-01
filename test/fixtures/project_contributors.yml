@@ -1,0 +1,9 @@
+one:
+  project: one
+  user: organization_admin
+  role: creator
+
+two:
+  project: two
+  user: member
+  role: contributor

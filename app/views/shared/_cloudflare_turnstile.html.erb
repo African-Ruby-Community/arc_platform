@@ -1,0 +1,7 @@
+<div data-controller="turnstile"
+     class="mt-4"
+     data-turnstile-sitekey-value="<%= Rails.application.credentials.dig(:cloudflare_turnstile, :site_key) %>"
+     data-turnstile-size-value="flexible"
+     data-turnstile-theme-value="light">
+  <div data-turnstile-target="turnstile"></div>
+</div>

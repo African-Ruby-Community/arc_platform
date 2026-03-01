@@ -1,0 +1,118 @@
+sw:
+  devise:
+    views:
+      sessions:
+        new:
+          title: "Ingia"
+          email_label: "Barua pepe"
+          email_placeholder: "Ingiza anwani ya barua pepe"
+          password_label: "Nywila"
+          password_placeholder: "Ingiza nywila"
+          submit_button: "Ingia"
+      registrations:
+        new:
+          title: "Unda akaunti"
+          email_label: "Barua pepe"
+          email_placeholder: "Ingiza anwani ya barua pepe"
+          name_label: "Jina kamili"
+          name_placeholder: "Ingiza jina kamili"
+          phone_number_label: "Nambari ya simu"
+          phone_number_placeholder: "Ingiza nambari ya simu"
+          phone_number_hint: "Anza na msimbo wa nchi mfano 254xxxxxxxxx. Tumia nambari ya WhatsApp ikiwezekana"
+          chapter_label: "Sura"
+          github_username_label: "Jina la mtumiaji wa Github"
+          github_username_placeholder: "Ingiza jina la mtumiaji wa Github"
+          github_username_hint: "Lazima iwe akaunti halali ya GitHub. Tutahakiki jina hili la mtumiaji."
+          password_label: "Nywila"
+          password_placeholder: "Ingiza nywila"
+          password_confirmation_label: "Thibitisha Nywila"
+          password_confirmation_placeholder: "Thibitisha Nywila"
+          submit_button: "Unda Akaunti"
+      passwords:
+        new:
+          title: "Umesahau nywila yako?"
+          email_label: "Barua pepe"
+          email_placeholder: "Ingiza anwani ya barua pepe"
+          submit_button: "Nitumie maagizo"
+        edit:
+          title: "Badilisha nywila yako"
+          password_label: "Nywila"
+          password_placeholder: "Ingiza nywila mpya"
+          password_confirmation_label: "Thibitisha nywila"
+          password_confirmation_placeholder: "Thibitisha nywila mpya"
+          submit_button: "Badilisha nywila yangu"
+      confirmations:
+        new:
+          title: "Tuma tena maagizo ya uthibitisho"
+          email_label: "Barua pepe"
+          email_placeholder: "Ingiza anwani ya barua pepe"
+          submit_button: "Tuma tena maagizo"
+      shared:
+        links:
+          have_account: "Una akaunti? Nenda kuingia"
+          need_account: "Unahitaji akaunti? Jisajili!"
+          forgot_password: "Umesahau nywila yako?"
+          no_confirmation: "Hukupokea maagizo ya uthibitisho?"
+          no_unlock: "Hukupokea maagizo ya kufungua?"
+          sign_in_with: "Ingia kwa %{provider}"
+    confirmations:
+      confirmed: "Anwani yako ya barua pepe imethibitishwa kwa ufanisi."
+      send_instructions: "Utapokea barua pepe yenye maagizo ya jinsi ya kuthibitisha anwani yako ya barua pepe katika dakika chache."
+      send_paranoid_instructions: "Ikiwa anwani yako ya barua pepe ipo katika hifadhidata yetu, utapokea barua pepe yenye maagizo ya jinsi ya kuthibitisha anwani yako ya barua pepe katika dakika chache."
+    failure:
+      already_authenticated: "Tayari umeingia."
+      inactive: "Akaunti yako bado haijaamilishwa."
+      invalid: "%{authentication_keys} au nywila si sahihi."
+      locked: "Akaunti yako imefungwa."
+      last_attempt: "Una jaribio moja zaidi kabla akaunti yako haijafungwa."
+      not_found_in_database: "%{authentication_keys} au nywila si sahihi."
+      timeout: "Kipindi chako kimeisha. Tafadhali ingia tena ili kuendelea."
+      unauthenticated: "Unahitaji kuingia au kujisajili kabla ya kuendelea."
+      unconfirmed: "Unahitaji kuthibitisha anwani yako ya barua pepe kabla ya kuendelea."
+    mailer:
+      confirmation_instructions:
+        subject: "Maagizo ya uthibitisho"
+      reset_password_instructions:
+        subject: "Maagizo ya kuweka upya nywila"
+      unlock_instructions:
+        subject: "Maagizo ya kufungua"
+      email_changed:
+        subject: "Barua pepe imebadilishwa"
+      password_change:
+        subject: "Nywila imebadilishwa"
+    omniauth_callbacks:
+      failure: "Haikuweza kukuthibitisha kutoka %{kind} kwa sababu \"%{reason}\"."
+      success: "Imethibitishwa kwa ufanisi kutoka akaunti ya %{kind}."
+    passwords:
+      no_token: "Huwezi kufikia ukurasa huu bila kutoka barua pepe ya kuweka upya nywila. Ikiwa unakuja kutoka barua pepe ya kuweka upya nywila, tafadhali hakikisha umetumia URL kamili iliyotolewa."
+      send_instructions: "Utapokea barua pepe yenye maagizo ya jinsi ya kuweka upya nywila yako katika dakika chache."
+      send_paranoid_instructions: "Ikiwa anwani yako ya barua pepe ipo katika hifadhidata yetu, utapokea kiungo cha kurejesha nywila katika anwani yako ya barua pepe katika dakika chache."
+      updated: "Nywila yako imebadilishwa kwa ufanisi. Sasa umeingia."
+      updated_not_active: "Nywila yako imebadilishwa kwa ufanisi."
+    registrations:
+      destroyed: "Kwaheri! Akaunti yako imefutwa kwa ufanisi. Tunatumai kukuona tena hivi karibuni."
+      signed_up: "Karibu! Umejisajili kwa ufanisi."
+      signed_up_but_inactive: "Umejisajili kwa ufanisi. Hata hivyo, hatukuweza kukuingia kwa sababu akaunti yako bado haijaamilishwa."
+      signed_up_but_locked: "Umejisajili kwa ufanisi. Hata hivyo, hatukuweza kukuingia kwa sababu akaunti yako imefungwa."
+      signed_up_but_unconfirmed: "Ujumbe wenye kiungo cha uthibitisho umetumwa kwa anwani yako ya barua pepe. Tafadhali fuata kiungo ili kuamilisha akaunti yako."
+      update_needs_confirmation: "Umesasisha akaunti yako kwa ufanisi, lakini tunahitaji kuthibitisha anwani yako mpya ya barua pepe. Tafadhali angalia barua pepe yako na fuata kiungo cha uthibitisho ili kuthibitisha anwani yako mpya ya barua pepe."
+      updated: "Akaunti yako imesasishwa kwa ufanisi."
+      updated_but_not_signed_in: "Akaunti yako imesasishwa kwa ufanisi, lakini kwa kuwa nywila yako imebadilishwa, unahitaji kuingia tena."
+    sessions:
+      signed_in: "Umeingia kwa ufanisi."
+      signed_out: "Umetoka kwa ufanisi."
+      already_signed_out: "Umetoka kwa ufanisi."
+    unlocks:
+      send_instructions: "Utapokea barua pepe yenye maagizo ya jinsi ya kufungua akaunti yako katika dakika chache."
+      send_paranoid_instructions: "Ikiwa akaunti yako ipo, utapokea barua pepe yenye maagizo ya jinsi ya kuifungua katika dakika chache."
+      unlocked: "Akaunti yako imefunguliwa kwa ufanisi. Tafadhali ingia ili kuendelea."
+  errors:
+    messages:
+      already_confirmed: "tayari imethibitishwa, tafadhali jaribu kuingia"
+      confirmation_period_expired: "inahitaji kuthibitishwa ndani ya %{period}, tafadhali omba mpya"
+      expired: "imeisha, tafadhali omba mpya"
+      not_found: "haijapatikana"
+      not_locked: "haikufungwa"
+      not_saved:
+        one: "Hitilafu 1 imezuia %{resource} hii kuhifadhiwa:"
+        other: "Hitilafu %{count} zimezuia %{resource} hii kuhifadhiwa:"

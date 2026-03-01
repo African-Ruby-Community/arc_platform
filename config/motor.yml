@@ -14,6 +14,15 @@ resources:
     - column_type: richtext
       name: description
   updated_at: 2023-03-09 16:16:17.698355000 +00:00
+- name: learning_material
+  preferences:
+    columns:
+    - name: title
+    - name: level
+    - name: link
+    - name: thumbnail
+    - name: featured
+  updated_at: 2025-09-10 22:08:00.000000000 +00:00
 configs:
 - key: header.links
   value:
