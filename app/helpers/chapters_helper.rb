@@ -100,6 +100,57 @@ module ChaptersHelper
     { image: 'sponsors/previous/andela.png', link: 'https://andela.com/', alt: 'Andela' }
   ].freeze
 
+  PROJECTS = [
+    {
+      title: 'Nairuby Website',
+      description: 'The official Nairuby chapter website showcasing events and community resources.',
+      tags: ['Ruby', 'Rails', 'Community'],
+      stars: '240',
+      github_url: 'https://github.com/nairuby',
+      url: '#'
+    },
+    {
+      title: 'ARC Learning Platform',
+      description: 'An open-source platform for sharing Ruby learning resources and tutorials.',
+      tags: ['Ruby', 'Education', 'Open Source'],
+      stars: '189',
+      github_url: 'https://github.com/nairuby',
+      url: '#'
+    },
+    {
+      title: 'Ruby Dev Tools',
+      description: 'A collection of developer tools built by the community to improve Ruby workflows.',
+      tags: ['Ruby', 'Tools', 'Utilities'],
+      stars: '156',
+      github_url: 'https://github.com/nairuby',
+      url: '#'
+    },
+    {
+      title: 'Community Contribution Guide',
+      description: 'Comprehensive guide to contributing to Ruby projects and open source.',
+      tags: ['Documentation', 'Open Source'],
+      stars: '312',
+      github_url: 'https://github.com/nairuby',
+      url: '#'
+    },
+    {
+      title: 'ARC Conference App',
+      description: 'Mobile-first app for our annual Ruby Conference with schedule and networking features.',
+      tags: ['Ruby', 'Rails', 'Events'],
+      stars: '98',
+      github_url: 'https://github.com/nairuby',
+      url: '#'
+    },
+    {
+      title: 'Ruby Best Practices',
+      description: 'A curated collection of Ruby best practices and design patterns from community experts.',
+      tags: ['Ruby', 'Best Practices', 'Guide'],
+      stars: '467',
+      github_url: 'https://github.com/nairuby',
+      url: '#'
+    }
+  ].freeze
+
   SOCIALS = [
     { alt: 'ARC Twitter', link: 'https://twitter.com/ruby_african', image: 'brands_twitter.png', show: true },
     { alt: 'ARC telegram', link: '#', image: 'brands_telegram.png',
@@ -126,6 +177,10 @@ module ChaptersHelper
 
   def previous_sponsors
     PREVIOUS_SPONSORS
+  end
+
+  def static_projects
+    PROJECTS
   end
 
   def socials

@@ -18,3 +18,6 @@ application.register("navbar", NavbarController)
 
 import ThemeController from "./theme_controller.js"
 application.register("theme", ThemeController)
+
+import ProjectSearchController from "./project_search_controller.js"
+application.register("project-search", ProjectSearchController)
