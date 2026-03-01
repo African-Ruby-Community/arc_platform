@@ -1,25 +1,161 @@
-<div class="flex justify-center pt-16 ">
-  <div class="card md:w-1/2 bg:w-1/2 bg-base-100 shadow-xl">
-    <figure>
-      <%= image_tag 'sign_up_karate.png' %>
-    </figure>
-    <div class="card-body">
-      <h2 class="card-title">Sign In</h2>
-      <%= simple_form_for(resource, as: resource_name,
-                          url: session_path(resource_name)) do |f| %>
-        <%= f.input :email, placeholder: 'Enter email address', label: 'Email',
-                    input_html: { class: 'input-bordered w-full', autofocus: true, autocomplete: 'email' } %>
+<% content_for :title, "Sign In" %>
+<% content_for :full_width do %><% end %>
 
-        <%= f.input :password, placeholder: 'Enter password', label: 'Password',
-                    input_html: { class: 'input-bordered w-full' } %>
+<div class="min-h-[calc(100vh-4rem)] grid grid-cols-1 lg:grid-cols-2">
 
-        <div class="card-actions justify-end pt-8">
-          <%= f.button :button, 'Sign In', class: 'btn btn-primary' %>
+  <%# Left — form %>
+  <div class="flex flex-col justify-center px-6 py-12 md:px-12 lg:px-16 bg-white dark:bg-zinc-950">
+    <div class="w-full max-w-sm mx-auto lg:mx-0">
+
+      <%# Logo %>
+      <div class="mb-12">
+        <%= link_to root_path, class: "inline-flex items-center gap-2" do %>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+               stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+               class="text-red-500">
+            <path d="M2.7 10.3a2.41 2.41 0 0 0 0 3.41l7.59 7.59a2.41 2.41 0 0 0 3.41 0l7.59-7.59a2.41 2.41 0 0 0 0-3.41l-7.59-7.59a2.41 2.41 0 0 0-3.41 0Z"/>
+          </svg>
+          <span class="text-lg font-bold tracking-tight text-zinc-900 dark:text-white">ARC</span>
+        <% end %>
+      </div>
+
+      <%# Header %>
+      <div class="mb-8">
+        <h1 class="text-4xl md:text-5xl font-bold tracking-tight text-zinc-900 dark:text-white mb-3">
+          Welcome Back
+        </h1>
+        <p class="text-base text-zinc-500 dark:text-zinc-400 leading-relaxed">
+          Sign in to your ARC account and reconnect with the Ruby community
+        </p>
+      </div>
+
+      <%# Error messages %>
+      <% if resource.errors.any? %>
+        <div class="mb-6 rounded-lg border border-red-200 dark:border-red-800 bg-red-50 dark:bg-red-950/30 px-4 py-3">
+          <ul class="text-sm text-red-600 dark:text-red-400 space-y-1">
+            <% resource.errors.full_messages.each do |msg| %>
+              <li><%= msg %></li>
+            <% end %>
+          </ul>
         </div>
       <% end %>
 
-      <div class="divider"></div>
-      <%= render "devise/shared/links" %>
+      <%# Form %>
+      <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+        <div class="space-y-5">
+
+          <%# Email %>
+          <div class="space-y-1.5">
+            <%= f.label :email, "Email Address",
+                class: "block text-sm font-semibold text-zinc-900 dark:text-white" %>
+            <div class="relative group">
+              <svg class="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-zinc-400 pointer-events-none"
+                   xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                   stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect width="20" height="16" x="2" y="4" rx="2"/>
+                <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+              </svg>
+              <%= f.email_field :email,
+                  autofocus: true, autocomplete: "email",
+                  placeholder: "you@example.com",
+                  class: "w-full h-12 pl-10 pr-4 rounded-md border border-zinc-200 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-800/50 text-zinc-900 dark:text-white placeholder-zinc-400 dark:placeholder-zinc-500 text-sm focus:outline-none focus:ring-2 focus:ring-red-500/30 focus:border-red-500/50 transition-colors" %>
+            </div>
+          </div>
+
+          <%# Password %>
+          <div class="space-y-1.5">
+            <div class="flex items-center justify-between">
+              <%= f.label :password, "Password",
+                  class: "block text-sm font-semibold text-zinc-900 dark:text-white" %>
+              <% if devise_mapping.recoverable? %>
+                <%= link_to "Forgot password?", new_password_path(resource_name),
+                    class: "text-xs text-red-500 hover:text-red-600 font-medium transition-colors" %>
+              <% end %>
+            </div>
+            <div class="relative group">
+              <svg class="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-zinc-400 pointer-events-none"
+                   xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                   stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect width="18" height="11" x="3" y="11" rx="2" ry="2"/>
+                <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+              </svg>
+              <%= f.password_field :password,
+                  autocomplete: "current-password",
+                  placeholder: "••••••••",
+                  class: "w-full h-12 pl-10 pr-4 rounded-md border border-zinc-200 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-800/50 text-zinc-900 dark:text-white placeholder-zinc-400 dark:placeholder-zinc-500 text-sm focus:outline-none focus:ring-2 focus:ring-red-500/30 focus:border-red-500/50 transition-colors" %>
+            </div>
+          </div>
+
+          <%# Remember me %>
+          <% if devise_mapping.rememberable? %>
+            <label class="flex items-center gap-2 cursor-pointer">
+              <%= f.check_box :remember_me,
+                  class: "h-4 w-4 rounded border-zinc-300 dark:border-zinc-600 text-red-500 focus:ring-red-500/30" %>
+              <span class="text-sm text-zinc-500 dark:text-zinc-400">Remember me</span>
+            </label>
+          <% end %>
+
+          <%# Submit %>
+          <%= f.submit "Sign In",
+              class: "w-full h-12 mt-3 rounded-md bg-red-600 text-white text-sm font-semibold hover:bg-red-700 active:bg-red-800 transition-colors cursor-pointer shadow-lg shadow-red-500/20" %>
+        </div>
+      <% end %>
+
+      <%# Divider %>
+      <% if devise_mapping.omniauthable? %>
+        <div class="my-8 flex items-center gap-3">
+          <div class="flex-1 h-px bg-zinc-200 dark:bg-zinc-700"></div>
+          <span class="text-xs font-medium text-zinc-400 dark:text-zinc-500 uppercase tracking-wide">Or continue with</span>
+          <div class="flex-1 h-px bg-zinc-200 dark:bg-zinc-700"></div>
+        </div>
+        <% resource_class.omniauth_providers.each do |provider| %>
+          <%= link_to omniauth_authorize_path(resource_name, provider), method: :post,
+              class: "flex w-full h-12 items-center justify-center gap-2 rounded-md border border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-800/50 text-sm font-medium text-zinc-700 dark:text-zinc-300 hover:bg-zinc-50 dark:hover:bg-zinc-800 hover:border-zinc-300 dark:hover:border-zinc-600 transition-all mb-3" do %>
+            <svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
+            </svg>
+            Sign in with <%= OmniAuth::Utils.camelize(provider) %>
+          <% end %>
+        <% end %>
+      <% end %>
+
+      <%# Sign up link %>
+      <p class="text-center text-sm text-zinc-500 dark:text-zinc-400 mt-8">
+        Don't have an account?
+        <%= link_to "Create one", new_registration_path(resource_name),
+            class: "text-red-500 hover:text-red-600 font-medium transition-colors" %>
+      </p>
+
+      <%# Footer links %>
+      <div class="mt-12 pt-8 border-t border-zinc-200 dark:border-zinc-800 flex gap-4 text-xs text-zinc-400 dark:text-zinc-500">
+        <a href="#" class="hover:text-zinc-600 dark:hover:text-zinc-300 transition-colors">Terms</a>
+        <a href="#" class="hover:text-zinc-600 dark:hover:text-zinc-300 transition-colors">Privacy</a>
+        <a href="mailto:organisers@rubycommunity.africa" class="hover:text-zinc-600 dark:hover:text-zinc-300 transition-colors">Contact</a>
+      </div>
+
     </div>
   </div>
+
+  <%# Right — community image %>
+  <div class="hidden lg:flex flex-col relative overflow-hidden">
+    <%= image_tag 'auth-community.jpg', alt: "Ruby Community",
+        class: "absolute inset-0 w-full h-full object-cover" %>
+    <div class="absolute inset-0" style="background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.4) 50%, transparent 100%)"></div>
+
+    <div class="absolute inset-0 flex flex-col items-start justify-end p-12 text-white">
+      <div class="max-w-sm">
+        <h2 class="text-2xl md:text-3xl font-bold tracking-tight mb-3">
+          Join a Vibrant Community
+        </h2>
+        <p class="text-white/80 text-sm leading-relaxed mb-6">
+          Connect with Ruby developers across Africa, share knowledge, collaborate on projects, and grow together.
+        </p>
+        <div class="flex items-center gap-2 text-sm text-white/70">
+          <span class="h-1.5 w-1.5 rounded-full bg-red-500"></span>
+          Active in 4 East African countries
+        </div>
+      </div>
+    </div>
+  </div>
+
 </div>

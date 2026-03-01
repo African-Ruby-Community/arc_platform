@@ -25,7 +25,7 @@
   <div class="bg-white dark:bg-zinc-950 transition-colors duration-300">
     <%= render 'layouts/navbar' %>
 
-    <main class="mx-8 pt-16" style="min-height: 45vh">
+    <main class="<%= content_for?(:full_width) ? 'pt-16' : 'mx-8 pt-16' %>" style="min-height: 45vh">
       <%= yield %>
     </main>
 
