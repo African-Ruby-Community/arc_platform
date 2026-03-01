@@ -1,100 +1,111 @@
-<navbar class="sticky top-0 z-50 font-inter">
-  <div class="bg-black border-b border-gray-800">
-    <div class="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
-      <!-- Mobile hamburger -->
-      <div class="dropdown">
-        <label tabindex="0" class="btn btn-ghost text-white md:hidden">
-          <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/>
-          </svg>
-        </label>
-        <ul tabindex="0" class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-gray-900 text-white rounded-box w-52 md:hidden">
-          <li><%= link_to 'Home', root_path, class: "hover:text-red-400" %></li>
-          <li><%= link_to 'About', landing_about_path, class: "hover:text-red-400" %></li>
-          <li><a href="#activities" class="hover:text-red-400">Activities</a></li>
-          <li><%= link_to 'Chapters', chapters_path, class: "hover:text-red-400" %></li>
-          <li><a href="#featured-sponsors" class="hover:text-red-400">Sponsors</a></li>
-          <% if FeatureFlag.find_by(name: 'projects').try(:enabled) %>
-            <li><a href="#" class="hover:text-red-400">Projects</a></li>
-          <% end %>
-          <% if user_signed_in? %>
-            <li><%= button_to "Sign out", destroy_user_session_path, method: :delete, class: "hover:text-red-400" %></li>
-          <% else %>
-            <li><%= link_to 'Sign in', new_user_session_path, class: "hover:text-red-400" %></li>
-            <li><%= link_to 'Join Us', new_user_registration_path, class: "hover:text-red-400" %></li>
-          <% end %>
-        </ul>
-      </div>
+<header class="fixed top-0 left-0 right-0 z-50 border-b border-white/10 bg-black/80 backdrop-blur-xl"
+        id="main-navbar"
+        data-turbo-permanent
+        data-controller="navbar">
 
-      <!-- Logo -->
-      <div class="flex justify-start lg:w-0 lg:flex-1">
-        <%= link_to root_path do %>
-          <span class="sr-only">African Ruby Community</span>
-          <%= image_tag('arc_logo_coloured.png', alt: "Community Logo", class: "h-8 w-auto sm:h-7") %>
-        <% end %>
-      </div>
+  <nav class="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
 
-      <!-- Desktop nav -->
-      <nav class="hidden space-x-7 md:flex font-medium text-zinc-300 text-sm py-4 tracking-wide">
-        <%= link_to 'Home', root_path, class: "hover:text-white transition-colors" %>
-        <%= link_to 'About', landing_about_path, class: "hover:text-white transition-colors" %>
-        <a href="#activities" class="hover:text-white transition-colors">Activities</a>
-        <%= link_to 'Chapters', chapters_path, class: "hover:text-white transition-colors" %>
-        <a href="#featured-sponsors" class="hover:text-white transition-colors">Sponsors</a>
-        <% if FeatureFlag.find_by(name: 'projects').try(:enabled) %>
-          <a href="#" class="hover:text-white transition-colors">Projects</a>
-        <% end %>
-      </nav>
+    <%# Logo %>
+    <%= link_to root_path, class: "flex items-center gap-2 shrink-0" do %>
+      <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none"
+           stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+           class="text-red-500">
+        <path d="M2.7 10.3a2.41 2.41 0 0 0 0 3.41l7.59 7.59a2.41 2.41 0 0 0 3.41 0l7.59-7.59a2.41 2.41 0 0 0 0-3.41l-7.59-7.59a2.41 2.41 0 0 0-3.41 0Z"/>
+      </svg>
+      <span class="text-xl font-bold tracking-tight text-white">ARC</span>
+    <% end %>
 
-      <!-- Auth buttons -->
+    <%# Desktop nav links %>
+    <ul class="hidden items-center gap-8 md:flex">
+      <li><%= link_to 'Home', root_path, class: "text-sm text-zinc-400 transition-colors hover:text-white" %></li>
+      <li><%= link_to 'About', landing_about_path, class: "text-sm text-zinc-400 transition-colors hover:text-white" %></li>
+      <li><a href="#activities" class="text-sm text-zinc-400 transition-colors hover:text-white">Activities</a></li>
+      <li><%= link_to 'Chapters', chapters_path, class: "text-sm text-zinc-400 transition-colors hover:text-white" %></li>
+      <li><a href="#featured-sponsors" class="text-sm text-zinc-400 transition-colors hover:text-white">Sponsors</a></li>
+      <% if FeatureFlag.find_by(name: 'projects').try(:enabled) %>
+        <li><a href="#" class="text-sm text-zinc-400 transition-colors hover:text-white">Projects</a></li>
+      <% end %>
+    </ul>
+
+    <%# Desktop auth buttons %>
+    <div class="hidden items-center gap-2 md:flex">
       <% if user_signed_in? %>
-        <div class="hidden items-center justify-end gap-4 md:flex md:flex-1 lg:w-0">
-          <% if current_user.organization_admin? %>
-            <div class="dropdown dropdown-end">
-              <button class="text-white hover:text-red-400 transition-colors">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <circle cx="12" cy="12" r="3"></circle>
-                  <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
-                </svg>
-              </button>
-              <ul tabindex="0" class="menu dropdown-content p-2 shadow bg-gray-900 text-white rounded-box w-52 mt-4">
-                <li>
-                  <div class="grid grid-cols-1 divide-y divide-gray-700">
-                    <b>Settings</b>
-                    <div/>
-                  </div>
-                </li>
-                <li><%= link_to 'Countries', countries_path, class: "hover:text-red-400" %></li>
-                <li><%= link_to 'Chapters', chapters_path, class: "hover:text-red-400" %></li>
-              </ul>
-            </div>
-          <% end %>
-
+        <% if current_user.organization_admin? %>
           <div class="dropdown dropdown-end">
-            <button class="text-white hover:text-red-400 transition-colors">
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-                <circle cx="12" cy="7" r="4"></circle>
-              </svg>
+            <button class="rounded-md px-3 py-1.5 text-sm text-zinc-400 hover:bg-zinc-800 hover:text-white transition-colors">
+              Settings
             </button>
-            <ul tabindex="0" class="menu dropdown-content p-2 shadow bg-gray-900 text-white rounded-box w-52 mt-4">
-              <li><%= link_to 'Update profile', edit_user_registration_path, class: "hover:text-red-400" %></li>
+            <ul tabindex="0" class="menu dropdown-content p-2 shadow bg-zinc-900 border border-zinc-800 rounded-md w-44 mt-2">
+              <li><%= link_to 'Countries', countries_path, class: "text-sm text-zinc-300 hover:text-white" %></li>
+              <li><%= link_to 'Chapters', chapters_path, class: "text-sm text-zinc-300 hover:text-white" %></li>
             </ul>
           </div>
-
-          <%= button_to "Sign out", destroy_user_session_path, method: :delete,
-              class: "text-sm font-semibold text-gray-300 hover:text-red-400 transition-colors" %>
+        <% end %>
+        <div class="dropdown dropdown-end">
+          <button class="rounded-md px-3 py-1.5 text-sm text-zinc-400 hover:bg-zinc-800 hover:text-white transition-colors">
+            Account
+          </button>
+          <ul tabindex="0" class="menu dropdown-content p-2 shadow bg-zinc-900 border border-zinc-800 rounded-md w-44 mt-2">
+            <li><%= link_to 'Update profile', edit_user_registration_path, class: "text-sm text-zinc-300 hover:text-white" %></li>
+          </ul>
         </div>
+        <%= button_to "Sign out", destroy_user_session_path, method: :delete,
+            class: "rounded-md px-3 py-1.5 text-sm text-zinc-400 hover:bg-zinc-800 hover:text-white transition-colors" %>
       <% else %>
-        <div class="hidden items-center justify-end gap-2.5 md:flex md:flex-1 lg:w-0">
-          <%= link_to new_user_session_path do %>
-            <button class="border border-zinc-600 rounded-full py-1.5 px-4 text-sm text-zinc-200 hover:border-zinc-400 hover:text-white font-medium transition-colors tracking-wide">Sign In</button>
-          <% end %>
-          <%= link_to new_user_registration_path do %>
-            <button class="bg-red-600 rounded-full py-1.5 px-4 text-sm text-white hover:bg-red-700 font-medium transition-colors tracking-wide">Join Us</button>
-          <% end %>
-        </div>
+        <%= link_to "Sign in", new_user_session_path,
+            class: "rounded-md px-3 py-1.5 text-sm text-zinc-400 hover:bg-zinc-800 hover:text-white transition-colors font-medium" %>
+        <%= link_to "Join Us", new_user_registration_path,
+            class: "rounded-md bg-red-600 px-3 py-1.5 text-sm text-white hover:bg-red-700 transition-colors font-medium" %>
       <% end %>
     </div>
+
+    <%# Mobile menu button %>
+    <button class="text-zinc-400 hover:text-white transition-colors md:hidden"
+            data-action="click->navbar#toggle"
+            aria-label="Toggle menu">
+      <svg data-navbar-target="openIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+           viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+           stroke-linecap="round" stroke-linejoin="round">
+        <line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/>
+      </svg>
+      <svg data-navbar-target="closeIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+           viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+           stroke-linecap="round" stroke-linejoin="round" class="hidden">
+        <path d="M18 6 6 18"/><path d="m6 6 12 12"/>
+      </svg>
+    </button>
+
+  </nav>
+
+  <%# Mobile menu panel %>
+  <div data-navbar-target="menu" class="hidden border-t border-white/10 bg-black/95 backdrop-blur-xl md:hidden">
+    <div class="flex flex-col gap-1 px-6 py-4">
+      <%= link_to 'Home', root_path,
+          class: "rounded-lg px-3 py-2.5 text-sm text-zinc-400 transition-colors hover:bg-zinc-800/60 hover:text-white",
+          data: { action: "click->navbar#close" } %>
+      <%= link_to 'About', landing_about_path,
+          class: "rounded-lg px-3 py-2.5 text-sm text-zinc-400 transition-colors hover:bg-zinc-800/60 hover:text-white",
+          data: { action: "click->navbar#close" } %>
+      <a href="#activities" data-action="click->navbar#close"
+         class="rounded-lg px-3 py-2.5 text-sm text-zinc-400 transition-colors hover:bg-zinc-800/60 hover:text-white">Activities</a>
+      <%= link_to 'Chapters', chapters_path,
+          class: "rounded-lg px-3 py-2.5 text-sm text-zinc-400 transition-colors hover:bg-zinc-800/60 hover:text-white",
+          data: { action: "click->navbar#close" } %>
+      <a href="#featured-sponsors" data-action="click->navbar#close"
+         class="rounded-lg px-3 py-2.5 text-sm text-zinc-400 transition-colors hover:bg-zinc-800/60 hover:text-white">Sponsors</a>
+
+      <div class="mt-3 flex flex-col gap-2">
+        <% if user_signed_in? %>
+          <%= button_to "Sign out", destroy_user_session_path, method: :delete,
+              class: "w-full rounded-md border border-zinc-700 px-3 py-2 text-sm text-zinc-300 hover:bg-zinc-800 hover:text-white transition-colors font-medium" %>
+        <% else %>
+          <%= link_to "Sign in", new_user_session_path,
+              class: "rounded-md border border-zinc-700 px-3 py-2 text-sm text-center text-zinc-300 hover:bg-zinc-800 hover:text-white transition-colors font-medium" %>
+          <%= link_to "Join Us", new_user_registration_path,
+              class: "rounded-md bg-red-600 px-3 py-2 text-sm text-center text-white hover:bg-red-700 transition-colors font-medium" %>
+        <% end %>
+      </div>
+    </div>
   </div>
-</navbar>
+
+</header>

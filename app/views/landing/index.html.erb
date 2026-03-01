@@ -1,4 +1,5 @@
 <%= render 'landing/home/intro' %>
+<%= render 'landing/home/stats' %>
 
 <% if FeatureFlag.find_by(name: 'events').try(:enabled) %>
   <%= render 'landing/home/coming_up_events' %>

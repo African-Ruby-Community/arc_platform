@@ -12,3 +12,6 @@ application.register("removals", RemovalsController)
 
 import TurboFramesController from "./turbo_frames_controller.js"
 application.register("turbo_frames", TurboFramesController)
+
+import NavbarController from "./navbar_controller.js"
+application.register("navbar", NavbarController)

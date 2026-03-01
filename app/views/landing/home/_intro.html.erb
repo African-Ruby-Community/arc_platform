@@ -1,29 +1,37 @@
-<section class="relative -mx-8 overflow-hidden" style="min-height: 88vh;">
-  <%= image_tag 'hero-community.jpg', alt: "ARC Community Event", class: "absolute inset-0 w-full h-full object-cover object-center" %>
-  <div class="absolute inset-0 bg-black/90"></div>
+<section class="relative flex min-h-screen items-center overflow-hidden -mx-8 -mt-16 pt-20">
 
-  <div class="relative z-10 flex flex-col justify-end h-full px-8 md:px-16 lg:px-24 pb-16 md:pb-24" style="min-height: 88vh;">
-    <div class="max-w-2xl">
-      <span class="inline-flex items-center gap-2 text-white/90 text-xs font-medium px-3 py-1.5 rounded-full mb-8 border border-red-500/50 bg-red-600/10 w-fit tracking-wide uppercase">
-        <span class="w-1.5 h-1.5 bg-red-500 rounded-full inline-block"></span>
+  <%# Background image %>
+  <div class="absolute inset-0 z-0">
+    <%= image_tag 'hero-community.jpg', alt: "African Ruby Community gathering",
+        class: "w-full h-full object-cover" %>
+    <%# Flat dark overlay — matches bg-background/85 %>
+    <div class="absolute inset-0" style="background: rgba(0,0,0,0.85);"></div>
+    <%# Top-and-bottom gradient — matches bg-gradient-to-b from-background via-transparent to-background %>
+    <div class="absolute inset-0" style="background: linear-gradient(to bottom, #000 0%, transparent 40%, transparent 60%, #000 100%);"></div>
+  </div>
+
+  <div class="relative z-10 mx-auto w-full max-w-7xl px-6 py-24 md:py-32">
+    <div class="max-w-3xl">
+
+      <div class="mb-6 inline-flex items-center gap-2 rounded-full border border-red-500/30 bg-red-500/10 px-4 py-1.5 text-sm text-red-500">
+        <span class="inline-block h-1.5 w-1.5 rounded-full bg-red-500"></span>
         RubyConf Africa 2025
-      </span>
+      </div>
 
-      <h1 class="text-5xl md:text-6xl lg:text-7xl font-extrabold text-white leading-[1.05] tracking-tight mb-6">
-        Building the<br>
-        future <span class="text-red-500">with Ruby</span><br>
+      <h1 class="text-5xl font-extrabold leading-tight tracking-tight text-white md:text-7xl lg:text-8xl">
+        Building the future
+        <span class="text-red-500">with Ruby</span>
         in Africa.
       </h1>
 
-      <p class="text-zinc-400 text-base md:text-lg mb-10 max-w-md leading-relaxed font-normal">
-        A community of 5,000+ developers, entrepreneurs, and
-        designers across East Africa united by their passion for Ruby
-        and open-source software.
+      <p class="mt-6 max-w-xl text-lg leading-relaxed text-zinc-400 md:text-xl">
+        A community of 5,000+ developers, entrepreneurs, and designers across
+        East Africa united by their passion for Ruby and open-source software.
       </p>
 
-      <div class="flex flex-wrap items-center gap-3">
+      <div class="mt-10 flex flex-col gap-4 sm:flex-row">
         <%= link_to new_user_registration_path,
-            class: "inline-flex items-center gap-2 bg-red-600 text-white text-sm px-5 py-2.5 rounded-full font-semibold hover:bg-red-700 transition-colors tracking-wide" do %>
+            class: "inline-flex items-center justify-center gap-2 bg-red-600 text-white text-base px-6 py-3 rounded-md font-semibold hover:bg-red-700 transition-colors" do %>
           Join the Community
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-4 h-4">
             <path fill-rule="evenodd" d="M2 10a.75.75 0 01.75-.75h12.59l-2.1-1.95a.75.75 0 111.02-1.1l3.5 3.25a.75.75 0 010 1.1l-3.5 3.25a.75.75 0 11-1.02-1.1l2.1-1.95H2.75A.75.75 0 012 10z" clip-rule="evenodd"/>
@@ -31,10 +39,12 @@
         <% end %>
 
         <%= link_to landing_about_path,
-            class: "inline-flex items-center text-zinc-300 text-sm font-medium px-4 py-2.5 hover:text-white transition-colors tracking-wide" do %>
+            class: "inline-flex items-center justify-center text-base px-6 py-3 rounded-md font-semibold border border-zinc-600 text-zinc-200 hover:bg-zinc-800 hover:text-white transition-colors" do %>
           Learn More
         <% end %>
       </div>
+
     </div>
   </div>
+
 </section>
