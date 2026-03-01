@@ -2,19 +2,79 @@
 
 module ChaptersHelper
   ACTIVITIES = [
-    { image: 'activities_local_meetups.png', title_key: 'activities.meetups' },
-    { image: 'activities_local_conferences.png', title_key: 'activities.conferences' },
-    { image: 'activities_local_programming.png', title_key: 'activities.programming' },
-    { image: 'activities_local_workshops.png', title_key: 'activities.workshops' },
-    { image: 'activities_local_hackathons.png', title_key: 'activities.hackathons' }
+    {
+      image: 'activities_local_meetups.png',
+      title: 'Local Meetups',
+      description: 'Monthly gatherings in cities across East Africa where developers share knowledge and network.',
+      svg_paths: '<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>'
+    },
+    {
+      image: 'activities_local_conferences.png',
+      title: 'Conferences',
+      description: 'RubyConf Africa brings together the best minds in the Ruby ecosystem for talks, workshops, and collaboration.',
+      svg_paths: '<path d="M2 3h20"/><path d="M21 3v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V3"/><path d="m7 21 5-5 5 5"/>'
+    },
+    {
+      image: 'activities_local_programming.png',
+      title: 'Programming',
+      description: 'Collaborative coding sessions, pair programming, and open-source contributions to the global Ruby ecosystem.',
+      svg_paths: '<path d="m18 16 4-4-4-4"/><path d="m6 8-4 4 4 4"/><path d="m14.5 4-5 16"/>'
+    },
+    {
+      image: 'activities_local_workshops.png',
+      title: 'Workshops',
+      description: 'Hands-on workshops for all skill levels, from Ruby fundamentals to advanced Rails development.',
+      svg_paths: '<path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>'
+    },
+    {
+      image: 'activities_local_hackathons.png',
+      title: 'Hackathons',
+      description: 'Competitive hackathons challenging developers to build innovative solutions using Ruby technologies.',
+      svg_paths: '<path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/>'
+    }
   ].freeze
 
   CHAPTERS = [
-    { country_key: 'chapters.countries.kenya', image: 'country_kenya.png', alt_key: 'chapters.alt_text.nairuby' },
-    { country_key: 'chapters.countries.rwanda', image: 'country_rwanda.png', alt_key: 'chapters.alt_text.arc_rwanda' },
-    { country_key: 'chapters.countries.tanzania', image: 'country_tanzania.png',
-      alt_key: 'chapters.alt_text.arc_tanzania' },
-    { country_key: 'chapters.countries.uganda', image: 'country_uganda.png', alt_key: 'chapters.alt_text.arc_uganda' }
+    {
+      country: 'Kenya',
+      community: 'Nairuby (ARC Nairobi)',
+      location: 'Nairobi, Kenya',
+      members: '2,000+',
+      description: 'Our largest and flagship chapter, hosting weekly meetups and leading community initiatives across Kenya.',
+      meetup_frequency: 'Weekly on Wednesdays',
+      image: 'country_kenya.png',
+      alt: 'Nairuby'
+    },
+    {
+      country: 'Uganda',
+      community: 'ARC Kampala',
+      location: 'Kampala, Uganda',
+      members: '800+',
+      description: 'A vibrant community of developers fostering Ruby adoption and entrepreneurship in Uganda.',
+      meetup_frequency: 'Bi-weekly meetups',
+      image: 'country_uganda.png',
+      alt: 'ARC Uganda'
+    },
+    {
+      country: 'Rwanda',
+      community: 'ARC Kigali',
+      location: 'Kigali, Rwanda',
+      members: '600+',
+      description: 'Growing community connecting developers across Rwanda and promoting Ruby skills.',
+      meetup_frequency: 'Monthly meetups',
+      image: 'country_rwanda.png',
+      alt: 'ARC Rwanda'
+    },
+    {
+      country: 'Tanzania',
+      community: 'ARC Dar es Salaam',
+      location: 'Dar es Salaam, Tanzania',
+      members: '500+',
+      description: 'Building the developer community and tech ecosystem in Tanzania\'s commercial hub.',
+      meetup_frequency: 'Monthly meetups',
+      image: 'country_tanzania.png',
+      alt: 'ARC Tanzania'
+    }
   ].freeze
 
   FEATURED_SPONSORS = [
@@ -118,9 +178,7 @@ module ChaptersHelper
   ].freeze
 
   def activities
-    ACTIVITIES.map do |activity|
-      activity.merge(title: I18n.t(activity[:title_key]))
-    end
+    ACTIVITIES
   end
 
   def chapters
