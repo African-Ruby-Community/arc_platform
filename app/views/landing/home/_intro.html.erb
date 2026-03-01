@@ -4,19 +4,29 @@
   <div class="absolute inset-0 z-0">
     <%= image_tag 'hero-community.jpg', alt: "African Ruby Community gathering",
         class: "w-full h-full object-cover" %>
-    <%# Flat overlay — white/85 in light mode, black/85 in dark mode %>
-    <div class="absolute inset-0 bg-white/80 dark:bg-black/85 transition-colors duration-300"></div>
-    <%# Top-and-bottom gradient — burns in page background at edges %>
-    <div class="absolute inset-0 bg-gradient-to-b from-white via-transparent to-white dark:from-black dark:via-transparent dark:to-black transition-colors duration-300"></div>
+
+    <%# Light mode overlay — hidden when dark class is present %>
+    <div class="absolute inset-0 dark:hidden"
+         style="background: linear-gradient(to bottom, rgba(255,255,255,0.97) 0%, rgba(255,255,255,0.75) 35%, rgba(255,255,255,0.75) 65%, rgba(255,255,255,0.97) 100%)"></div>
+
+    <%# Dark mode overlay — only visible when dark class is present %>
+    <div class="absolute inset-0 hidden dark:block"
+         style="background: rgba(0,0,0,0.85)"></div>
+    <div class="absolute inset-0 hidden dark:block"
+         style="background: linear-gradient(to bottom, #000 0%, transparent 40%, transparent 60%, #000 100%)"></div>
   </div>
 
   <div class="relative z-10 mx-auto w-full max-w-7xl px-6 py-24 md:py-32">
     <div class="max-w-3xl">
 
-      <div class="mb-6 inline-flex items-center gap-2 rounded-full border border-red-500/30 bg-red-500/10 px-4 py-1.5 text-sm text-red-500">
-        <span class="inline-block h-1.5 w-1.5 rounded-full bg-red-500"></span>
-        RubyConf Africa 2025
-      </div>
+      <%= link_to "https://rubyconf.africa/", target: "_blank",
+          class: "mb-6 inline-flex items-center gap-2 rounded-full border border-red-500/30 bg-red-500/10 px-4 py-1.5 text-sm text-red-500 hover:bg-red-500/20 transition-colors" do %>
+        <span class="relative inline-flex h-1.5 w-1.5">
+          <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-red-500 opacity-75"></span>
+          <span class="relative inline-flex h-1.5 w-1.5 rounded-full bg-red-500"></span>
+        </span>
+        RubyConf Africa <%= Time.now.year %>
+      <% end %>
 
       <h1 class="text-5xl font-extrabold leading-tight tracking-tight text-zinc-900 dark:text-white md:text-7xl lg:text-8xl transition-colors duration-300">
         Building the future
