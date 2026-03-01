@@ -1,34 +1,17 @@
-<!--<div class="container mx-auto px-20 bg-zinc-50">-->
-<!--  <h1 class="pt-16 text-4xl text-red-600 font-bold text-center">-->
-<!--    Featured Sponsors-->
-<!--  </h1>-->
+<div id="featured-sponsors" class="py-24 md:py-32 bg-zinc-50 dark:bg-zinc-900 transition-colors duration-300">
+  <div class="mx-auto max-w-7xl px-6">
+    <h2 class="pb-12 text-4xl font-bold text-center text-zinc-900 dark:text-white tracking-tight">
+      Featured Sponsors
+    </h2>
 
-<!--  <div class="grid md:grid-cols-2 grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 gap-2 px-20 place-content-center">-->
-<%# featured_sponsors.each do |sponsor| %>
-<%#= link_to sponsor[:link], target: '_blank' do %>
-<!--        <div class="items-center justify-center w-36 h-40 card place-items-center">-->
-<%#= image_tag sponsor[:image], alt: sponsor[:alt] %>
-<!--        </div>-->
-<%# end %>
-<%# end %>
-<!--  </div>-->
-<!--</div>-->
-
-<div id="featured-sponsors" class="container mx-auto px-20 bg-zinc-50">
-  <h1 class="pt-16 pb-12 text-4xl text-red-600 font-bold text-center">
-    Featured Sponsors
-  </h1>
-
-  <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6 px-20 place-content-center">
-    <% featured_sponsors.each do |sponsor| %>
-      <%= link_to sponsor[:link], target: '_blank' do %>
-        <div class="flex items-center justify-center w-full">
-          <div class="min-w-[8rem] min-h-[8rem] max-w-[9rem] max-h-[9rem] lg:max-w-[8rem] lg:max-h-[8rem] xl:max-w-[12rem] xl:max-h-[12rem] card flex items-center justify-center overflow-hidden">
-            <%= image_tag sponsor[:image], alt: sponsor[:alt], class: 'w-full h-full object-contain' %>
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6 place-content-center">
+      <% featured_sponsors.each do |sponsor| %>
+        <%= link_to sponsor[:link], target: '_blank' do %>
+          <div class="flex items-center justify-center rounded-xl border border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-800 p-6 hover:border-red-300 dark:hover:border-red-500/50 transition-colors">
+            <%= image_tag sponsor[:image], alt: sponsor[:alt], class: 'max-h-12 w-auto object-contain' %>
           </div>
-        </div>
+        <% end %>
       <% end %>
-    <% end %>
+    </div>
   </div>
-
 </div>

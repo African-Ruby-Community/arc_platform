@@ -8,13 +8,21 @@
   <%= csp_meta_tag %>
   <%= favicon_link_tag 'favicon.ico' %>
 
+  <%# Prevent dark mode flash — runs before paint %>
+  <script>
+    if (localStorage.theme === 'dark') {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+  </script>
+
   <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
   <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
 </head>
 
-<body>
-  <div class="bg-white">
-
+<body data-controller="theme">
+  <div class="bg-white dark:bg-zinc-950 transition-colors duration-300">
     <%= render 'layouts/navbar' %>
 
     <main class="mx-8 pt-16" style="min-height: 45vh">

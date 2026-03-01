@@ -15,3 +15,6 @@ application.register("turbo_frames", TurboFramesController)
 
 import NavbarController from "./navbar_controller.js"
 application.register("navbar", NavbarController)
+
+import ThemeController from "./theme_controller.js"
+application.register("theme", ThemeController)
