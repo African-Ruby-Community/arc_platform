@@ -1,62 +1,40 @@
-<div class="text-center rounded-box mx-auto relative">
-  <div class="relative">
-    <%= image_tag 'intro-landing.jpg', alt: "Ruby Conf Africa 2025", class: "w-full object-cover rounded-lg" %>
-    <div class="absolute inset-0 bg-black bg-opacity-40 rounded-lg"></div>
-    <div class="absolute inset-0 flex items-center justify-center">
-    <%= link_to "https://rubyconf.africa", title: "Click to visit Ruby Conf Africa 2025", class: "block relative z-10" do %>
-      <div class="text-center">
-      <span class="text-2xl md:text-4xl font-extrabold text-white bg-red-600 bg-opacity-90 px-6 py-3 rounded-lg shadow-lg inline-block transform hover:scale-105 transition-transform duration-300 sm:inline-block group-hover:inline-block">
-        Ruby Conf Africa 2025 🔗
-        <p class="mt-4 text-white text-lg md:text-lg font-medium hidden sm:block">Join the largest Ruby conference in Africa!</p>
+<section class="relative -mx-8 overflow-hidden" style="min-height: 88vh;">
+  <%= image_tag 'hero-community.jpg', alt: "ARC Community Event", class: "absolute inset-0 w-full h-full object-cover object-center" %>
+  <div class="absolute inset-0 bg-black/90"></div>
+
+  <div class="relative z-10 flex flex-col justify-end h-full px-8 md:px-16 lg:px-24 pb-16 md:pb-24" style="min-height: 88vh;">
+    <div class="max-w-2xl">
+      <span class="inline-flex items-center gap-2 text-white/90 text-xs font-medium px-3 py-1.5 rounded-full mb-8 border border-red-500/50 bg-red-600/10 w-fit tracking-wide uppercase">
+        <span class="w-1.5 h-1.5 bg-red-500 rounded-full inline-block"></span>
+        RubyConf Africa 2025
       </span>
-    <% end %>
-    </div>
-  </div>
-</div>
 
-<div class="grid md:grid-cols-2 pt-10 pb-10 gap-10">
-  <div class="md:pt-12 md:px-12 flex flex-col gap-8 text-center md:text-left">
-    <h1 class="text-5xl font-semibold capitalize text-red-600 leading-[60px]">
-      African Ruby Community
-    </h1>
+      <h1 class="text-5xl md:text-6xl lg:text-7xl font-extrabold text-white leading-[1.05] tracking-tight mb-6">
+        Building the<br>
+        future <span class="text-red-500">with Ruby</span><br>
+        in Africa.
+      </h1>
 
-    <p class="text-base sm:w-3/4 leading-7 text-black font-normal mx-auto md:mx-0">
-      A community organization that seeks to promote computer software programming skills with
-      the Ruby programming language.
-    </p>
+      <p class="text-zinc-400 text-base md:text-lg mb-10 max-w-md leading-relaxed font-normal">
+        A community of 5,000+ developers, entrepreneurs, and
+        designers across East Africa united by their passion for Ruby
+        and open-source software.
+      </p>
 
-    <div class="flex justify-center md:justify-start">
-      <%= link_to new_user_registration_path do %>
-        <button class="btn btn-primary rounded-full py-4 px-8 text-white flex justify-center items-center gap-2">
-          <span>Join Us</span>
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-4">
-            <path fill-rule="evenodd" d="M2 10a.75.75 0 01.75-.75h12.59l-2.1-1.95a.75.75 0 
-              111.02-1.1l3.5 3.25a.75.75 0 010 1.1l-3.5 3.25a.75.75 0 
-              11-1.02-1.1l2.1-1.95H2.75A.75.75 0 012 10z" clip-rule="evenodd"/>
+      <div class="flex flex-wrap items-center gap-3">
+        <%= link_to new_user_registration_path,
+            class: "inline-flex items-center gap-2 bg-red-600 text-white text-sm px-5 py-2.5 rounded-full font-semibold hover:bg-red-700 transition-colors tracking-wide" do %>
+          Join the Community
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-4 h-4">
+            <path fill-rule="evenodd" d="M2 10a.75.75 0 01.75-.75h12.59l-2.1-1.95a.75.75 0 111.02-1.1l3.5 3.25a.75.75 0 010 1.1l-3.5 3.25a.75.75 0 11-1.02-1.1l2.1-1.95H2.75A.75.75 0 012 10z" clip-rule="evenodd"/>
           </svg>
-        </button>
-      <% end %>
-    </div>
-  </div>
+        <% end %>
 
-  <div class="grid lg:grid-cols-2 grid-cols-1 lg:gap-0 gap-5 lg:-ml-10">
-    <div class="bg-red-600 text-white rounded-lg p-10 w-76 h-40 text flex flex-col gap-3 justify-center items-center hover:scale-105 transition-transform duration-300">
-      <p class="text-5xl font-bold"> 5000 + </p>
-      <p class="text-sm font-semibold">Members across East Africa</p>
-    </div>
-    <div class="rounded-lg lg:-ml-20 hover:scale-105 transition-transform duration-300">
-       <%= image_tag 'developers.jpg', class: 'w-full lg:h-[110%] object-cover rounded-lg lg:rounded-tr-full' %>
-    </div>
-    <div class="lg:-mt-28 rounded-lg hover:scale-105 transition-transform duration-300">
-     <%= image_tag 'conference.jpg', class: 'w-full h-full object-cover rounded-lg lg:rounded-bl-full' %>
-    </div>
-    <div class="bg-red-600 text-white rounded-lg lg:rounded-bl-none lg:rounded-tl-none lg:rounded-tr-none p-10 w-76 h-40 text flex flex-col gap-3 justify-center items-center lg:mt-6 hover:scale-105 transition-transform duration-300">
-      <p class="text-5xl font-bold">
-        <%= Time.now.year - 2010 %> +
-      </p>
-      <p class="text-sm font-semibold">
-        Years of Ruby community
-      </p>
+        <%= link_to landing_about_path,
+            class: "inline-flex items-center text-zinc-300 text-sm font-medium px-4 py-2.5 hover:text-white transition-colors tracking-wide" do %>
+          Learn More
+        <% end %>
+      </div>
     </div>
   </div>
-</div>
+</section>
