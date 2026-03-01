@@ -3,37 +3,27 @@
 <% content_for :full_width do %><% end %>
 
 <%# Hero Section %>
-<section class="relative flex h-[40vh] items-center overflow-hidden -mt-16">
-    <div class="absolute inset-0">
-      <%= image_tag 'hero-community.jpg', alt: "African Ruby Community",
-          class: "w-full h-full object-cover" %>
-      <div class="absolute inset-0 dark:hidden"
-           style="background: linear-gradient(to right, rgba(255,255,255,0.97) 0%, rgba(255,255,255,0.7) 50%, rgba(255,255,255,0.1) 100%)"></div>
-      <div class="absolute inset-0 hidden dark:block"
-           style="background: linear-gradient(to right, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.6) 50%, transparent 100%)"></div>
-    </div>
+<section class="relative flex h-72 items-end overflow-hidden -mt-16">
+  <div class="absolute inset-0">
+    <%= image_tag 'hero-community.jpg', alt: "African Ruby Community",
+        class: "w-full h-full object-cover" %>
+    <div class="absolute inset-0"
+         style="background: linear-gradient(to bottom, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.75) 100%)"></div>
+  </div>
 
-    <div class="relative z-10 mx-auto max-w-7xl px-6 py-32">
-      <div class="max-w-2xl">
-        <h1 class="text-5xl font-extrabold tracking-tight text-zinc-900 dark:text-white md:text-7xl mb-6">
-          About ARC
-        </h1>
-        <p class="text-lg md:text-xl text-zinc-600 dark:text-zinc-400 mb-8 leading-relaxed">
-          Building the future of Ruby programming across Africa through community, innovation, and collaboration.
-        </p>
-        <%= link_to "#mission",
-            class: "inline-flex items-center gap-2 rounded-md bg-red-600 px-6 py-3 text-sm font-semibold text-white hover:bg-red-700 transition-colors" do %>
-          Learn More
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-4 h-4">
-            <path fill-rule="evenodd" d="M2 10a.75.75 0 01.75-.75h12.59l-2.1-1.95a.75.75 0 111.02-1.1l3.5 3.25a.75.75 0 010 1.1l-3.5 3.25a.75.75 0 11-1.02-1.1l2.1-1.95H2.75A.75.75 0 012 10z" clip-rule="evenodd"/>
-          </svg>
-        <% end %>
-      </div>
+    <div class="relative z-10 mx-auto max-w-7xl px-6 pb-10 w-full">
+      <span class="mb-2 inline-block text-xs font-medium uppercase tracking-widest text-red-400">African Ruby Community</span>
+      <h1 class="text-4xl font-extrabold tracking-tight text-white md:text-6xl mb-2">
+        About ARC
+      </h1>
+      <p class="text-base text-zinc-300 leading-relaxed max-w-xl">
+        Building the future of Ruby programming across Africa through community, innovation, and collaboration.
+      </p>
     </div>
   </section>
 
   <%# Mission / Our Story Section %>
-  <section id="mission" class="border-t border-zinc-200/50 dark:border-zinc-800/50 bg-zinc-50 dark:bg-zinc-900 py-24 md:py-32 transition-colors duration-300">
+  <section id="mission" class="bg-zinc-50 dark:bg-zinc-900 pt-10 pb-24 md:pb-32 transition-colors duration-300">
     <div class="mx-auto max-w-7xl px-6">
       <div class="grid md:grid-cols-2 gap-12 items-center">
 

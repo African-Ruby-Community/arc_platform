@@ -6,30 +6,27 @@
 <% chapter_list = @chapters.any? ? @chapters : chapters %>
 
 <%# Hero Section %>
-<section class="relative flex h-[600px] items-center overflow-hidden -mt-16">
+<section class="relative flex h-72 items-end overflow-hidden -mt-16">
   <div class="absolute inset-0">
     <%= image_tag 'hero-community.jpg', alt: "ARC Chapters",
         class: "w-full h-full object-cover" %>
-    <div class="absolute inset-0 dark:hidden"
-         style="background: linear-gradient(to right, rgba(255,255,255,0.97) 0%, rgba(255,255,255,0.6) 50%, rgba(255,255,255,0.1) 100%)"></div>
-    <div class="absolute inset-0 hidden dark:block"
-         style="background: linear-gradient(to right, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.5) 50%, transparent 100%)"></div>
+    <div class="absolute inset-0"
+         style="background: linear-gradient(to bottom, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.75) 100%)"></div>
   </div>
 
-  <div class="relative z-10 mx-auto max-w-7xl px-6 w-full pt-16">
-    <div class="max-w-2xl">
-      <h1 class="text-5xl font-extrabold tracking-tight text-zinc-900 dark:text-white md:text-7xl mb-4">
-        Our Chapters
-      </h1>
-      <p class="text-lg text-zinc-600 dark:text-zinc-400 leading-relaxed">
-        Meet Ruby developers in your city. Connect, learn, and grow with our regional chapters across East Africa.
-      </p>
-    </div>
+  <div class="relative z-10 mx-auto max-w-7xl px-6 pb-10 w-full">
+    <span class="mb-2 inline-block text-xs font-medium uppercase tracking-widest text-red-400">East Africa</span>
+    <h1 class="text-4xl font-extrabold tracking-tight text-white md:text-6xl mb-2">
+      Our Chapters
+    </h1>
+    <p class="text-base text-zinc-300 leading-relaxed max-w-xl">
+      Meet Ruby developers in your city. Connect, learn, and grow with our regional chapters across East Africa.
+    </p>
   </div>
 </section>
 
 <%# Chapters Grid %>
-<section class="border-t border-zinc-200/50 dark:border-zinc-800/50 bg-zinc-50 dark:bg-zinc-900 py-24 md:py-32 transition-colors duration-300">
+<section class="bg-zinc-50 dark:bg-zinc-900 pt-10 pb-24 md:pb-32 transition-colors duration-300">
   <div class="mx-auto max-w-7xl px-6">
 
     <div class="text-center mb-16">
