@@ -30,18 +30,15 @@
         background: linear-gradient(to right, hsl(var(--p)), hsl(var(--b1)));
     }
 
-    @keyframes appear-then-fade {
-        0%, 100% {
-            opacity: 0
-        }
-        5%, 60% {
-            opacity: 1
-        }
+    @keyframes slide-in-fade-out {
+        0%   { opacity: 0; transform: translateX(-16px); }
+        8%   { opacity: 1; transform: translateX(0); }
+        75%  { opacity: 1; transform: translateX(0); }
+        100% { opacity: 0; transform: translateX(-8px); }
     }
 
     .alert_custom_class {
-        animation: appear-then-fade 6s both;
-        margin-top: 50px;
+        animation: slide-in-fade-out 5s cubic-bezier(0.16, 1, 0.3, 1) both;
     }
 
     .text-error {

@@ -1,25 +1,45 @@
-<div class="toast toast-top toast-end" id="flash_messages">
-  <% if notice || alert %>
-    <%= content_tag :div,
-                    class: "alert #{ alert ? 'alert-error' : 'alert-success'} alert_custom_class",
-                    data: { controller: 'removals',
-                            action: 'animationend->removals#remove click->removals#remove_on_click' } do %>
+<% if notice || alert %>
+  <div class="fixed top-20 left-6 z-[100] alert_custom_class"
+       data-controller="removals"
+       data-action="animationend->removals#remove click->removals#remove_on_click">
+    <div class="flex items-start gap-3 rounded-xl border px-4 py-3.5 shadow-lg backdrop-blur-sm min-w-[260px] max-w-sm
+                <%= alert ? 'bg-red-50 dark:bg-red-950/80 border-red-200 dark:border-red-800/60 text-red-900 dark:text-red-200'
+                          : 'bg-white dark:bg-zinc-900 border-zinc-200 dark:border-zinc-700 text-zinc-900 dark:text-zinc-100' %>">
 
-      <!--  Display flash icon on the left-->
-      <% if notice %>
-        <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current flex-shrink-0 h-6 w-6"
-             fill="none" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6
-        2a9 9 0 11-18 0 9 9 0 0118 0z"/>
-      <% elsif alert %>
-        <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current flex-shrink-0 h-6 w-6"
-             fill="none" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0
-        0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+      <%# Icon %>
+      <% if alert %>
+        <svg class="mt-0.5 h-4 w-4 shrink-0 text-red-500" xmlns="http://www.w3.org/2000/svg"
+             viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+             stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"/>
+          <path d="m15 9-6 6"/><path d="m9 9 6 6"/>
+        </svg>
+      <% else %>
+        <svg class="mt-0.5 h-4 w-4 shrink-0 text-emerald-500" xmlns="http://www.w3.org/2000/svg"
+             viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+             stroke-linecap="round" stroke-linejoin="round">
+          <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+          <path d="m9 11 3 3L22 4"/>
         </svg>
       <% end %>
 
-      <div><%= content_tag :span, notice || alert %></div>
-    <% end %>
-  <% end %>
-</div>
+      <%# Message %>
+      <div class="flex-1 min-w-0">
+        <p class="text-sm font-medium leading-snug"><%= notice || alert %></p>
+      </div>
+
+      <%# Dismiss button %>
+      <button class="ml-1 shrink-0 rounded-md p-0.5 opacity-50 hover:opacity-100 transition-opacity
+                     <%= alert ? 'text-red-600 dark:text-red-400' : 'text-zinc-500 dark:text-zinc-400' %>"
+              data-action="click->removals#remove_on_click"
+              aria-label="Dismiss">
+        <svg class="h-3.5 w-3.5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+             fill="none" stroke="currentColor" stroke-width="2.5"
+             stroke-linecap="round" stroke-linejoin="round">
+          <path d="M18 6 6 18"/><path d="m6 6 12 12"/>
+        </svg>
+      </button>
+
+    </div>
+  </div>
+<% end %>

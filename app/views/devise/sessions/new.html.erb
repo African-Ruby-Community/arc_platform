@@ -58,6 +58,7 @@
               <%= f.email_field :email,
                   autofocus: true, autocomplete: "email",
                   placeholder: "you@example.com",
+                  required: true,
                   class: "w-full h-12 pl-10 pr-4 rounded-md border border-zinc-200 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-800/50 text-zinc-900 dark:text-white placeholder-zinc-400 dark:placeholder-zinc-500 text-sm focus:outline-none focus:ring-2 focus:ring-red-500/30 focus:border-red-500/50 transition-colors" %>
             </div>
           </div>
@@ -82,6 +83,7 @@
               <%= f.password_field :password,
                   autocomplete: "current-password",
                   placeholder: "••••••••",
+                  required: true,
                   class: "w-full h-12 pl-10 pr-4 rounded-md border border-zinc-200 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-800/50 text-zinc-900 dark:text-white placeholder-zinc-400 dark:placeholder-zinc-500 text-sm focus:outline-none focus:ring-2 focus:ring-red-500/30 focus:border-red-500/50 transition-colors" %>
             </div>
           </div>
