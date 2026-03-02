@@ -6,32 +6,27 @@
 <% project_list = @projects.any? ? @projects : static_projects %>
 
 <%# Hero + Grid share one continuous background so there is no seam %>
+<section class="relative flex h-72 items-end overflow-hidden -mt-16">
+  <div class="absolute inset-0">
+    <%= image_tag 'hero-community.jpg', alt: "ARC Chapters",
+        class: "w-full h-full object-cover" %>
+    <div class="absolute inset-0"
+         style="background: linear-gradient(to bottom, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.75) 100%)"></div>
+  </div>
+
+  <div class="relative z-10 mx-auto max-w-7xl px-6 pb-10 w-full">
+    <span class="mb-2 inline-block text-xs font-medium uppercase tracking-widest text-red-400">East Africa</span>
+    <h1 class="text-4xl font-extrabold tracking-tight text-white md:text-6xl mb-2">
+      Community Projects
+    </h1>
+    <p class="text-base text-zinc-300 leading-relaxed max-w-xl">
+      Discover amazing open source projects built by the African Ruby Community.
+    </p>
+  </div>
+</section>
 
 <section class="bg-zinc-50 dark:bg-zinc-900 transition-colors duration-300"
          data-controller="project-search">
-
-  <%# Hero banner %>
-  <div class="relative flex h-72 items-end overflow-hidden -mt-16">
-    <div class="absolute inset-0">
-      <%= image_tag 'conference.jpg', alt: "Community Projects",
-          class: "w-full h-full object-cover object-top" %>
-      <%# Gradient fades into the same bg as the section — no seam %>
-      <div class="absolute inset-0 dark:hidden"
-           style="background: linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, #fafafa 100%)"></div>
-      <div class="absolute inset-0 hidden dark:block"
-           style="background: linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, #18181b 100%)"></div>
-    </div>
-
-    <div class="relative z-10 mx-auto max-w-7xl px-6 pb-6 w-full">
-      <span class="mb-1 inline-block text-xs font-medium uppercase tracking-widest text-red-400">Community</span>
-      <h1 class="text-4xl font-extrabold tracking-tight text-white md:text-6xl mb-1">
-        Community Projects
-      </h1>
-      <p class="text-sm text-zinc-300 leading-relaxed max-w-xl">
-        Discover amazing open source projects built by the African Ruby Community.
-      </p>
-    </div>
-  </div>
 
   <%# Content %>
   <div class="mx-auto max-w-7xl px-6">
