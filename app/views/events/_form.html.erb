@@ -1,0 +1,133 @@
+<%= form_with(model: event, local: true, class: "space-y-4") do |form| %>
+  <% if event.errors.any? %>
+    <div class="alert alert-error">
+      <h2 class="font-bold"><%= pluralize(event.errors.count, t('events.form.errors_prohibited').split(' ').first) %> <%= t('events.form.errors_prohibited') %></h2>
+      <ul class="list-disc list-inside">
+        <% event.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-control">
+    <%= form.label :title, t('events.form.title'), class: "label" %>
+    <%= form.text_field :title, class: "input input-bordered w-full" %>
+  </div>
+
+  <div class="form-control">
+    <%= form.label :description, t('events.form.description'), class: "label" %>
+    <%= form.text_area :description, rows: 5, class: "textarea textarea-bordered w-full" %>
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+    <div class="form-control">
+      <%= form.label :start_datetime, t('events.form.start_datetime'), class: "label" %>
+      <%= form.datetime_local_field :start_datetime, class: "input input-bordered w-full" %>
+    </div>
+
+    <div class="form-control">
+      <%= form.label :end_datetime, t('events.form.end_datetime'), class: "label" %>
+      <%= form.datetime_local_field :end_datetime, class: "input input-bordered w-full" %>
+    </div>
+  </div>
+
+  <div class="form-control">
+    <%= form.label :chapter_id, t('events.form.chapter'), class: "label" %>
+    <%= form.collection_select :chapter_id, @chapters, :id, :name, {}, class: "select select-bordered w-full" %>
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+    <div class="form-control">
+      <%= form.label :event_type, t('events.form.event_type'), class: "label" %>
+      <%= form.select :event_type, options_for_select([[t('events.form.event_types.meetup'), 'meetup'], [t('events.form.event_types.conference'), 'conference'], [t('events.form.event_types.workshop'), 'workshop']], event.event_type), {}, class: "select select-bordered w-full" %>
+    </div>
+
+    <div class="form-control">
+      <%= form.label :status, t('events.form.status'), class: "label" %>
+      <%= form.select :status, options_for_select([[t('events.form.statuses.draft'), 'draft'], [t('events.form.statuses.published'), 'published'], [t('events.form.statuses.archived'), 'archived']], event.status), {}, class: "select select-bordered w-full" %>
+    </div>
+  </div>
+
+  <div class="form-control">
+    <%= form.label :location_name, t('events.form.location'), class: "label" %>
+    <%= form.text_field :location_name, class: "input input-bordered w-full", placeholder: t('events.form.location_placeholder') %>
+    <label class="label">
+      <span class="label-text-alt text-gray-500"><%= t('events.form.location_hint') %></span>
+    </label>
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+    <div class="form-control">
+      <%= form.label :payment_status, t('events.form.payment_status'), class: "label" %>
+      <%= form.select :payment_status, options_for_select([[t('events.form.payment_statuses.free'), 'free'], [t('events.form.payment_statuses.paid'), 'paid']], event.payment_status), {}, class: "select select-bordered w-full" %>
+    </div>
+
+    <div class="form-control">
+      <%= form.label :price_cents, t('events.form.price_cents'), class: "label" %>
+      <%= form.number_field :price_cents, class: "input input-bordered w-full" %>
+    </div>
+  </div>
+
+  <div class="form-control">
+    <%= form.label :image, t('events.form.image'), class: "label" %>
+    <%= form.file_field :image, class: "file-input file-input-bordered w-full" %>
+  </div>
+
+  <!-- Speakers Section -->
+  <div class="border-t border-gray-200 pt-6 mt-6">
+    <h3 class="text-lg font-semibold mb-4"><%= t('events.form.speakers_section') %></h3>
+    <div id="speakers-container">
+      <% if event.speakers.any? %>
+        <% event.speakers.each do |speaker| %>
+          <%= render 'speakers/form', form: form, speaker: speaker %>
+        <% end %>
+      <% else %>
+        <%= render 'speakers/form', form: form, speaker: event.speakers.build %>
+      <% end %>
+    </div>
+    <button type="button" class="btn btn-outline btn-sm mt-2" id="add-speaker">
+      <%= t('events.form.add_speaker') %>
+    </button>
+  </div>
+
+  <div class="flex gap-4">
+    <%= form.submit t('events.form.submit'), class: "btn btn-red" %>
+  </div>
+<% end %>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const addSpeakerBtn = document.getElementById('add-speaker');
+    const speakersContainer = document.getElementById('speakers-container');
+    
+    if (addSpeakerBtn) {
+      addSpeakerBtn.addEventListener('click', function() {
+        const timestamp = new Date().getTime();
+        const speakerForm = speakersContainer.querySelector('.speaker-form');
+        if (speakerForm) {
+          const newForm = speakerForm.cloneNode(true);
+          // Clear input values
+          newForm.querySelectorAll('input[type="text"], textarea').forEach(input => input.value = '');
+          newForm.querySelectorAll('input[type="file"]').forEach(input => input.value = '');
+          // Update field names with new timestamp
+          newForm.innerHTML = newForm.innerHTML.replace(/\[speakers_attributes\]\[\d+\]/g, `[speakers_attributes][${timestamp}]`);
+          speakersContainer.appendChild(newForm);
+        }
+      });
+    }
+    
+    // Handle remove speaker
+    document.addEventListener('click', function(e) {
+      if (e.target.classList.contains('remove-speaker')) {
+        e.preventDefault();
+        const speakerForm = e.target.closest('.speaker-form');
+        const destroyField = speakerForm.querySelector('input[name*="_destroy"]');
+        if (destroyField) {
+          destroyField.value = '1';
+        }
+        speakerForm.style.display = 'none';
+      }
+    });
+  });
+</script>

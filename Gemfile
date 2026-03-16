@@ -3,14 +3,19 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '3.4.4'
+ruby '3.4.7'
 
 gem 'active_storage_validations', '~> 1.0' # Active Storage gems for validating attachments https://github.com/igorkasyanchuk/active_storage_validations
-gem 'aws-sdk-s3', '~> 1.119', require: false # Official AWS Ruby gem for Amazon S3
+gem 'aws-sdk-s3', '~> 1.208', require: false # Official AWS Ruby gem for Amazon S3
 gem 'bootsnap', require: false # Reduces boot times through caching; required in config/boot.rb
 gem 'cancancan', '~> 3.4' # Authorization library which restricts what resources a given user is allowed to access
 gem 'cssbundling-rails' # Bundle and process CSS [https://github.com/rails/cssbundling-rails]
 gem 'devise' # Devise 4.0 works with Rails 4.1 onwards.
+gem 'geocoder', '~> 1.8' # Complete geocoding solution for Ruby
+# OAuth integration
+gem 'omniauth'
+gem 'omniauth-github'
+gem 'omniauth-rails_csrf_protection'
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 gem 'image_processing', '~> 1.2'
 gem 'invisible_captcha' # Spam protection solution [https://github.com/markets/invisible_captcha]
@@ -22,7 +27,7 @@ gem 'motor-admin', '>= 0.4.30'
 gem 'pg', '~> 1.5' # Use postgresql as the database for Active Record
 gem 'premailer-rails', '~> 1.12' # This gem is a drop in solution for styling HTML emails with CSS
 gem 'puma', '~> 6.0' # Use the Puma web server [https://github.com/puma/puma]
-gem 'rails', '~> 8.0' # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
+gem 'rails', '~> 8.1' # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 # Pagination
 gem 'pagy', '~> 9.4.0'
 # gem 'kaminari'

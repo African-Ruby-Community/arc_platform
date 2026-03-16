@@ -42,11 +42,12 @@
 #
 member:
   email: user1@example.com
-  role: member1
+  role: member
   name: John Smith1
   phone_number: 2547111111111
   github_username: user1
   encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
+  confirmed_at: <%= Time.current %>
 
 chapter_admin:
   email: user2@example.com
@@ -55,6 +56,7 @@ chapter_admin:
   phone_number: 254711111112
   github_username: user2
   encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
+  confirmed_at: <%= Time.current %>
 
 organization_admin:
   email: user3@example.com
@@ -63,3 +65,4 @@ organization_admin:
   phone_number: 254711111113
   github_username: user3
   encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
+  confirmed_at: <%= Time.current %>

@@ -1,8 +1,8 @@
 <%= render 'landing/home/intro' %>
 
-<% if FeatureFlag.find_by(name: 'events').try(:enabled) %>
-  <%= render 'landing/home/coming_up_events' %>
-<% end %>
+<%# if FeatureFlag.find_by(name: 'events').try(:enabled) %>
+  <%#= render 'landing/home/coming_up_events' %>
+<%# end %>
 
 <%= render 'landing/home/who_we_are' %>
 

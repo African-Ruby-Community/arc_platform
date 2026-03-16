@@ -14,12 +14,20 @@
           <li><%= link_to t('navigation.about_arc'), landing_about_path %></li>
 
           <% if FeatureFlag.find_by(name: 'events').try(:enabled) %>
-            <li><a href="#"><%= t('navigation.events') %></a></li>
+            <li><%= link_to t('navigation.events'), events_path %></li>
           <% end %>
 
+          <%# Conferences removed from project %>
+
           <li><%= link_to t('navigation.chapters'), chapters_path %></li>
-          <li><%= link_to t('navigation.projects'), projects_path %></li>
-          <li><%= link_to t('navigation.learning_materials'), learning_materials_path %></li>
+
+          <% if FeatureFlag.find_by(name: 'projects')&.enabled %>
+            <li><%= link_to t('navigation.projects'), projects_path %></li>
+          <% end %>
+
+          <% if FeatureFlag.find_by(name: 'learning_materials')&.enabled %>
+            <li><%= link_to t('navigation.learning_materials'), learning_materials_path %></li>
+          <% end %>
 
           <% if user_signed_in? %>
             <li><%= button_to t('navigation.sign_out'), destroy_user_session_path, method: :delete %></li>
@@ -37,28 +45,28 @@
       </div>
       <nav class="hidden space-x-10 md:flex font-semibold text-gray-800 text-sm py-4">
         <%= link_to t('navigation.home'), root_path,
-                    class: " hover:text-red-600" %>
+                    class: "hover:text-red-600 #{current_page?(root_path) ? 'text-red-600 border-b-2 border-red-600' : ''}" %>
         <%= link_to t('navigation.about'), landing_about_path,
-                    class: "hover:text-red-600" %>
+                    class: "hover:text-red-600 #{current_page?(landing_about_path) ? 'text-red-600 border-b-2 border-red-600' : ''}" %>
 
         <% if FeatureFlag.find_by(name: 'events').try(:enabled) %>
-          <a href="#" class="text-sm font-small hover:text-red-600"><%= t('navigation.events') %></a>
+          <%= link_to t('navigation.events'), events_path, class: "text-sm font-small hover:text-red-600 #{current_page?(events_path) ? 'text-red-600 border-b-2 border-red-600' : ''}" %>
         <% end %>
 
-        <% if FeatureFlag.find_by(name: 'conferences').try(:enabled) %>
-          <a href="#" class="hover:text-red-600">
-            <%= t('navigation.conferences') %>
-          </a>
-        <% end %>
+        <%# Conferences removed from project %>
 
         <%= link_to t('navigation.chapters'), chapters_path,
-                    class: "hover:text-red-600" %>
+                    class: "hover:text-red-600 #{current_page?(chapters_path) ? 'text-red-600 border-b-2 border-red-600' : ''}" %>
 
-        <%= link_to t('navigation.projects'), projects_path,
-                    class: "hover:text-red-600" %>
+        <% if FeatureFlag.find_by(name: 'projects')&.enabled %>
+          <%= link_to t('navigation.projects'), projects_path,
+                      class: "hover:text-red-600 #{current_page?(projects_path) ? 'text-red-600 border-b-2 border-red-600' : ''}" %>
+        <% end %>
 
-        <%= link_to t('navigation.learning_materials'), learning_materials_path,
-                    class: 'hover:text-red-600' %>
+        <% if FeatureFlag.find_by(name: 'learning_materials')&.enabled %>
+          <%= link_to t('navigation.learning_materials'), learning_materials_path,
+                      class: "hover:text-red-600 #{current_page?(learning_materials_path) ? 'text-red-600 border-b-2 border-red-600' : ''}" %>
+        <% end %>
       </nav>
       <% if user_signed_in? %>
 

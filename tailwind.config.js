@@ -13,19 +13,25 @@ module.exports = {
     },
     },
     daisyui: {
-        themes: [{
+        themes: ["light", {
             mytheme: {
                 "primary": "#D82028",
+                "primary-content": "#FFFFFF",
                 "secondary": "#F000B8",
                 "accent": "#37CDBE",
                 "neutral": "#3D4451",
                 "base-100": "#FFFFFF",
+                "base-content": "#1f2937",
                 "info": "#3ABFF8",
                 "success": "#36D399",
                 "warning": "#FBBD23",
                 "error": "#F87272",
             },
-        },],
+        }],
+        darkTheme: false,
+        base: true,
+        styled: true,
+        utils: true,
     },
     screens: {
         xs: '576',

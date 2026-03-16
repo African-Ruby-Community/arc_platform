@@ -11,8 +11,14 @@
       <% end %>
 
       <li class="hover:text-red-600 hover:underline"><%= link_to t('footer.chapters'), chapters_path %></li>
-      <li class="hover:text-red-600 hover:underline"><%= link_to t('footer.projects'), projects_path %></li>
-      <li class="hover:text-red-600 hover:underline"><%= link_to t('footer.learning_materials'), learning_materials_path %></li>
+      
+      <% if FeatureFlag.find_by(name: 'projects')&.enabled %>
+        <li class="hover:text-red-600 hover:underline"><%= link_to t('footer.projects'), projects_path %></li>
+      <% end %>
+      
+      <% if FeatureFlag.find_by(name: 'learning_materials')&.enabled %>
+        <li class="hover:text-red-600 hover:underline"><%= link_to t('footer.learning_materials'), learning_materials_path %></li>
+      <% end %>
     </ul>
 
     <ul class="flex flex-col gap-3">

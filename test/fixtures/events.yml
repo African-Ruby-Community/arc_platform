@@ -1,0 +1,76 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+published_upcoming:
+  title: Ruby Meetup
+  slug: ruby-meetup
+  description: A great Ruby meetup for the community
+  start_datetime: <%= 1.week.from_now %>
+  end_datetime: <%= 1.week.from_now + 2.hours %>
+  status: published
+  event_type: meetup
+  location_name: Tech Hub
+  latitude: 9.99
+  longitude: 9.99
+  payment_status: free
+  price_cents: 0
+  chapter: one
+
+published_past:
+  title: Past Conference
+  slug: past-conference
+  description: A past conference event
+  start_datetime: <%= 1.week.ago %>
+  end_datetime: <%= 1.week.ago + 2.hours %>
+  status: published
+  event_type: conference
+  location_name: Convention Center
+  latitude: 10.00
+  longitude: 10.00
+  payment_status: paid
+  price_cents: 5000
+  chapter: one
+
+draft_event:
+  title: Draft Workshop
+  slug: draft-workshop
+  description: A draft workshop event
+  start_datetime: <%= 2.weeks.from_now %>
+  end_datetime: <%= 2.weeks.from_now + 3.hours %>
+  status: draft
+  event_type: workshop
+  location_name: Community Center
+  latitude: 11.00
+  longitude: 11.00
+  payment_status: free
+  price_cents: 0
+  chapter: two
+
+archived_event:
+  title: Archived Event
+  slug: archived-event
+  description: An archived event
+  start_datetime: <%= 2.months.ago %>
+  end_datetime: <%= 2.months.ago + 2.hours %>
+  status: archived
+  event_type: meetup
+  location_name: Old Venue
+  latitude: 12.00
+  longitude: 12.00
+  payment_status: free
+  price_cents: 0
+  chapter: two
+
+upcoming_conference:
+  title: RubyConf 2024
+  slug: rubyconf-2024
+  description: The premier Ruby conference of the year
+  start_datetime: <%= 2.weeks.from_now %>
+  end_datetime: <%= 2.weeks.from_now + 3.days %>
+  status: published
+  event_type: conference
+  location_name: Grand Convention Center
+  latitude: 13.00
+  longitude: 13.00
+  payment_status: paid
+  price_cents: 25000
+  chapter: one

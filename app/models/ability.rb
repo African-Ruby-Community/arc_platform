@@ -31,6 +31,17 @@ class Ability
 
     user ||= User.new # guest user (not logged in)
 
+    # All authenticated users can read published events
+    can :read, Event, status: 'published'
+
+    # Authenticated users can manage events for their chapters (except create)
+    if user.persisted?
+      # Users can manage events for chapters they belong to, but cannot create new ones
+      can %i[read update destroy], Event do |event|
+        user.chapters.include?(event.chapter)
+      end
+    end
+
     return unless user.organization_admin?
 
     can :manage, :all # Organization admin can manage everything

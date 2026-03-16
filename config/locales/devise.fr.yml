@@ -55,6 +55,9 @@ fr:
           no_confirmation: "Vous n'avez pas reçu les instructions de confirmation ?"
           no_unlock: "Vous n'avez pas reçu les instructions de déverrouillage ?"
           sign_in_with: "Se connecter avec %{provider}"
+          or_divider: "ou"
+          github_sign_in: "Se connecter avec GitHub"
+          github_sign_up: "S'inscrire avec GitHub"
     confirmations:
       confirmed: "Votre adresse email a été confirmée avec succès."
       send_instructions: "Vous recevrez un email avec des instructions pour confirmer votre adresse email dans quelques minutes."

@@ -33,3 +33,27 @@ document.addEventListener("turbo:load", function () {
         setTimeout(() => clearInterval(interval), 5000)
     }
 })
+
+// Dismissible alerts (close button + optional auto-dismiss)
+document.addEventListener("turbo:load", function () {
+    // Handle manual close
+    document.querySelectorAll('[data-close-alert]')?.forEach((btn) => {
+        btn.addEventListener('click', (e) => {
+            const el = e.currentTarget.closest('.alert')
+            if (el) el.remove()
+        })
+    })
+
+    // Handle auto-dismiss
+    document.querySelectorAll('.alert[data-dismiss-after]')?.forEach((alert) => {
+        const ms = parseInt(alert.getAttribute('data-dismiss-after'), 10)
+        if (!Number.isNaN(ms) && ms > 0) {
+            setTimeout(() => {
+                // Ensure element still exists
+                if (alert && alert.parentNode) {
+                    alert.remove()
+                }
+            }, ms)
+        }
+    })
+})

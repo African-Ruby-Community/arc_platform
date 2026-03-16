@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# rubocop:disable Metrics/ModuleLength
 module ChaptersHelper
   ACTIVITIES = [
     { image: 'activities_local_meetups.png', title_key: 'activities.meetups' },
@@ -10,11 +11,11 @@ module ChaptersHelper
   ].freeze
 
   CHAPTERS = [
-    { country_key: 'chapters.countries.kenya', image: 'country_kenya.png', alt_key: 'chapters.alt_text.nairuby' },
-    { country_key: 'chapters.countries.rwanda', image: 'country_rwanda.png', alt_key: 'chapters.alt_text.arc_rwanda' },
-    { country_key: 'chapters.countries.tanzania', image: 'country_tanzania.png',
+    { country_key: 'chapters.countries.kenya', image: 'countries/country_kenya.png', alt_key: 'chapters.alt_text.nairuby' },
+    { country_key: 'chapters.countries.rwanda', image: 'countries/country_rwanda.png', alt_key: 'chapters.alt_text.arc_rwanda' },
+    { country_key: 'chapters.countries.tanzania', image: 'countries/country_tanzania.png',
       alt_key: 'chapters.alt_text.arc_tanzania' },
-    { country_key: 'chapters.countries.uganda', image: 'country_uganda.png', alt_key: 'chapters.alt_text.arc_uganda' }
+    { country_key: 'chapters.countries.uganda', image: 'countries/country_uganda.png', alt_key: 'chapters.alt_text.arc_uganda' }
   ].freeze
 
   FEATURED_SPONSORS = [
@@ -60,7 +61,7 @@ module ChaptersHelper
     { alt_key: 'social_media.facebook', link: 'https://www.facebook.com/rubycommunity.africa',
       image: 'brands_facebook.png',
       show: true },
-    { alt_key: 'social_media.instagram', link: '#', image: 'brands_instagram.png', show: true },
+    { alt_key: 'social_media.instagram', link: 'https://www.instagram.com/africanruby_community/', image: 'brands_instagram.png', show: true },
     { alt_key: 'social_media.linkedin', link: 'https://www.linkedin.com/company/african-ruby-community/',
       image: 'brands_linkedin.png', show: true },
     { alt_key: 'social_media.github', link: 'https://github.com/nairuby', image: 'brands_github.png', show: true }
@@ -93,4 +94,73 @@ module ChaptersHelper
       social.merge(alt: I18n.t(social[:alt_key]))
     end
   end
+
+  # Returns the country map icon path for a given country name
+  # Only returns path if the icon file actually exists
+  # rubocop:disable Metrics/MethodLength
+  def country_icon(country_name)
+    return nil if country_name.blank?
+
+    # Map of countries with actual icon files
+    icon_map = {
+      'Algeria' => 'countries/country_algeria.png',
+      'Angola' => 'countries/country_angola.png',
+      'Benin' => 'countries/country_benin.png',
+      'Botswana' => 'countries/country_botswana.png',
+      'Burkina Faso' => 'countries/country_burkina_faso.png',
+      'Burundi' => 'countries/country_burundi.png',
+      'Cape Verde' => 'countries/country_cape_verde.png',
+      'Cameroon' => 'countries/country_cameroon.png',
+      'Central African Republic' => 'countries/country_central_african_republic.png',
+      'Chad' => 'countries/country_chad.png',
+      'Comoros' => 'countries/country_comoros.png',
+      'Congo' => 'countries/congo.png',
+      'DR Congo' => 'countries/country_democratic_republic_of_congo.png',
+      'Djibouti' => 'countries/country_djibouti.png',
+      'Egypt' => 'countries/country_egypt.png',
+      'Equatorial Guinea' => 'countries/country_equatorial_guinea.png',
+      'Eritrea' => 'countries/country_eritrea.png',
+      'Eswatini' => 'countries/country_eswatini.png',
+      'Ethiopia' => 'countries/country_ethiopia.png',
+      'Gabon' => 'countries/country_gabon.png',
+      'Gambia' => 'countries/country_gambia.png',
+      'Ghana' => 'countries/country_ghana.png',
+      'Guinea' => 'countries/country_guinea.png',
+      'Guinea-Bissau' => 'countries/country_guinea_bissau.png',
+      'Ivory Coast' => 'countries/country_ivory_coast.png',
+      'Kenya' => 'countries/country_kenya.png',
+      'Lesotho' => 'countries/country_lesotho.png',
+      'Liberia' => 'countries/country_liberia.png',
+      'Libya' => 'countries/country_libya.png',
+      'Madagascar' => 'countries/country_madagascar.png',
+      'Mali' => 'countries/country_mali.png',
+      'Malawi' => 'countries/country_malawi.png',
+      'Mauritania' => 'countries/country_mauritania.png',
+      'Mauritius' => 'countries/country_mauritius.png',
+      'Morocco' => 'countries/country_morocco.png',
+      'Mozambique' => 'countries/country_mozambique.png',
+      'Namibia' => 'countries/country_namibia.png',
+      'Niger' => 'countries/country_niger.png',
+      'Nigeria' => 'countries/country_nigeria.png',
+      'Rwanda' => 'countries/country_rwanda.png',
+      'Sao Tome & Principe' => 'countries/country_sao_tome_and_principe.png',
+      'Senegal' => 'countries/country_senegal.png',
+      'Seychelles' => 'countries/country_seychelles.png',
+      'Sierra Leone' => 'countries/country_sierra_leone.png',
+      'Somalia' => 'countries/country_somalia.png',
+      'South Africa' => 'countries/country_south_africa.png',
+      'South Sudan' => 'countries/country_south_sudan.png',
+      'Sudan' => 'countries/country_sudan.png',
+      'Tanzania' => 'countries/country_tanzania.png',
+      'Togo' => 'countries/country_togo.png',
+      'Tunisia' => 'countries/country_tunisia.png',
+      'Uganda' => 'countries/country_uganda.png',
+      'Zambia' => 'countries/country_zambia.png',
+      'Zimbabwe' => 'countries/country_zimbabwe.png'
+    }
+
+    icon_map[country_name]
+  end
+  # rubocop:enable Metrics/MethodLength
 end
+# rubocop:enable Metrics/ModuleLength
