@@ -54,12 +54,12 @@ ActiveRecord::Schema[8.1].define(version: 2026_03_05_193250) do
   end
 
   create_table "conferences", force: :cascade do |t|
-    t.string "title", null: false
-    t.datetime "start_date"
+    t.datetime "created_at", null: false
     t.datetime "end_date"
     t.string "location"
+    t.datetime "start_date"
     t.integer "status", default: 0
-    t.datetime "created_at", null: false
+    t.string "title", null: false
     t.datetime "updated_at", null: false
   end
 
@@ -102,18 +102,13 @@ ActiveRecord::Schema[8.1].define(version: 2026_03_05_193250) do
   end
 
   create_table "learning_materials", force: :cascade do |t|
-    t.string "title", null: false
-    t.integer "level", default: 0, null: false
-    t.string "thumbnail"
-    t.string "link", null: false
-    t.boolean "featured", default: false, null: false
-    t.text "description"
     t.datetime "created_at", null: false
-    t.boolean "featured"
-    t.integer "level"
-    t.string "link"
+    t.text "description"
+    t.boolean "featured", default: false, null: false
+    t.integer "level", default: 0, null: false
+    t.string "link", null: false
     t.string "thumbnail"
-    t.string "title"
+    t.string "title", null: false
     t.datetime "updated_at", null: false
     t.index ["featured"], name: "index_learning_materials_on_featured"
     t.index ["level"], name: "index_learning_materials_on_level"
