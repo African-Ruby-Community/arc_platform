@@ -3,18 +3,17 @@
 
     <div class="grid gap-12 md:grid-cols-4">
 
-      <li class="hover:text-red-600 hover:underline"><%= link_to t('footer.chapters'), chapters_path %></li>
-      
-      <% if FeatureFlag.find_by(name: 'projects')&.enabled %>
-        <li class="hover:text-red-600 hover:underline"><%= link_to t('footer.projects'), projects_path %></li>
-      <% end %>
-      
-      <% if FeatureFlag.find_by(name: 'learning_materials')&.enabled %>
-        <li class="hover:text-red-600 hover:underline"><%= link_to t('footer.learning_materials'), learning_materials_path %></li>
-      <% end %>
-    </ul>
+      <ul class="flex flex-col gap-3">
+        <li class="hover:text-red-600 hover:underline"><%= link_to t('footer.chapters'), chapters_path %></li>
+        <% if FeatureFlag.find_by(name: 'projects')&.enabled %>
+          <li class="hover:text-red-600 hover:underline"><%= link_to t('footer.projects'), projects_path %></li>
+        <% end %>
+        <% if FeatureFlag.find_by(name: 'learning_materials')&.enabled %>
+          <li class="hover:text-red-600 hover:underline"><%= link_to t('footer.learning_materials'), learning_materials_path %></li>
+        <% end %>
+      </ul>
 
-    <ul class="flex flex-col gap-3">
+      <ul class="flex flex-col gap-3">
       <li class="hover:text-red-600 hover:underline"><%= link_to t('footer.sponsor'), 'mailto:organisers@rubycommunity.africa' %></li>
 
       <% if FeatureFlag.find_by(name: 'members').try(:enabled) %>
@@ -39,7 +38,7 @@
       </h1>
       <ul class="flex md:flex-row flex-col md:mt-4 md:gap-10 gap-5">
         <% socials.each do |social| %>
-          <% if social[:show] === true %>
+          <% if social[:show] %>
             <li class='md:border-2 border-red-600 p-5 rounded-full'>
               <%= link_to social[:link] do %>
                 <%= image_tag social[:image], alt: social[:alt], class: "md:w-5 w-8 hover:scale-105" %>
@@ -47,11 +46,12 @@
             </li>
           <% end %>
         <% end %>
-        <p class="mt-4 text-sm leading-relaxed text-zinc-500 dark:text-zinc-400">
-          African Ruby Community. Promoting computer software programming
-          skills with the Ruby programming language across Africa since 2010.
-        </p>
-      </div>
+      </ul>
+      <p class="mt-4 text-sm leading-relaxed text-zinc-500 dark:text-zinc-400">
+        African Ruby Community. Promoting computer software programming
+        skills with the Ruby programming language across Africa since 2010.
+      </p>
+    </div>
 
       <%# Community links %>
       <div>

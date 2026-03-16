@@ -3,33 +3,9 @@
              dark:border-zinc-800/50 dark:bg-black/80
              backdrop-blur-xl transition-colors duration-300"
         id="main-navbar"
-        data-turbo-permanent
         data-controller="navbar">
-
-          <% if FeatureFlag.find_by(name: 'events').try(:enabled) %>
-            <li><%= link_to t('navigation.events'), events_path %></li>
-          <% end %>
-
-          <%# Conferences removed from project %>
-
-          <li><%= link_to t('navigation.chapters'), chapters_path %></li>
-
-          <% if FeatureFlag.find_by(name: 'projects')&.enabled %>
-            <li><%= link_to t('navigation.projects'), projects_path %></li>
-          <% end %>
-
-          <% if FeatureFlag.find_by(name: 'learning_materials')&.enabled %>
-            <li><%= link_to t('navigation.learning_materials'), learning_materials_path %></li>
-          <% end %>
-
-          <% if user_signed_in? %>
-            <li><%= button_to t('navigation.sign_out'), destroy_user_session_path, method: :delete %></li>
-          <% else %>
-            <li><%= link_to t('navigation.sign_up'), new_user_registration_path %></li>
-            <li><%= link_to t('navigation.sign_in'), new_user_session_path %></li>
-          <% end %>
-        </ul>
-      </div>
+  <nav class="mx-auto flex max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
+    <div class="flex flex-1 items-center gap-4">
       <div class="flex justify-start lg:w-0 lg:flex-1">
         <%= link_to root_path do %>
           <span class="sr-only"><%= t('navigation.community_name') %></span>
@@ -91,9 +67,9 @@
       <% end %>
     </div>
 
-    <%# Mobile right side: theme toggle + hamburger %>
-    <div class="flex items-center gap-1 md:hidden">
-      <%# Theme toggle (mobile) %>
+    <%# Theme toggle + hamburger (mobile) %>
+    <div class="flex items-center gap-1">
+      <%# Theme toggle - visible on all screen sizes (sun/moon icon) %>
       <button data-action="click->theme#toggle"
               class="rounded-md p-2 text-zinc-500 transition-colors hover:bg-zinc-100 dark:text-zinc-400 dark:hover:bg-zinc-800"
               aria-label="Toggle theme">
@@ -108,8 +84,8 @@
         </svg>
       </button>
 
-      <%# Hamburger %>
-      <button class="rounded-md p-2 text-zinc-500 transition-colors hover:bg-zinc-100 dark:text-zinc-400 dark:hover:bg-zinc-800"
+      <%# Hamburger (mobile only) %>
+      <button class="rounded-md p-2 text-zinc-500 transition-colors hover:bg-zinc-100 dark:text-zinc-400 dark:hover:bg-zinc-800 md:hidden"
               data-action="click->navbar#toggle"
               aria-label="Toggle menu">
         <svg data-navbar-target="openIcon" xmlns="http://www.w3.org/2000/svg" width="22" height="22"
