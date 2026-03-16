@@ -1,0 +1,11 @@
+<div class="container mx-auto px-4 py-8">
+  <div class="max-w-2xl mx-auto">
+    <h1 class="text-3xl font-bold mb-6"><%= t('events.edit.title') %></h1>
+    
+    <%= render 'form', event: @event %>
+    
+    <div class="mt-4">
+      <%= link_to t('events.edit.back_to_event'), event_path(@event), class: "btn btn-ghost" %>
+    </div>
+  </div>
+</div>

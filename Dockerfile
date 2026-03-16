@@ -1,7 +1,7 @@
 # syntax=docker/dockerfile:1
-# Multi-stage Dockerfile for Rails 8 app with Ruby 3.4.4
+# Multi-stage Dockerfile for Rails 8 app with Ruby 3.4.7
 
-ARG RUBY_VERSION=3.4.4
+ARG RUBY_VERSION=3.4.7
 
 # Base image with Ruby and system libs
 FROM ruby:${RUBY_VERSION}-slim AS base

@@ -1,0 +1,19 @@
+<%= link_to event_path(event), class: "card card-compact bg-white shadow hover:shadow-lg transition-shadow" do %>
+  <div class="card-body">
+    <h3 class="card-title text-lg"><%= event.title %></h3>
+    <div class="space-y-2 text-sm text-gray-600">
+      <p><strong><%= event.start_datetime.strftime("%B %d, %Y") %></strong></p>
+      <p><%= event.location_name || "Location TBA" %></p>
+      <p><%= event.start_datetime.strftime("%I:%M %p") %> - <%= event.end_datetime.strftime("%I:%M %p") %></p>
+      <p class="text-gray-400"><%= event.start_datetime.strftime("%Z") %></p>
+    </div>
+    <div class="card-actions justify-end pt-4">
+      <% if event.payment_status == 'free' %>
+        <div class="badge badge-success">Free</div>
+      <% else %>
+        <div class="badge badge-warning">Paid</div>
+      <% end %>
+      <div class="badge badge-primary"><%= event.event_type.titleize %></div>
+    </div>
+  </div>
+<% end %>

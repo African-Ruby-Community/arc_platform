@@ -55,6 +55,9 @@ sw:
           no_confirmation: "Hukupokea maagizo ya uthibitisho?"
           no_unlock: "Hukupokea maagizo ya kufungua?"
           sign_in_with: "Ingia kwa %{provider}"
+          or_divider: "au"
+          github_sign_in: "Ingia kwa GitHub"
+          github_sign_up: "Jisajili kwa GitHub"
     confirmations:
       confirmed: "Anwani yako ya barua pepe imethibitishwa kwa ufanisi."
       send_instructions: "Utapokea barua pepe yenye maagizo ya jinsi ya kuthibitisha anwani yako ya barua pepe katika dakika chache."

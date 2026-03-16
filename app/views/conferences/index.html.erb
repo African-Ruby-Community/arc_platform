@@ -1,0 +1,94 @@
+<% content_for :title, t('conferences.index.page_title') %>
+<% content_for(:description, t('conferences.index.page_description')) %>
+
+<div class="container pt-20 px-4 xl:px-56 mx-auto min-h-screen">
+  <!-- Empty state if none available -->
+  <% if (@upcoming_conferences.blank? && @past_conferences.blank?) %>
+    <div class="text-center mb-8 pt-8">
+      <h1 class="text-4xl sm:text-5xl font-bold mb-4 text-gray-900"><%= t('conferences.index.title') %></h1>
+      <p class="text-gray-600 text-lg max-w-2xl mx-auto"><%= t('conferences.index.page_description') %></p>
+    </div>
+    <div class="bg-blue-50 rounded p-6 text-gray-700"><%= t('conferences.index.no_conferences') %></div>
+  <% elsif @featured_conference.present? %>
+    <div class="bg-gradient-to-r from-red-600 to-red-700 text-white py-16 px-8 rounded-lg mb-12">
+      <p class="uppercase tracking-widest text-red-200 mb-2"><%= t('conferences.index.featured_conference') %></p>
+      <h1 class="text-4xl md:text-5xl font-bold mb-4"><%= @featured_conference.title %></h1>
+      <p class="text-red-100 mb-1">
+        <strong><%= @featured_conference.start_datetime.strftime('%B %d, %Y') %></strong>
+        • <%= @featured_conference.location_name || t('events.show.location_tba') %>
+      </p>
+      <p class="text-red-100 mb-6">
+        <%= @featured_conference.start_datetime.strftime('%I:%M %p') %>
+        - <%= @featured_conference.end_datetime.strftime('%I:%M %p') %>
+        <%= @featured_conference.start_datetime.strftime('%Z') %>
+      </p>
+      <%= link_to t('conferences.index.view_details'), event_path(@featured_conference), class: 'btn btn-sm md:btn-md bg-white text-red-700 hover:bg-gray-100' %>
+    </div>
+  <% else %>
+    <div class="text-center mb-8 pt-8">
+      <h1 class="text-4xl sm:text-5xl font-bold mb-4 text-gray-900"><%= t('conferences.index.title') %></h1>
+      <p class="text-gray-600 text-lg max-w-2xl mx-auto"><%= t('conferences.index.page_description') %></p>
+    </div>
+  <% end %>
+
+  <% upcoming_others = (@upcoming_conferences || []).to_a - [@featured_conference].compact %>
+
+  <!-- Upcoming Conferences -->
+  <section class="mb-12">
+    <div class="flex items-baseline justify-between mb-4">
+      <h2 class="text-2xl font-bold text-gray-900"><%= t('conferences.index.upcoming_conferences') %></h2>
+      <% if upcoming_others.any? && @featured_conference.present? %>
+        <span class="text-sm text-gray-500"><%= t('conferences.index.featured_shown_above') %></span>
+      <% end %>
+    </div>
+
+    <% if @upcoming_conferences.blank? %>
+      <div class="text-gray-600 text-base"><%= t('conferences.index.no_upcoming') %></div>
+    <% else %>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <% upcoming_others.each do |conf| %>
+          <%= link_to event_path(conf), class: "block" do %>
+            <div class="card bg-white shadow-md overflow-hidden transition-transform duration-300 hover:-translate-y-1 hover:shadow-xl">
+              <div class="card-body p-3 md:p-4">
+                <h3 class="card-title text-base mt-1 text-gray-900"><%= conf.title %></h3>
+                <div class="text-sm text-gray-700 space-y-1">
+                  <p class="text-gray-700"><strong><%= conf.start_datetime.strftime('%B %d, %Y') %></strong></p>
+                  <p class="text-gray-700"><%= conf.location_name || t('events.show.location_tba') %></p>
+                </div>
+                <div class="mt-2">
+                  <span class="badge badge-ghost capitalize w-fit text-xs md:text-sm text-gray-700">
+                    <%= conf.payment_status == 'free' ? t('conferences.index.free') : t('conferences.index.paid') %>
+                  </span>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
+  </section>
+
+  <!-- Past Conferences -->
+  <section class="mb-12">
+    <h2 class="text-2xl font-bold mb-4 text-gray-900"><%= t('conferences.index.past_conferences') %></h2>
+    <% if @past_conferences.blank? %>
+      <div class="text-gray-600 text-base"><%= t('conferences.index.no_past') %></div>
+    <% else %>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <% @past_conferences.each do |conf| %>
+          <%= link_to event_path(conf), class: "block" do %>
+            <div class="card bg-white shadow-md overflow-hidden transition-transform duration-300 hover:-translate-y-1 hover:shadow-xl">
+              <div class="card-body p-3 md:p-4">
+                <h3 class="card-title text-base mt-1 text-gray-900"><%= conf.title %></h3>
+                <div class="text-sm text-gray-700 space-y-1">
+                  <p class="text-gray-700"><strong><%= conf.start_datetime.strftime('%B %d, %Y') %></strong></p>
+                  <p class="text-gray-700"><%= conf.location_name || t('events.show.location_tba') %></p>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
+  </section>
+</div>

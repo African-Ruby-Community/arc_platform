@@ -26,6 +26,7 @@ class Chapter < ApplicationRecord
   has_many :projects, dependent: :nullify
   has_many :users_chapters, dependent: :destroy
   has_many :users, through: :users_chapters
+  has_many :events, dependent: :destroy
 
   # Validations
   validates :name, :location, :description, presence: true
@@ -38,4 +39,21 @@ class Chapter < ApplicationRecord
   #             width: 400, height: 225,
   #             message: 'is not given between dimension. It should be 400x225',
   #           }
+
+  # Instance methods
+  def upcoming_events
+    events.published
+          .upcoming
+          .order(:start_datetime)
+  end
+
+  def past_events
+    events.published
+          .past
+          .order(start_datetime: :desc)
+  end
+
+  def member_count
+    users.count
+  end
 end

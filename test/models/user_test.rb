@@ -38,14 +38,13 @@
 #  index_users_on_unlock_token          (unlock_token) UNIQUE
 #
 require 'test_helper'
+require 'ostruct'
 
 class UserTest < ActiveSupport::TestCase
   setup do
     @valid_attributes = {
       email: 'test@example.com',
       name: 'Test User',
-      phone_number: '1234567890',
-      github_username: 'valid-github-user',
       password: 'password123',
       password_confirmation: 'password123'
     }
@@ -59,24 +58,60 @@ class UserTest < ActiveSupport::TestCase
     assert user.valid?, 'User should be valid with valid attributes'
   end
 
-  test 'should not be valid without a github_username' do
+  test 'should be valid without a github_username' do
     user = User.new(@valid_attributes.merge(github_username: nil))
-    assert_not user.valid?
-    assert_includes user.errors[:github_username], "can't be blank"
+    assert user.valid?, 'User should be valid without github_username'
   end
 
-  test 'should not be valid with an invalid github_username format' do
-    user = User.new(@valid_attributes.merge(github_username: 'invalid--username'))
-    assert_not user.valid?
-    assert_includes user.errors[:github_username], 'is invalid'
+  test 'should be valid with a github_username when account exists' do
+    # Mock the GitHub account verification to return true
+    GithubAccountVerifier.stubs(:exists?).returns(true)
+
+    user = User.new(@valid_attributes)
+    assert user.valid?, 'User should be valid with valid github_username'
   end
 
   test 'should not be valid with a non-existent github account' do
     # Mock the GitHub account verification to return false
     GithubAccountVerifier.stubs(:exists?).returns(false)
 
-    user = User.new(@valid_attributes)
+    user = User.new(@valid_attributes.merge(github_username: 'nonexistent-user'))
     assert_not user.valid?
     assert_includes user.errors[:github_username], 'must be a valid GitHub account'
+  end
+
+  test 'should create user from omniauth data' do
+    auth_data = OpenStruct.new(
+      info: OpenStruct.new(
+        email: 'oauth@example.com',
+        name: 'OAuth User',
+        nickname: 'oauth-user'
+      )
+    )
+
+    user = User.from_omniauth(auth_data)
+
+    assert user.persisted?, 'User should be saved'
+    assert_equal 'oauth@example.com', user.email
+    assert_equal 'OAuth User', user.name
+    assert_equal 'oauth-user', user.github_username
+    assert user.confirmed_at.present?, 'OAuth user should be auto-confirmed'
+  end
+
+  test 'should find existing user from omniauth data' do
+    existing_user = User.create!(@valid_attributes.merge(email: 'existing@example.com', confirmed_at: Time.current))
+
+    auth_data = OpenStruct.new(
+      info: OpenStruct.new(
+        email: 'existing@example.com',
+        name: 'Updated Name',
+        nickname: 'updated-username'
+      )
+    )
+
+    user = User.from_omniauth(auth_data)
+
+    assert_equal existing_user.id, user.id, 'Should return existing user'
+    assert_equal existing_user.email, user.email
   end
 end

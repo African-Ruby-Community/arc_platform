@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class LearningMaterialsController < ApplicationController
-  sleep 3
   skip_before_action :authenticate_user!, only: %i[index]
 
   def index

@@ -6,50 +6,61 @@
         data-turbo-permanent
         data-controller="navbar">
 
-  <nav class="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
+          <% if FeatureFlag.find_by(name: 'events').try(:enabled) %>
+            <li><%= link_to t('navigation.events'), events_path %></li>
+          <% end %>
 
-    <%# Logo %>
-    <%= link_to root_path, class: "flex items-center gap-2 shrink-0" do %>
-      <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none"
-           stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-           class="text-red-500">
-        <path d="M2.7 10.3a2.41 2.41 0 0 0 0 3.41l7.59 7.59a2.41 2.41 0 0 0 3.41 0l7.59-7.59a2.41 2.41 0 0 0 0-3.41l-7.59-7.59a2.41 2.41 0 0 0-3.41 0Z"/>
-      </svg>
-      <span class="text-xl font-bold tracking-tight text-zinc-900 dark:text-white transition-colors">ARC</span>
-    <% end %>
+          <%# Conferences removed from project %>
 
-    <%# Desktop nav links %>
-    <ul class="hidden items-center gap-8 md:flex">
-      <li><%= link_to 'Home', root_path, class: "text-sm font-medium text-zinc-600 transition-colors hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white" %></li>
-      <li><%= link_to 'About', landing_about_path, class: "text-sm font-medium text-zinc-600 transition-colors hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white" %></li>
-      <li><%= link_to 'Projects', projects_path, class: "text-sm font-medium text-zinc-600 transition-colors hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white" %></li>
-      <li><%= link_to 'Chapters', chapters_path, class: "text-sm font-medium text-zinc-600 transition-colors hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white" %></li>
-      <li><%= link_to 'Learning Materials', landing_learn_path, class: "text-sm font-medium text-zinc-600 transition-colors hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white" %></li>
-      <% if FeatureFlag.find_by(name: 'projects').try(:enabled) %>
-        <li><a href="#" class="text-sm font-medium text-zinc-600 transition-colors hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white">Projects</a></li>
-      <% end %>
-    </ul>
+          <li><%= link_to t('navigation.chapters'), chapters_path %></li>
 
-    <%# Desktop right side: theme toggle + auth %>
-    <div class="hidden items-center gap-2 md:flex">
+          <% if FeatureFlag.find_by(name: 'projects')&.enabled %>
+            <li><%= link_to t('navigation.projects'), projects_path %></li>
+          <% end %>
 
-      <%# Theme toggle button %>
-      <button data-action="click->theme#toggle"
-              class="rounded-md p-2 text-zinc-500 transition-colors hover:bg-zinc-100 hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-800 dark:hover:text-white"
-              aria-label="Toggle theme">
-        <%# Moon — shown in light mode %>
-        <svg class="dark:hidden" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
-             fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/>
-        </svg>
-        <%# Sun — shown in dark mode %>
-        <svg class="hidden dark:block" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
-             fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <circle cx="12" cy="12" r="4"/>
-          <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/>
-        </svg>
-      </button>
+          <% if FeatureFlag.find_by(name: 'learning_materials')&.enabled %>
+            <li><%= link_to t('navigation.learning_materials'), learning_materials_path %></li>
+          <% end %>
 
+          <% if user_signed_in? %>
+            <li><%= button_to t('navigation.sign_out'), destroy_user_session_path, method: :delete %></li>
+          <% else %>
+            <li><%= link_to t('navigation.sign_up'), new_user_registration_path %></li>
+            <li><%= link_to t('navigation.sign_in'), new_user_session_path %></li>
+          <% end %>
+        </ul>
+      </div>
+      <div class="flex justify-start lg:w-0 lg:flex-1">
+        <%= link_to root_path do %>
+          <span class="sr-only"><%= t('navigation.community_name') %></span>
+          <%= image_tag('arc_logo_coloured.png', alt: "Community Logo",class: "h-8 w-auto sm:h-7") %>
+        <% end %>
+      </div>
+      <nav class="hidden space-x-10 md:flex font-semibold text-gray-800 text-sm py-4">
+        <%= link_to t('navigation.home'), root_path,
+                    class: "hover:text-red-600 #{current_page?(root_path) ? 'text-red-600 border-b-2 border-red-600' : ''}" %>
+        <%= link_to t('navigation.about'), landing_about_path,
+                    class: "hover:text-red-600 #{current_page?(landing_about_path) ? 'text-red-600 border-b-2 border-red-600' : ''}" %>
+
+        <% if FeatureFlag.find_by(name: 'events').try(:enabled) %>
+          <%= link_to t('navigation.events'), events_path, class: "text-sm font-small hover:text-red-600 #{current_page?(events_path) ? 'text-red-600 border-b-2 border-red-600' : ''}" %>
+        <% end %>
+
+        <%# Conferences removed from project %>
+
+        <%= link_to t('navigation.chapters'), chapters_path,
+                    class: "hover:text-red-600 #{current_page?(chapters_path) ? 'text-red-600 border-b-2 border-red-600' : ''}" %>
+
+        <% if FeatureFlag.find_by(name: 'projects')&.enabled %>
+          <%= link_to t('navigation.projects'), projects_path,
+                      class: "hover:text-red-600 #{current_page?(projects_path) ? 'text-red-600 border-b-2 border-red-600' : ''}" %>
+        <% end %>
+
+        <% if FeatureFlag.find_by(name: 'learning_materials')&.enabled %>
+          <%= link_to t('navigation.learning_materials'), learning_materials_path,
+                      class: "hover:text-red-600 #{current_page?(learning_materials_path) ? 'text-red-600 border-b-2 border-red-600' : ''}" %>
+        <% end %>
+      </nav>
       <% if user_signed_in? %>
         <% if current_user.organization_admin? %>
           <div class="dropdown dropdown-end">

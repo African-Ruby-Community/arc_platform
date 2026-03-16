@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+speaker_one:
+  name: John Doe
+  bio: Experienced Ruby developer and speaker
+  event: published_upcoming
+
+speaker_two:
+  name: Jane Smith
+  bio: Conference organizer and Ruby expert
+  event: published_past

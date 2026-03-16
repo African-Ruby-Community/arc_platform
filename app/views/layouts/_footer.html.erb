@@ -3,15 +3,49 @@
 
     <div class="grid gap-12 md:grid-cols-4">
 
-      <%# Brand %>
-      <div class="md:col-span-1">
-        <%= link_to root_path, class: "flex items-center gap-2" do %>
-          <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none"
-               stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-               class="text-red-500">
-            <path d="M2.7 10.3a2.41 2.41 0 0 0 0 3.41l7.59 7.59a2.41 2.41 0 0 0 3.41 0l7.59-7.59a2.41 2.41 0 0 0 0-3.41l-7.59-7.59a2.41 2.41 0 0 0-3.41 0Z"/>
-          </svg>
-          <span class="text-xl font-bold tracking-tight text-zinc-900 dark:text-white">ARC</span>
+      <li class="hover:text-red-600 hover:underline"><%= link_to t('footer.chapters'), chapters_path %></li>
+      
+      <% if FeatureFlag.find_by(name: 'projects')&.enabled %>
+        <li class="hover:text-red-600 hover:underline"><%= link_to t('footer.projects'), projects_path %></li>
+      <% end %>
+      
+      <% if FeatureFlag.find_by(name: 'learning_materials')&.enabled %>
+        <li class="hover:text-red-600 hover:underline"><%= link_to t('footer.learning_materials'), learning_materials_path %></li>
+      <% end %>
+    </ul>
+
+    <ul class="flex flex-col gap-3">
+      <li class="hover:text-red-600 hover:underline"><%= link_to t('footer.sponsor'), 'mailto:organisers@rubycommunity.africa' %></li>
+
+      <% if FeatureFlag.find_by(name: 'members').try(:enabled) %>
+        <li class="hover:text-red-600 hover:underline"><%= link_to t('footer.members'), '#' %></li>
+      <% end %>
+
+      <li class="hover:text-red-600 hover:underline"><%= link_to t('footer.about'), landing_about_path %></li>
+
+      <% if FeatureFlag.find_by(name: 'contact_us').try(:enabled) %>
+        <li class="hover:text-red-600 hover:underline"><%= link_to t('footer.contact_us'), '#' %></li>
+      <% end %>
+
+      <% if FeatureFlag.find_by(name: 'contact_us').try(:enabled) %>
+        <li class="hover:text-red-600 hover:underline"><%= link_to t('footer.code_of_conduct'), '#' %></li>
+      <% end %>
+    </ul>
+  </div>
+
+  <div class="flex flex-col justify-center items-center pt-12">
+      <h1 class="pt-4 pb-12 md:text-4xl text-2xl text-red-600 font-bold text-center">
+        <%= t('footer.connect') %>
+      </h1>
+      <ul class="flex md:flex-row flex-col md:mt-4 md:gap-10 gap-5">
+        <% socials.each do |social| %>
+          <% if social[:show] === true %>
+            <li class='md:border-2 border-red-600 p-5 rounded-full'>
+              <%= link_to social[:link] do %>
+                <%= image_tag social[:image], alt: social[:alt], class: "md:w-5 w-8 hover:scale-105" %>
+              <% end %>
+            </li>
+          <% end %>
         <% end %>
         <p class="mt-4 text-sm leading-relaxed text-zinc-500 dark:text-zinc-400">
           African Ruby Community. Promoting computer software programming

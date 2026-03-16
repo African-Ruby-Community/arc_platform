@@ -8,10 +8,13 @@ Rails.application.routes.draw do
   resources :chapters, only: %i[index show]
   resources :countries, only: %i[index show]
   resources :learning_materials, only: %i[index]
+  resources :events
+  resources :conferences, only: %i[index]
   devise_for :users, controllers: {
     registrations: 'users/registrations', # Override devise registration controller
     sessions: 'users/sessions',
-    passwords: 'users/passwords'
+    passwords: 'users/passwords',
+    omniauth_callbacks: 'users/omniauth_callbacks'
   }
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

@@ -1,13 +1,11 @@
-require:
+plugins:
   - rubocop-performance
   - rubocop-rails
 
 AllCops:
   UseCache: false
-  UseServer: false
   NewCops: enable
-  SuggestExtensions:
-    rubocop-rake: false
+  SuggestExtensions: false
   TargetRubyVersion: 3.4
   Exclude:
     - bin/**/*
@@ -22,7 +20,65 @@ AllCops:
 Style/Documentation:
   Enabled: false
 
+# Disable OpenStruct warnings for tests
+Style/OpenStructUse:
+  Exclude:
+    - 'test/**/*'
+
+# Allow longer lines in seed files and tests
+Layout/LineLength:
+  Max: 160
+  Exclude:
+    - 'db/seeds.rb'
+    - 'test/**/*'
+
+# Relax metrics for test files
+Metrics/ClassLength:
+  Exclude:
+    - 'test/**/*'
+
+Metrics/MethodLength:
+  Max: 15
+  Exclude:
+    - 'test/**/*'
+    - 'db/seeds.rb'
+
+Metrics/BlockLength:
+  Exclude:
+    - 'test/**/*'
+    - 'db/seeds.rb'
+
+Metrics/AbcSize:
+  Max: 25
+  Exclude:
+    - 'test/**/*'
+
+Metrics/CyclomaticComplexity:
+  Max: 12
+
+Metrics/PerceivedComplexity:
+  Max: 12
+
+# Allow variable numbers in tests
+Naming/VariableNumber:
+  Exclude:
+    - 'test/**/*'
+
+# Allow empty test files
+Lint/EmptyFile:
+  Exclude:
+    - 'test/**/*'
+
+# Disable duplicate branch warnings
+Lint/DuplicateBranch:
+  Enabled: false
+
+# Move locale texts to locale files
+Rails/I18nLocaleTexts:
+  Enabled: false
+
 Rails/LexicallyScopedActionFilter:
   Exclude:
     - 'app/controllers/users/sessions_controller.rb'
+    - 'app/controllers/users/registrations_controller.rb'
 

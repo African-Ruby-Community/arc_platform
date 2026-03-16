@@ -1,20 +1,25 @@
 <% content_for :title, t('learning_materials.index.page_title') %>
 <% content_for(:description, t('learning_materials.index.page_description')) %>
 
-<div class="grid pt-20 px-4 md:px-10 lg:px-32 mx-auto place-content-center">
+<div class="container pt-20 px-4 xl:px-56 mx-auto">
+  <div class="pt-16 pb-6">
+    <h1 class="text-4xl text-red-600 font-bold text-5xl mb-4"><%= t('learning_materials.index.title') %></h1>
+    <p class="text-gray-600 text-lg max-w-2xl"><%= t('learning_materials.index.page_description') %></p>
+  </div>
 
-  <h1 class="text-4xl pt-6 pb-6 font-bold"><%= t('learning_materials.index.title') %></h1>
-
-  <div class="mb-6">
-    <%= form_with url: learning_materials_path, method: :get, local: true, class: 'grid grid-cols-1 md:grid-cols-6 gap-4' do %>
-      <div class="md:col-span-4">
-        <%= text_field_tag :q, @q, placeholder: t('learning_materials.index.search_placeholder'), class: 'input input-bordered w-full', id: 'q' %>
-      </div>
-      <div>
-        <%= select_tag :level, options_for_select([[t('learning_materials.index.all_levels'), ''], [t('learning_materials.index.beginner'), 'beginner'], [t('learning_materials.index.intermediate'), 'intermediate'], [t('learning_materials.index.expert'), 'expert']], @level), class: 'select select-bordered w-full', id: 'level' %>
-      </div>
-      <div>
-        <%= submit_tag t('learning_materials.index.search_button'), class: 'btn btn-primary w-full' %>
+  <!-- Search Bar -->
+  <div class="mb-8" style="display: none">
+    <%= form_with url: learning_materials_path, method: :get, local: true, class: 'max-w-4xl' do %>
+      <div class="flex gap-4 items-center">
+        <div class="relative flex-1">
+          <%= text_field_tag :q, @q, placeholder: t('learning_materials.index.search_placeholder'), class: 'w-full h-16 px-6 pr-16 rounded-full border-2 border-gray-300 text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-4 focus:ring-red-300 focus:border-red-500 shadow-sm text-lg bg-white', id: 'q' %>
+          <button type="submit" class="bg-red-600 hover:bg-red-700 text-white w-12 h-12 rounded-full transition-colors flex items-center justify-center" style="position: absolute; right: 0.5rem; top: 50%; transform: translateY(-50%);">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+            </svg>
+          </button>
+        </div>
+        <%= select_tag :level, options_for_select([[t('learning_materials.index.all_levels'), ''], [t('learning_materials.index.beginner'), 'beginner'], [t('learning_materials.index.intermediate'), 'intermediate'], [t('learning_materials.index.expert'), 'expert']], @level), class: 'h-16 px-6 rounded-full border-2 border-gray-300 text-gray-900 focus:outline-none focus:ring-4 focus:ring-red-300 focus:border-red-500 shadow-sm bg-white text-lg', id: 'level' %>
       </div>
     <% end %>
   </div>
@@ -22,21 +27,51 @@
   <hr>
 
   <% if @featured_materials.any? %>
-    <section class="mt-10 mb-10 pb-10 border-b border-gray-300">
+    <section class="mt-10 mb-16">
       <h2 class="text-3xl font-bold text-red-600 mb-6"><%= t('learning_materials.index.featured') %></h2>
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-4">
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8">
         <% @featured_materials.each do |m| %>
-          <div class="card bg-base-100 shadow-md overflow-hidden w-full transition-transform duration-300 hover:-translate-y-1 hover:shadow-xl">
-            <% if m.thumbnail.present? %>
-              <figure class="w-full aspect-[4/3] max-h-40 overflow-hidden">
-                <img src="<%= m.thumbnail %>" alt="<%= m.title %> thumbnail" class="w-full h-full object-cover transition-transform duration-300 ease-out hover:scale-105">
-              </figure>
-            <% end %>
-            <div class="card-body p-2">
-              <span class="badge badge-secondary capitalize w-fit text-[10px]"><%= m.level %></span>
-              <h3 class="card-title text-lg text-black mt-1"><%= m.title %></h3>
-              <div class="card-actions justify-start mt-2">
-                <%= link_to t('learning_materials.index.open_resource'), m.link, class: 'link link-primary text-sm transition-colors duration-200 hover:underline', target: '_blank', rel: 'noopener' %>
+          <div class="group bg-white rounded-xl shadow-md hover:shadow-2xl transition-all duration-300 overflow-hidden">
+            <a href="<%= m.link %>" target="_blank" rel="noopener" class="block">
+              <div class="relative aspect-video overflow-hidden bg-gray-200">
+                <% if m.thumbnail.present? %>
+                  <img src="<%= m.thumbnail %>" alt="<%= m.title %> thumbnail" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500">
+                <% else %>
+                  <div class="w-full h-full bg-gradient-to-br from-red-500 to-red-700 flex items-center justify-center">
+                    <svg class="w-16 h-16 text-white opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+                    </svg>
+                  </div>
+                <% end %>
+                
+                <!-- Featured Badge -->
+                <div class="absolute top-3 right-3 bg-red-600 text-white px-3 py-1 rounded-full text-xs font-semibold shadow-lg">
+                  <%= t('learning_materials.index.featured') %>
+                </div>
+              </div>
+            </a>
+            
+            <div class="p-5 sm:p-6">
+              <a href="<%= m.link %>" target="_blank" rel="noopener">
+                <h3 class="text-xl font-bold mb-2 group-hover:text-red-600 transition-colors line-clamp-2"><%= m.title %></h3>
+              </a>
+              
+              <!-- Level Badge -->
+              <div class="inline-flex items-center gap-1 px-3 py-1 bg-gray-100 rounded-full text-xs text-gray-700 capitalize mb-4">
+                <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+                <span><%= m.level %></span>
+              </div>
+              
+              <!-- Action Button -->
+              <div class="pt-4 border-t border-gray-100">
+                <%= link_to m.link, target: "_blank", rel: "noopener", class: "inline-flex items-center justify-center gap-2 px-4 py-2 bg-red-600 hover:bg-red-700 text-white text-sm font-medium rounded-lg transition-colors w-full" do %>
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+                  </svg>
+                  <%= t('learning_materials.index.open_resource') %>
+                <% end %>
               </div>
             </div>
           </div>
@@ -46,27 +81,52 @@
   <% end %>
 
   <section class="mb-6">
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"> <!-- slightly bigger gap -->
-      <% @materials.each_with_index do |m, i| %>
-        <div class="pb-6 border-b border-dotted border-gray-300 w-full max-w-md"> <!-- from sm → md -->
-          <div class="card bg-base-100 shadow-md overflow-hidden w-full max-w-md transition-transform duration-300 hover:-translate-y-1 hover:shadow-xl"> <!-- slightly larger card -->
-            <% if m.thumbnail.present? %>
-              <figure class="w-full aspect-video max-h-48 overflow-hidden"> <!-- a little taller thumbnail -->
-                <img src="<%= m.thumbnail %>" alt="<%= m.title %> thumbnail" class="w-full h-full object-cover transition-transform duration-300 ease-out hover:scale-105">
-              </figure>
-            <% end %>
-            <div class="card-body p-3 md:p-4"> <!-- slightly more breathing room -->
-              <span class="badge badge-ghost capitalize w-fit text-xs md:text-sm"><%= m.level %></span>
-              <h3 class="card-title text-base mt-1"><%= m.title %></h3>
-              <div class="card-actions justify-start mt-2">
-                <%= link_to t('learning_materials.index.open_resource'), m.link, class: 'link link-primary text-sm transition-colors duration-200 hover:underline', target: '_blank', rel: 'noopener' %>
-              </div>
+    <% if @featured_materials.any? %>
+      <h2 class="text-2xl font-bold mb-6">All Learning Resources</h2>
+    <% end %>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+      <% @materials.each do |m| %>
+        <div class="group bg-white rounded-xl shadow-md hover:shadow-2xl transition-all duration-300 overflow-hidden">
+          <a href="<%= m.link %>" target="_blank" rel="noopener" class="block">
+            <div class="relative aspect-video overflow-hidden bg-gray-200">
+              <% if m.thumbnail.present? %>
+                <img src="<%= m.thumbnail %>" alt="<%= m.title %> thumbnail" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500">
+              <% else %>
+                <div class="w-full h-full bg-gradient-to-br from-gray-500 to-gray-700 flex items-center justify-center">
+                  <svg class="w-12 h-12 text-white opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+                  </svg>
+                </div>
+              <% end %>
+            </div>
+          </a>
+          
+          <div class="p-5 sm:p-6">
+            <a href="<%= m.link %>" target="_blank" rel="noopener">
+              <h3 class="text-xl font-bold mb-2 group-hover:text-red-600 transition-colors line-clamp-2"><%= m.title %></h3>
+            </a>
+            
+            <!-- Level Badge -->
+            <div class="inline-flex items-center gap-1 px-3 py-1 bg-gray-100 rounded-full text-xs text-gray-700 capitalize mb-4">
+              <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+              </svg>
+              <span><%= m.level %></span>
+            </div>
+            
+            <!-- Action Button -->
+            <div class="pt-4 border-t border-gray-100">
+              <%= link_to m.link, target: "_blank", rel: "noopener", class: "inline-flex items-center justify-center gap-2 px-4 py-2 bg-red-600 hover:bg-red-700 text-white text-sm font-medium rounded-lg transition-colors w-full" do %>
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+                </svg>
+                <%= t('learning_materials.index.open_resource') %>
+              <% end %>
             </div>
           </div>
         </div>
       <% end %>
     </div>
-
   </section>
 
 </div>

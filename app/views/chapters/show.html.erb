@@ -1,7 +1,193 @@
-<p style="color: green"><%= notice %></p>
+<!-- Header Section -->
+<div class="bg-white border-b border-gray-200 py-8">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <h1 class="text-4xl font-bold text-gray-900 mb-4"><%= t('chapters.show.title') %></h1>
+    <p class="text-gray-600 text-lg"><%= t('chapters.show.subtitle') %></p>
+  </div>
+</div>
 
-<%= render @chapter %>
+<!-- Chapters Grid -->
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+    <div class="card bg-white shadow">
+      <div class="card-body">
+        <h2 class="card-title text-xl"><%= @chapter.name %> <%= t('chapters.show.chapter') %></h2>
+        <p class="text-gray-600"><%= @chapter.location.presence || @chapter.country&.name || 'Location' %></p>
+        <div class="divider my-2"></div>
+        <p class="text-2xl font-bold text-black-600"><%= @member_count %>+ <%= t('chapters.show.members') %></p>
+        <div class="card-actions justify-between pt-4">
+          <button class="btn btn-sm btn-outline"><%= t('chapters.show.view_members') %></button>
+          <button class="btn btn-sm btn-red"><%= t('chapters.show.learn_more') %></button>
+        </div>
+      </div>
+    </div>
+  </div>
 
-<div>
-  <%= link_to "Back to chapters", chapters_path %>
+  <!-- Chapter Members Section -->
+  <div class="bg-white rounded-lg shadow-md p-8 mb-12">
+    <h2 class="text-2xl font-bold mb-8"><%= t('chapters.show.leaders_organizers') %></h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <% if @chapter.users.any? %>
+        <% @chapter.users.limit(4).each do |user| %>
+          <div class="border-l-4 border-blue-500 pl-6 py-4">
+            <p class="font-semibold text-lg text-gray-900 mb-2"><%= user.name %></p>
+            <p class="text-gray-600 text-sm mb-4"><%= user.email %></p>
+            <div class="flex gap-4">
+              <% if user.github_username.present? %>
+                <a href="https://github.com/<%= user.github_username %>" class="link link-red text-sm">github</a>
+              <% end %>
+              <a href="#" class="link link-red text-sm">linkedin</a>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+
+  <!-- Chapter Events -->
+  <div class="mb-12">
+    <h2 class="text-2xl font-bold mb-6"><%= t('chapters.show.upcoming_events') %></h2>
+    <% if @upcoming_events.any? %>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+        <% @upcoming_events.each do |event| %>
+          <div class="group bg-white rounded-xl shadow-md hover:shadow-2xl transition-all duration-300 overflow-hidden">
+            <%= link_to event_path(event), class: "block" do %>
+              <div class="relative aspect-video overflow-hidden bg-gray-200">
+                <% if event.image.attached? %>
+                  <%= image_tag event.image, class: "w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500", alt: event.title %>
+                <% else %>
+                  <div class="w-full h-full bg-gradient-to-br from-red-500 to-red-700 flex items-center justify-center">
+                    <svg class="w-16 h-16 text-white opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                    </svg>
+                  </div>
+                <% end %>
+                
+                <!-- Payment Status Badge -->
+                <% if event.payment_status == 'free' %>
+                  <div class="absolute top-3 right-3 bg-green-600 text-white px-3 py-1 rounded-full text-xs font-semibold shadow-lg">
+                    <%= t('chapters.show.free') %>
+                  </div>
+                <% elsif event.payment_status == 'paid' %>
+                  <div class="absolute top-3 right-3 bg-blue-600 text-white px-3 py-1 rounded-full text-xs font-semibold shadow-lg">
+                    <%= t('chapters.show.paid') %>
+                  </div>
+                <% end %>
+              </div>
+            <% end %>
+            
+            <div class="p-5 sm:p-6">
+              <%= link_to event_path(event) do %>
+                <h3 class="text-xl font-bold mb-2 group-hover:text-red-600 transition-colors line-clamp-2"><%= event.title %></h3>
+              <% end %>
+              
+              <!-- Event Date & Time -->
+              <div class="space-y-1 mb-4">
+                <p class="text-sm font-semibold text-gray-900">
+                  <%= event.start_datetime.strftime("%B %d, %Y") %>
+                </p>
+                <p class="text-sm text-gray-600">
+                  <%= event.start_datetime.strftime("%I:%M %p") %> - <%= event.end_datetime.strftime("%I:%M %p") %>
+                </p>
+              </div>
+              
+              <!-- Location -->
+              <% if event.location_name.present? %>
+                <div class="inline-flex items-center gap-2 px-3 py-1 bg-gray-100 rounded-full text-xs text-gray-700">
+                  <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                  </svg>
+                  <span><%= event.location_name %></span>
+                </div>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    <% else %>
+      <div class="bg-blue-50 rounded-lg p-8">
+        <p class="text-gray-600"><%= t('chapters.show.no_upcoming_events') %></p>
+      </div>
+    <% end %>
+  </div>
+
+  <!-- Past Events -->
+  <% if @past_events.present? && @past_events.any? %>
+    <div class="mb-12">
+      <h2 class="text-2xl font-bold mb-6"><%= t('chapters.show.past_events') %></h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+        <% @past_events.each do |event| %>
+          <div class="group bg-white rounded-xl shadow-md hover:shadow-2xl transition-all duration-300 overflow-hidden">
+            <%= link_to event_path(event), class: "block" do %>
+              <div class="relative aspect-video overflow-hidden bg-gray-200">
+                <% if event.image.attached? %>
+                  <%= image_tag event.image, class: "w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500", alt: event.title %>
+                <% else %>
+                  <div class="w-full h-full bg-gradient-to-br from-gray-500 to-gray-700 flex items-center justify-center">
+                    <svg class="w-16 h-16 text-white opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                    </svg>
+                  </div>
+                <% end %>
+              </div>
+            <% end %>
+            
+            <div class="p-5 sm:p-6">
+              <%= link_to event_path(event) do %>
+                <h3 class="text-xl font-bold mb-2 group-hover:text-red-600 transition-colors line-clamp-2"><%= event.title %></h3>
+              <% end %>
+              
+              <!-- Event Date & Time -->
+              <div class="space-y-1 mb-4">
+                <p class="text-sm font-semibold text-gray-900">
+                  <%= event.start_datetime.strftime("%B %d, %Y") %>
+                </p>
+                <p class="text-sm text-gray-600">
+                  <%= event.start_datetime.strftime("%I:%M %p") %> - <%= event.end_datetime.strftime("%I:%M %p") %>
+                </p>
+              </div>
+              
+              <!-- Location -->
+              <% if event.location_name.present? %>
+                <div class="inline-flex items-center gap-2 px-3 py-1 bg-gray-100 rounded-full text-xs text-gray-700">
+                  <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                  </svg>
+                  <span><%= event.location_name %></span>
+                </div>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+
+  <!-- Featured Projects -->
+  <% if @featured_projects&.any? %>
+    <div class="mb-12">
+      <h2 class="text-2xl font-bold mb-6"><%= t('chapters.show.featured_projects') %></h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <% @featured_projects.each do |project| %>
+          <%= link_to project_path(project), class: "card card-compact bg-white shadow hover:shadow-lg transition-shadow" do %>
+            <div class="card-body">
+              <h3 class="card-title text-lg"><%= project.name %></h3>
+              <% if project.intro.present? %>
+                <p class="text-sm text-gray-600"><%= project.intro %></p>
+              <% end %>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+
+  <!-- Start Discussion -->
+<!--  <div class="bg-blue-50 rounded-lg p-8 mt-12">-->
+<!--    <h3 class="text-xl font-bold mb-2">Start a discussion in your chapter</h3>-->
+<!--    <p class="text-gray-600 mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.</p>-->
+<!--    <button class="btn btn-red">Start a discussion</button>-->
+<!--  </div>-->
 </div>

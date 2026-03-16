@@ -1,0 +1,111 @@
+<% content_for :title, t('events.index.page_title') %>
+<% content_for(:description, t('events.index.page_description')) %>
+
+<div class="container pt-20 px-4 xl:px-56 mx-auto">
+  <div class="flex justify-between items-center pt-16 pb-6">
+    <div>
+      <h1 class="text-4xl text-red-600 font-bold text-5xl mb-2"><%= t('events.index.title') %></h1>
+      <p class="text-gray-600 text-lg"><%= t('events.index.page_description') %></p>
+    </div>
+    
+    <% if can? :create, Event %>
+      <%= link_to new_event_path, class: "btn btn-primary" do %>
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+        </svg>
+        <%= t('events.index.create_event') %>
+      <% end %>
+    <% end %>
+  </div>
+
+  <!-- Search Section -->
+  <div class="mb-8">
+    <%= form_with url: events_path, method: :get, data: { controller: "event-search", turbo_frame: "events_list", action: "input->event-search#search change->event-search#search" }, class: 'max-w-4xl' do %>
+      <div class="flex gap-4 flex-wrap items-center">
+        <div class="relative flex-1 min-w-[300px]">
+          <%= text_field_tag :query, params[:query], placeholder: t('events.index.search_placeholder'), class: 'w-full h-16 px-6 pr-16 rounded-full border-2 border-gray-300 text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-4 focus:ring-red-300 focus:border-red-500 shadow-sm text-lg bg-white', data: { event_search_target: "query" } %>
+          <button type="submit" class="bg-red-600 hover:bg-red-700 text-white w-12 h-12 rounded-full transition-colors flex items-center justify-center" style="position: absolute; right: 0.5rem; top: 50%; transform: translateY(-50%);">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+            </svg>
+          </button>
+        </div>
+        <%= select_tag :date, options_for_select([[t('events.index.any_date'), ''], [t('events.index.today'), 'today'], [t('events.index.this_week'), 'this_week'], [t('events.index.this_month'), 'this_month'], [t('events.index.upcoming'), 'upcoming'], [t('events.index.past'), 'past']], params[:date]), class: 'h-16 px-6 rounded-full border-2 border-gray-300 text-gray-900 focus:outline-none focus:ring-4 focus:ring-red-300 focus:border-red-500 shadow-sm bg-white text-lg', data: { event_search_target: "date" } %>
+        <%= select_tag :country, options_for_select([[t('events.index.all_countries'), '']] + @countries.map { |c| [c.name, c.id] }, params[:country]), class: 'h-16 px-6 rounded-full border-2 border-gray-300 text-gray-900 focus:outline-none focus:ring-4 focus:ring-red-300 focus:border-red-500 shadow-sm bg-white text-lg', data: { event_search_target: "country" } %>
+      </div>
+    <% end %>
+  </div>
+
+  <hr>
+
+  <!-- Events Grid -->
+  <%= turbo_frame_tag "events_list" do %>
+    <section class="mb-6">
+      <% if @events.any? %>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mt-10">
+          <% @events.each do |event| %>
+            <div class="group bg-white rounded-xl shadow-md hover:shadow-2xl transition-all duration-300 overflow-hidden">
+              <%= link_to event_path(event), data: { turbo_frame: "_top" }, class: "block" do %>
+                <div class="relative aspect-video overflow-hidden bg-gray-200">
+                  <% if event.image.attached? %>
+                    <%= image_tag event.image, class: "w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500", alt: event.title %>
+                  <% else %>
+                    <div class="w-full h-full bg-gradient-to-br from-red-500 to-red-700 flex items-center justify-center">
+                      <svg class="w-16 h-16 text-white opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                      </svg>
+                    </div>
+                  <% end %>
+                  
+                  <!-- Payment Status Badge -->
+                  <% if event.payment_status == 'free' %>
+                    <div class="absolute top-3 right-3 bg-green-600 text-white px-3 py-1 rounded-full text-xs font-semibold shadow-lg">
+                      <%= t('events.index.free') %>
+                    </div>
+                  <% elsif event.payment_status == 'paid' %>
+                    <div class="absolute top-3 right-3 bg-blue-600 text-white px-3 py-1 rounded-full text-xs font-semibold shadow-lg">
+                      <%= number_to_currency(event.price_cents / 100.0) %>
+                    </div>
+                  <% end %>
+                </div>
+              <% end %>
+              
+              <div class="p-5 sm:p-6">
+                <%= link_to event_path(event), data: { turbo_frame: "_top" } do %>
+                  <h3 class="text-xl font-bold mb-2 group-hover:text-red-600 transition-colors line-clamp-2"><%= event.title %></h3>
+                <% end %>
+                
+                <!-- Event Date & Time -->
+                <div class="space-y-1 mb-4">
+                  <p class="text-sm font-semibold text-gray-900">
+                    <%= event.start_datetime.strftime("%B %d, %Y") %>
+                  </p>
+                  <p class="text-sm text-gray-600">
+                    <%= event.start_datetime.strftime("%I:%M %p") %> - <%= event.end_datetime.strftime("%I:%M %p") %>
+                    <span class="text-gray-400"><%= event.start_datetime.strftime("%Z") %></span>
+                  </p>
+                </div>
+                
+                <!-- Country Badge -->
+                <% country_name = event.chapter&.country&.name %>
+                <% if country_name %>
+                  <div class="inline-flex items-center gap-2 px-3 py-1 bg-gray-100 rounded-full text-xs text-gray-700">
+                    <% if country_icon(country_name) %>
+                      <%= image_tag country_icon(country_name), alt: country_name, class: "w-4 h-4 object-contain" %>
+                    <% end %>
+                    <span><%= country_name %></span>
+                  </div>
+                <% end %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      <% else %>
+        <div class="text-center py-12">
+          <p class="text-gray-500 text-lg"><%= t('events.index.no_events') %></p>
+        </div>
+      <% end %>
+    </section>
+  <% end %>
+
+</div>

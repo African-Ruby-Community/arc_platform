@@ -1,62 +1,62 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+/* 1. The main Tailwind 4 import */
+@import "tailwindcss";
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+/* 2. Load your Plugins */
+@plugin "@tailwindcss/typography";
+@plugin "daisyui";
 
+/* 3. Fonts and Theme Overrides */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
 
-@layer base {
-    :root {
-      --font-sans: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    }
-
-    html {
-      font-family: var(--font-sans);
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-      text-rendering: optimizeLegibility;
-    }
-
-    body {
-      font-family: var(--font-sans);
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-    }
+@theme {
+    --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+    --color-primary: var(--color-red-600);
+    --color-primary-content: var(--color-white);
+    --color-primary-focus: #B01820;
+    --color-primary-active: #B01820;
+    /* If you had custom colors in tailwind.config.js, put them here: */
+    /* --color-brand-primary: #xxxxxx; */
 }
 
+/* 4. Custom Animations & Utilities */
+@utility alert_custom_class {
+    animation: appear-then-fade 6s both;
+    margin-top: 50px;
+}
+
+@keyframes appear-then-fade {
+    0%, 100% { opacity: 0; }
+    5%, 60% { opacity: 1; }
+}
+
+/* 5. Custom Component Logic */
 @layer components {
-
     .turbo-progress-bar {
-        background: linear-gradient(to right, hsl(var(--p)), hsl(var(--b1)));
-    }
-
-    @keyframes slide-in-fade-out {
-        0%   { opacity: 0; transform: translateX(-16px); }
-        8%   { opacity: 1; transform: translateX(0); }
-        75%  { opacity: 1; transform: translateX(0); }
-        100% { opacity: 0; transform: translateX(-8px); }
-    }
-
-    .alert_custom_class {
-        animation: slide-in-fade-out 5s cubic-bezier(0.16, 1, 0.3, 1) both;
+        background: linear-gradient(to right, var(--color-primary), var(--color-base-100));
     }
 
     .text-error {
         font-size: .875rem;
-        color: hsl(var(--er)/var(--tw-border-opacity));
+        color: var(--color-error);
     }
 
-    .resp-table {
-        width: 100%;
-        display: table;
+    /* Override DaisyUI btn-primary to use red */
+    .btn-primary {
+        background-color: #D82028 !important;
+        border-color: #D82028 !important;
+        color: white !important;
     }
-    .resp-table-body{
-        display: table-row-group;
+
+    .btn-primary:hover {
+        background-color: #B01820 !important;
+        border-color: #B01820 !important;
     }
-    .resp-table-row{
-        display: table-row;
-    }
-    .table-body-cell{
+
+    /* Table Styles */
+    .resp-table { width: 100%; display: table; }
+    .resp-table-body { display: table-row-group; }
+    .resp-table-row { display: table-row; }
+    .table-body-cell {
         display: table-cell;
         border: 1px solid #dddddd;
         padding: 8px;
@@ -64,27 +64,21 @@
         vertical-align: top;
     }
 
-    .chapter-grid {
-        img {
-            width: 330px;
-            height: 167px;
-        }
-    }
-    
     .rounded-box {
         position: relative;
         overflow: hidden;
-    }
-    
-    .rounded-box .absolute {
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        z-index: 10;
+
+        & .absolute {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+        }
+
+        & img {
+            display: block;
+        }
     }
 }

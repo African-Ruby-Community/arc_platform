@@ -1,19 +1,17 @@
-<section class="relative flex min-h-screen items-center overflow-hidden -mx-8 -mt-16 pt-20">
-
-  <%# Background image %>
-  <div class="absolute inset-0 z-0">
-    <%= image_tag 'hero-community.jpg', alt: "African Ruby Community gathering",
-        class: "w-full h-full object-cover" %>
-
-    <%# Light mode overlay — hidden when dark class is present %>
-    <div class="absolute inset-0 dark:hidden"
-         style="background: linear-gradient(to bottom, rgba(255,255,255,0.97) 0%, rgba(255,255,255,0.75) 35%, rgba(255,255,255,0.75) 65%, rgba(255,255,255,0.97) 100%)"></div>
-
-    <%# Dark mode overlay — only visible when dark class is present %>
-    <div class="absolute inset-0 hidden dark:block"
-         style="background: rgba(0,0,0,0.85)"></div>
-    <div class="absolute inset-0 hidden dark:block"
-         style="background: linear-gradient(to bottom, #000 0%, transparent 40%, transparent 60%, #000 100%)"></div>
+<div class="text-center rounded-box mx-auto relative">
+  <div class="relative min-h-[400px] md:min-h-[500px]">
+    <%= image_tag 'intro-landing-optimized.jpg', alt: t('landing.index.intro.conference_alt'), class: "w-full h-[400px] md:h-[500px] object-cover rounded-lg", loading: "eager" %>
+    <div class="absolute inset-0 bg-black/40 rounded-lg"></div>
+    <div class="absolute inset-0 flex items-center justify-center">
+    <%= link_to "https://rubyconf.africa", title: "Click to visit Ruby Conf Africa 2025", class: "block relative z-10" do %>
+      <div class="text-center">
+      <span class="text-2xl md:text-4xl font-extrabold text-white bg-red-600 bg-opacity-90 px-6 py-3 rounded-lg shadow-lg inline-block transform hover:scale-105 transition-transform duration-300 sm:inline-block group-hover:inline-block">
+        <%= t('landing.index.intro.subtitle') %> 🔗
+        <p class="mt-2 text-white text-lg md:text-lg font-semibold"><%= t('landing.index.intro.conference_dates') %></p>
+        <p class="mt-4 text-white text-lg md:text-lg font-medium hidden sm:block"><%= t('landing.index.intro.conference_description') %></p>
+      </span>
+    <% end %>
+    </div>
   </div>
 
   <div class="relative z-10 mx-auto w-full max-w-7xl px-6 py-24 md:py-32">
@@ -57,4 +55,25 @@
     </div>
   </div>
 
-</section>
+  <div class="grid lg:grid-cols-2 grid-cols-1 lg:gap-0 gap-5 lg:-ml-10">
+    <div class="bg-red-600 text-white rounded-lg p-10 w-76 h-40 text flex flex-col gap-3 justify-center items-center hover:scale-105 transition-transform duration-300">
+      <p class="text-5xl font-bold"> 5000 + </p>
+      <p class="text-sm font-semibold"><%= t('landing.index.intro.members_count') %></p>
+    </div>
+    <div class="rounded-lg lg:-ml-20 hover:scale-105 transition-transform duration-300">
+       <%= image_tag 'developers.jpg', class: 'w-full lg:h-[110%] object-cover rounded-lg lg:rounded-tr-full' %>
+    </div>
+    <div class="lg:-mt-28 rounded-lg hover:scale-105 transition-transform duration-300">
+     <%= image_tag 'conference.jpg', class: 'w-full h-full object-cover rounded-lg lg:rounded-bl-full' %>
+    </div>
+    <div class="bg-red-600 text-white rounded-lg lg:rounded-bl-none lg:rounded-tl-none lg:rounded-tr-none p-10 w-76 h-40 text flex flex-col gap-3 justify-center items-center lg:mt-6 hover:scale-105 transition-transform duration-300">
+      <p class="text-5xl font-bold">
+        <%= Time.now.year - 2010 %> +
+      </p>
+      <p class="text-sm font-semibold">
+        <%= t('landing.index.intro.years_count') %>
+      </p>
+    </div>
+  </div>
+</div>
+</div>

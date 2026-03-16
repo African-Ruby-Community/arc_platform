@@ -165,10 +165,15 @@ Run the following command in the terminal
 ### Step 4: Install yarn dependancies
 
 ``` yarn install ```
+```yarn build:css && yarn build```
 
 ### Step 5: Start server
 
 ```./bin/dev```
+
+or
+
+```foreman start -f Procfile.dev```
 
 ### step 6: Creating a pull request
 

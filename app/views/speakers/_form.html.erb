@@ -1,0 +1,32 @@
+<div class="border border-gray-300 rounded-lg p-4 mb-4 speaker-form">
+  <%= form.fields_for :speakers, speaker do |speaker_form| %>
+    <div class="space-y-4">
+      <div class="flex justify-between items-center mb-2">
+        <h4 class="font-semibold text-gray-700">Speaker</h4>
+        <%= link_to "Remove", "#", class: "text-red-600 hover:text-red-800 text-sm remove-speaker", data: { action: "click->nested-form#remove" } %>
+      </div>
+
+      <div class="form-control">
+        <%= speaker_form.label :name, class: "label" %>
+        <%= speaker_form.text_field :name, class: "input input-bordered w-full" %>
+      </div>
+
+      <div class="form-control">
+        <%= speaker_form.label :bio, class: "label" %>
+        <%= speaker_form.text_area :bio, rows: 3, class: "textarea textarea-bordered w-full" %>
+      </div>
+
+      <div class="form-control">
+        <%= speaker_form.label :photo, class: "label" %>
+        <%= speaker_form.file_field :photo, class: "file-input file-input-bordered w-full" %>
+        <% if speaker.photo.attached? %>
+          <div class="mt-2">
+            <%= image_tag speaker.photo, class: "w-20 h-20 rounded-full object-cover" %>
+          </div>
+        <% end %>
+      </div>
+
+      <%= speaker_form.hidden_field :_destroy %>
+    </div>
+  <% end %>
+</div>
