@@ -210,7 +210,7 @@
       <%= t('code_of_conduct.cta_desc', default: 'Reach out to our organizers privately. Reports are kept confidential.') %>
     </p>
     <div class="flex flex-wrap justify-center gap-4 pt-2">
-      <%= link_to "mailto:organisers@rubycommunity.africa", class: "btn btn-error gap-2 shadow-md hover:shadow-lg transition-all" do %>
+      <%= mail_to "mailto:organisers@rubycommunity.africa",data: { turbo: false }, class: "btn btn-error gap-2 shadow-md hover:shadow-lg transition-all" do %>
         <i class="fa-solid fa-envelope text-sm"></i>
         <%= t('common.actions.contact_organizers', default: 'Contact Organizers') %>
       <% end %>

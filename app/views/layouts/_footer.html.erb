@@ -58,11 +58,12 @@
                         class: "inline-block text-base-content/70 hover:text-red-500 dark:hover:text-red-400 transition-colors duration-200" %>
           </li>
           <li>
-            <%= link_to "Built with Ruby", built_with_ruby_path,
+            <%= link_to t('footer.built_with_ruby'), built_with_ruby_path,
                         class: "inline-block text-base-content/70 hover:text-red-500 dark:hover:text-red-400 transition-colors duration-200" %>
           </li>
-          <li>
-            <%= link_to t('footer.sponsor'), 'mailto:organisers@rubycommunity.africa',
+<!--          TODO: Replace with sponsor page/ contact page-->
+          <li style="display: none;">
+            <%= mail_to t('footer.sponsor'), 'mailto:organisers@rubycommunity.africa',
                         class: "inline-block text-base-content/70 hover:text-red-500 dark:hover:text-red-400 transition-colors duration-200" %>
           </li>
           <% if FeatureFlag.find_by(name: 'members').try(:enabled) %>
