@@ -257,7 +257,7 @@ GEM
       csv (>= 3.0)
       fugit (~> 1.0)
       rails (>= 5.2)
-    msgpack (1.8.4)
+    msgpack (1.8.7)
     multi_xml (0.9.1)
       bigdecimal (>= 3.1, < 5)
     net-http (0.9.1)
