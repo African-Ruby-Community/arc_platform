@@ -85,7 +85,7 @@ module ChaptersHelper
     },
     {
       alt_key: 'social_media.github',
-      link: 'https://github.com/nairuby',
+      link: 'https://github.com/African-Ruby-Community/arc_platform',
       icon: 'icons/github.svg',
       show: true
     }
